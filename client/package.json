@@ -1,0 +1,35 @@
+{
+  "name": "code-notes",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "gh-pages": "^1.1.0",
+    "mongoose": "^5.0.12",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-markdown": "^3.2.2",
+    "react-scripts": "^2.1.1",
+    "styled-components": "^3.1.6"
+  },
+  "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "5.6.0",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
