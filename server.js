@@ -17,7 +17,7 @@ server.use(cors(corsOptions));
 server.use(express.json());
 
 // NOTES ENDPOINTS //
-// Get all notes
+// Get all notes from all users
 server.get('/notes', authenticate, (req, res) => {
   Note.find({}, (err, notes) => {
     if (err) res.status(500).json('Failed to get notes: ', err);
@@ -58,6 +58,7 @@ server.post('/notes', authenticate, (req, res) => {
 // Get Note by ID
 server.get('/notes/:id', authenticate, (req, res) => {
   const id = req.params.id;
+  console.log(req.decoded);
   Note.findById(id)
     .populate('createdBy')
     .then(note => {
@@ -121,37 +122,15 @@ server.post('/signup', (req, res) => {
     );
 });
 
-// Get all Users
-server.get('/equifax', (req, res) => {
-  User.find({})
-    .populate('notes')
-    .then(users => res.status(200).json(users))
-    .catch(err =>
-      res.status(500).json({ message: 'Error getting users', error: err })
-    );
-});
-
-// Get user by id
-server.get('/users/:id', authenticate, (req, res) => {
-  const id = req.params.id;
-  User.findById(id)
-    .populate('notes')
-    .exec((err, user) => {
-      if (err)
-        res.status(500).json({ message: 'Error finding user', error: err });
-      res.status(200).json(user);
-    });
-});
-
-// Get user by username
-server.get('/users/name/:username', authenticate, (req, res) => {
-  User.findOne({ username: req.params.username })
-    .populate('notes')
-    .exec((err, user) => {
-      if (err)
-        res.status(500).json({ message: 'Error finding user', error: err });
-      res.status(200).json(user);
-    });
+// Get user data from JWT token
+server.get('/user', authenticate, async (req, res) => {
+  try {
+    const username = req.decoded.username;
+    const user = await User.findOne({ username }).populate('notes').lean();
+    res.status(200).json({ ...user });
+  } catch (err) {
+    res.status(500).json({ message: 'Internal Server ', err });
+  }
 });
 
 // Login user

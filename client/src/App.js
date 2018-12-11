@@ -106,15 +106,15 @@ class App extends Component {
     });
   };
 
-  getNotes = () => {
-    const token = localStorage.getItem("token");
-    const header = { headers: { Authorization: token } };
-    axios
-      .get(`${API_URL}/users/name/${this.state.username}`, header)
-      .then(res => {
-        this.setState({ notes: res.data.notes, userId: res.data._id });
-      })
-      .catch(err => console.error(err)); // eslint-disable-line
+  getNotes = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const header = { headers: { Authorization: token } };
+      const response = await axios.get(`${API_URL}/user`, header);
+      this.setState({ notes: response.data.notes, userId: response.data._id });
+    } catch (err) {
+      console.error(err); // eslint-disable-line
+    }
   };
 
   viewNotes = () => {
