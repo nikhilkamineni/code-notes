@@ -32,8 +32,8 @@ const AppStyled = styled.div`
 // App Component starts here
 class App extends Component {
   state = {
-    showingSignup: true,
-    showingLogin: false,
+    showingSignup: false,
+    showingLogin: true,
     viewingNotes: false,
     creatingNote: false,
     editingNote: false,
@@ -50,8 +50,11 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (this.state.authenticated) {
+    try {
       this.getNotes();
+      this.setState({ authenticated: true, viewingNotes: true });
+    } catch (err) {
+      console.error(err); // eslint-disable-line
     }
   }
 
@@ -74,8 +77,8 @@ class App extends Component {
   logoutUser = () => {
     localStorage.removeItem("token");
     this.setState({
-      showingSignup: true,
-      showingLogin: false,
+      showingSignup: false,
+      showingLogin: true,
       viewingNotes: false,
       creatingNote: false,
       editingNote: false,
@@ -93,17 +96,11 @@ class App extends Component {
   };
 
   showLogin = () => {
-    this.setState({
-      showingLogin: true,
-      showingSignup: false
-    });
+    this.setState({ showingLogin: true, showingSignup: false });
   };
 
   showSignup = () => {
-    this.setState({
-      showingSignup: true,
-      showingLogin: false
-    });
+    this.setState({ showingSignup: true, showingLogin: false });
   };
 
   getNotes = async () => {
@@ -160,15 +157,11 @@ class App extends Component {
   };
 
   showDeleteModal = () => {
-    this.setState({
-      deletingNote: true
-    });
+    this.setState({ deletingNote: true });
   };
 
   closeDeleteModal = () => {
-    this.setState({
-      deletingNote: false
-    });
+    this.setState({ deletingNote: false });
   };
 
   saveNewNote = note => {
@@ -220,7 +213,6 @@ class App extends Component {
       .catch(err => console.error(err)); // eslint-disable-line
   };
 
-  // RENDER
   render() {
     return (
       <AppStyled className="App">
