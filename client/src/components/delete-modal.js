@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 // Styles
 const DeleteModalContainerStyled = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,9 +40,10 @@ const DeleteModalContainerStyled = styled.div`
       font-weight: bold;
       outline: none;
       border: none;
+      cursor: pointer;
 
       &:hover {
-       border: 2px solid white;
+        border: 2px solid rgb(151, 151, 151);
       }
     }
 
@@ -57,18 +58,22 @@ const DeleteModalContainerStyled = styled.div`
 `;
 
 // DeleteModal Component
-const DeleteModal = (props) => {
+const DeleteModal = props => {
   return (
     <DeleteModalContainerStyled>
       <div className="DeleteModalDialog">
         <h3>Are you sure you want to delete this?</h3>
         <div className="DeleteModalButtons">
-          <button className="DeleteButton" onClick={props.deleteNote}>Delete</button>
-          <button className="NoButton" onClick={props.closeDeleteModal}>No</button>
+          <button className="DeleteButton" onClick={props.deleteNote}>
+            Delete
+          </button>
+          <button className="NoButton" onClick={props.closeDeleteModal}>
+            No
+          </button>
         </div>
       </div>
     </DeleteModalContainerStyled>
-  )
-}
+  );
+};
 
 export default DeleteModal;
