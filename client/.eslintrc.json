@@ -24,11 +24,12 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "strict": 0,
-    "indent": ["error", 2],
+    "indent": ["off"],
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "always"],
     "react/jsx-uses-vars": "error",
     "prettier/prettier": "error",
-    "no-unused-vars": ["error", { "varsIgnorePattern": "Styled" }]
+    "no-unused-vars": ["error", { "varsIgnorePattern": "Styled" }],
+    "react/jsx-indent": ["warn", 2]
   }
 }

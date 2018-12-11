@@ -63,15 +63,12 @@ class App extends Component {
       })
       .then(() => {
         this.setState({ authenticated: true, username: userInfo.username });
-        console.log(`${userInfo.username} just logged in`);
       })
       .then(() => {
         this.getNotes();
         this.viewNotes();
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.error(err)); // eslint-disable-line
   };
 
   logoutUser = () => {
@@ -117,7 +114,7 @@ class App extends Component {
       .then(res => {
         this.setState({ notes: res.data.notes, userId: res.data._id });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err)); // eslint-disable-line
   };
 
   viewNotes = () => {
@@ -185,7 +182,7 @@ class App extends Component {
         this.getNotes();
       })
       .then(() => this.viewNotes())
-      .catch(err => console.log(err));
+      .catch(err => console.error(err)); // eslint-disable-line
   };
 
   updateNote = updatedNote => {
@@ -204,7 +201,7 @@ class App extends Component {
       .then(() =>
         this.setState({ editingNote: false, showingNoteDetails: true })
       )
-      .catch(err => console.log(err));
+      .catch(err => console.error(err)); // eslint-disable-line
   };
 
   deleteNote = () => {
@@ -220,7 +217,7 @@ class App extends Component {
         this.setState({ notes: updatedNotes });
         this.viewNotes();
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err)); // eslint-disable-line
   };
 
   // RENDER

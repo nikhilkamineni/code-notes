@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-line
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // Styles
 const LoginStyled = styled.div`
@@ -58,8 +58,8 @@ const LoginStyled = styled.div`
 
 class Login extends Component {
   state = {
-    username: '',
-    password: ''
+    username: "",
+    password: ""
   };
 
   handleUsernameInput = event => {
@@ -71,9 +71,12 @@ class Login extends Component {
   };
 
   handleLogin = () => {
-    let userInfo = { username: this.state.username, password: this.state.password };
+    let userInfo = {
+      username: this.state.username,
+      password: this.state.password
+    };
     this.props.loginUser(userInfo);
-    this.setState({ username: '', password: '' });
+    this.setState({ username: "", password: "" });
   };
 
   render() {

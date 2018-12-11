@@ -1,11 +1,12 @@
-const jwt = require('jsonwebtoken');
-// const { secret } = require('../config');
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
+const SECRET = process.env.SECRET;
 
 const authenticate = (req, res, next) => {
   const token = req.get('Authorization');
   if (token) {
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    jwt.verify(token, SECRET, (err, decoded) => {
       if (err) return res.status(422).json(err);
       req.decoded = decoded;
       next();
