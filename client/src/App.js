@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
+import React, { Component } from "react";
+import styled from "styled-components";
+import axios from "axios";
 
 // Components
-import Sidebar from './components/sidebar';
-import NotesList from './components/notes-list';
-import CreateNote from './components/create-note';
-import NoteDetails from './components/note-details';
-import EditNote from './components/edit-note';
-import DeleteModal from './components/delete-modal';
-import Signup from './components/signup';
-import Login from './components/login';
+import Sidebar from "./components/sidebar";
+import NotesList from "./components/notes-list";
+import CreateNote from "./components/create-note";
+import NoteDetails from "./components/note-details";
+import EditNote from "./components/edit-note";
+import DeleteModal from "./components/delete-modal";
+import Signup from "./components/signup";
+import Login from "./components/login";
 
-import './App.css';
+import "./App.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
@@ -39,13 +39,13 @@ class App extends Component {
     editingNote: false,
     showingNoteDetails: false,
     authenticated: false,
-    username: '',
-    userId: '',
+    username: "",
+    userId: "",
     notes: [],
     noteDetails: {
-      title: '',
-      content: '',
-      _id: ''
+      title: "",
+      content: "",
+      _id: ""
     }
   };
 
@@ -59,7 +59,7 @@ class App extends Component {
     axios
       .post(`${API_URL}/login`, userInfo)
       .then(res => {
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem("token", res.data.token);
       })
       .then(() => {
         this.setState({ authenticated: true, username: userInfo.username });
@@ -75,7 +75,7 @@ class App extends Component {
   };
 
   logoutUser = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     this.setState({
       showingSignup: true,
       showingLogin: false,
@@ -84,13 +84,13 @@ class App extends Component {
       editingNote: false,
       showingNoteDetails: false,
       authenticated: false,
-      username: '',
-      userId: '',
+      username: "",
+      userId: "",
       notes: [],
       noteDetails: {
-        title: '',
-        content: '',
-        _id: ''
+        title: "",
+        content: "",
+        _id: ""
       }
     });
   };
@@ -110,7 +110,7 @@ class App extends Component {
   };
 
   getNotes = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const header = { headers: { Authorization: token } };
     axios
       .get(`${API_URL}/users/name/${this.state.username}`, header)
@@ -175,7 +175,7 @@ class App extends Component {
   };
 
   saveNewNote = note => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const header = { headers: { Authorization: token } };
     note.createdBy = this.state.userId;
     axios
@@ -189,7 +189,7 @@ class App extends Component {
   };
 
   updateNote = updatedNote => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const header = { headers: { Authorization: token } };
     const updatedNoteInfo = {
       title: updatedNote.title,
@@ -208,7 +208,7 @@ class App extends Component {
   };
 
   deleteNote = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const header = { headers: { Authorization: token } };
     let id = this.state.noteDetails._id;
     axios
@@ -268,7 +268,7 @@ class App extends Component {
               noteDetails={this.state.noteDetails}
               showNoteEditForm={this.showNoteEditForm}
               showDeleteModal={this.showDeleteModal}
-              style={{ padding: '0' }}
+              style={{ padding: "0" }}
             />
           )}
 
