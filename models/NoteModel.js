@@ -1,24 +1,38 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
-const User = require('./UserModel.js'); // eslint-disable-line
 
 const NoteSchema = new Schema({
   title: {
-    required: true,
     type: String,
+    required: true
   },
+  description: {
+    type: String,
+    required: false
+  }
   content: {
-    required: true,
     type: String,
+    required: true
   },
+  tags: [
+    {
+      type: String,
+      required: false
+    }
+  ],
+  color: {
+    type: String,
+    required: false
+  }
   createdBy: {
     type: ObjectId,
     ref: 'User',
+    required: true
   },
   createdOn: {
     type: Date,
-    default: Date.now,
+    default: Date.now
   },
 });
 
