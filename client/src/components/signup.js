@@ -108,7 +108,7 @@ class Signup extends Component {
     };
 
     axios
-      .post(`${API_URL}/users`, newUserInfo)
+      .post(`${API_URL}/signup`, newUserInfo)
       .then(res => {
         this.setState({
           username: '',

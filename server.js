@@ -101,7 +101,7 @@ server.delete('/notes/:id', authenticate, (req, res) => {
 
 // USER ENDPOINTS //
 // Create new User
-server.post('/users', (req, res) => {
+server.post('/signup', (req, res) => {
   let { username, password } = req.body;
   username = username.toLowerCase();
   if (!username || !password) {
