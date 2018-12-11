@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import Note from './note';
+import React, { Component } from "react";
+import styled from "styled-components";
+import Note from "./note";
 
 // STYLES
 const NoteListStyled = styled.div`
@@ -60,7 +60,7 @@ class NotesList extends Component {
   handleSearch = event => {
     if (event.target.value.length > 0) {
       let filteredNotes = this.props.notes.filter(note => {
-        let searchTerms = event.target.value.toLowerCase().split(' ');
+        let searchTerms = event.target.value.toLowerCase().split(" ");
         let containsTerm = true;
         searchTerms.forEach(term => {
           if (note.title.toLowerCase().includes(term) !== true) {
@@ -93,18 +93,22 @@ class NotesList extends Component {
           </div>
         </header>
         <div
-          style={{ display: 'flex', flexFlow: 'row wrap' }}
+          style={{ display: "flex", flexFlow: "row wrap" }}
           className="NotesList__body"
         >
-          {this.state.notesFiltered.map(note => {
-            return (
-              <Note
-                key={note._id}
-                note={note}
-                showNoteDetails={this.props.showNoteDetails}
-              />
-            );
-          })}
+          {this.state.notes && this.state.notes.length > 0 ? (
+            this.state.notesFiltered.map(note => {
+              return (
+                <Note
+                  key={note._id}
+                  note={note}
+                  showNoteDetails={this.props.showNoteDetails}
+                />
+              );
+            })
+          ) : (
+            <p style={{ padding: "15px" }}>You have no notes yet!</p>
+          )}
         </div>
       </NoteListStyled>
     );

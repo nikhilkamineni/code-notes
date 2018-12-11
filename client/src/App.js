@@ -236,14 +236,12 @@ class App extends Component {
             <Signup showLogin={this.showLogin} />
           )}
 
-          {this.state.authenticated &&
-            this.state.viewingNotes &&
-            this.state.notes.length > 0 && (
-              <NotesList
-                notes={this.state.notes}
-                showNoteDetails={this.showNoteDetails}
-              />
-            )}
+          {this.state.authenticated && this.state.viewingNotes && (
+            <NotesList
+              notes={this.state.notes}
+              showNoteDetails={this.showNoteDetails}
+            />
+          )}
 
           {this.state.authenticated && this.state.creatingNote && (
             <CreateNote
