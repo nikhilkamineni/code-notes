@@ -10,7 +10,7 @@ const NoteSchema = new Schema({
   description: {
     type: String,
     required: false
-  }
+  },
   content: {
     type: String,
     required: true
@@ -24,7 +24,7 @@ const NoteSchema = new Schema({
   color: {
     type: String,
     required: false
-  }
+  },
   createdBy: {
     type: ObjectId,
     ref: 'User',
