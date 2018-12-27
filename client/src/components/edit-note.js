@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 // Styles
 const EditNoteStyled = styled.div`
@@ -65,9 +65,9 @@ const EditNoteStyled = styled.div`
 // Edit Note Component
 class EditNote extends Component {
   state = {
-    title: '',
-    content: '',
-    _id: ''
+    title: "",
+    content: "",
+    _id: ""
   };
 
   componentDidMount() {

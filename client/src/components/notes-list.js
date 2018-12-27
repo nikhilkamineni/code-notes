@@ -96,7 +96,7 @@ class NotesList extends Component {
           style={{ display: "flex", flexFlow: "row wrap" }}
           className="NotesList__body"
         >
-          {this.state.notes && this.state.notes.length > 0 ? (
+          {this.state.notesFiltered && this.state.notesFiltered.length > 0 ? (
             this.state.notesFiltered.map(note => {
               return (
                 <Note

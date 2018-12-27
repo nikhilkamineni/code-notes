@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 // Styles
 const CreateNoteStyled = styled.div`
@@ -65,8 +65,8 @@ const CreateNoteStyled = styled.div`
 // CreateNote Component
 class CreateNote extends Component {
   state = {
-    title: '',
-    content: ''
+    title: "",
+    content: ""
   };
 
   handleTitleInput = event => {

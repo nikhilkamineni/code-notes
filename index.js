@@ -1,12 +1,13 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const server = require('./server');
-require('dotenv').config();
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise;
 
-const PORT = process.env.PORT;
-const MONGODB_URL = process.env.MONGODB_URL;
+const PORT = process.env.PORT || 9000;
+const MONGODB_URL =
+  process.env.MONGODB_URL || 'mongodb://localhost:27017/code-notes';
 const options = { useNewUrlParser: true, useCreateIndex: true }; // fixes deprecation warnings
 
 mongoose
@@ -22,5 +23,5 @@ server.listen(PORT, err => {
   if (err) {
     return console.log(`\n\u274C Server error: ${err}\n`);
   }
-  console.log(`\n\u2705 Server is listening on port ${process.env.PORT}!`);
+  console.log(`\n\u2705 Server is listening on port ${PORT}!`);
 });

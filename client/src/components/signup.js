@@ -1,8 +1,8 @@
-import React, { Component } from 'react'; // eslint-disable-line
-import styled from 'styled-components';
-import axios from 'axios';
+import React, { Component } from "react";
+import styled from "styled-components";
+import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
 // Styles
 const SignupStyled = styled.div`
@@ -67,9 +67,9 @@ const SignupStyled = styled.div`
 // Signup Component
 class Signup extends Component {
   state = {
-    username: '',
-    password: '',
-    confirmPassword: '',
+    username: "",
+    password: "",
+    confirmPassword: "",
     passwordMatch: true
   };
 
@@ -111,9 +111,9 @@ class Signup extends Component {
       .post(`${API_URL}/signup`, newUserInfo)
       .then(res => {
         this.setState({
-          username: '',
-          password: '',
-          confirmPassword: '',
+          username: "",
+          password: "",
+          confirmPassword: "",
           passwordMatch: true
         });
       })

@@ -14,7 +14,7 @@ import Login from "./components/login";
 
 import "./App.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 axios.defaults.withCredentials = true;
 
 // Styles for App Component
@@ -52,7 +52,7 @@ class App extends Component {
   componentDidMount() {
     try {
       this.getNotes();
-      this.setState({ authenticated: true, viewingNotes: true });
+      // this.setState({ authenticated: true, viewingNotes: true });
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
@@ -108,7 +108,15 @@ class App extends Component {
       const token = localStorage.getItem("token");
       const header = { headers: { Authorization: token } };
       const response = await axios.get(`${API_URL}/user`, header);
-      this.setState({ notes: response.data.notes, userId: response.data._id });
+      if (response.status === 200) {
+        console.log(response.data.notes)
+        this.setState({
+          authenticated: true,
+          viewingNotes: true,
+          notes: response.data.notes,
+          userId: response.data._id
+        });
+      }
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
@@ -166,10 +174,10 @@ class App extends Component {
 
   saveNewNote = note => {
     const token = localStorage.getItem("token");
-    const header = { headers: { Authorization: token } };
+    const options = { headers: { Authorization: token } };
     note.createdBy = this.state.userId;
     axios
-      .post(`${API_URL}/notes`, note, header)
+      .post(`${API_URL}/notes`, note, options)
       .then(res => {
         this.setState({ notes: [...this.state.notes, res.data] });
         this.getNotes();

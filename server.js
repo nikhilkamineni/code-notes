@@ -1,10 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const Note = require('./models/NoteModel.js');
 const User = require('./models/UserModel.js');
 const authenticate = require('./middleware/authenticate');
-require('dotenv').config();
+
+const SECRET = process.env.SECRET || "DevelopmentSecret"
 
 const corsOptions = {
   origin: true,
@@ -58,7 +60,6 @@ server.post('/notes', authenticate, (req, res) => {
 // Get Note by ID
 server.get('/notes/:id', authenticate, (req, res) => {
   const id = req.params.id;
-  console.log(req.decoded);
   Note.findById(id)
     .populate('createdBy')
     .then(note => {
@@ -161,7 +162,7 @@ server.post('/login', (req, res) => {
         const payload = {
           username: user.username
         };
-        const token = jwt.sign(payload, process.env.SECRET);
+        const token = jwt.sign(payload, SECRET);
         res.json({ token });
       }
     });
