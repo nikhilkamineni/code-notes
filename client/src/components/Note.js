@@ -120,7 +120,7 @@ Note.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     content: PropTypes.string,
-    _id: PropTypes.number
+    _id: PropTypes.string
   })
 };
 

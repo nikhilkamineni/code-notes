@@ -240,7 +240,7 @@ class App extends Component {
           )}
 
           {!this.state.authenticated && this.state.showingSignup && (
-            <Signup showLogin={this.showLogin} />
+            <Signup loginUser={this.loginUser} />
           )}
 
           {this.state.authenticated && this.state.showingNotesList && (

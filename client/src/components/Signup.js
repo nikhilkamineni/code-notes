@@ -110,17 +110,22 @@ class Signup extends Component {
 
     if (!this.state.passwordMatch)
       //eslint-disable-next-line
-      return console.error("Passwords do not match!");
+      return console.error('Passwords do not match!');
 
     try {
-      await axios.post(`${API_URL}/signup`, { username, password });
-      await this.setState({
-        username: "",
-        password: "",
-        confirmPassword: "",
-        passwordMatch: true
+      const response = await axios.post(`${API_URL}/signup`, {
+        username,
+        password
       });
-      this.props.showLogin();
+      if (response.status === 200) {
+        await this.setState({
+          username: "",
+          password: "",
+          confirmPassword: "",
+          passwordMatch: true
+        });
+        this.props.loginUser({ username, password });
+      }
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
@@ -159,7 +164,7 @@ class Signup extends Component {
 }
 
 Signup.propTypes = {
-  showLogin: PropTypes.func
+  loginUser: PropTypes.func
 };
 
 export default Signup;
