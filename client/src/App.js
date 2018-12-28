@@ -32,13 +32,13 @@ const AppStyled = styled.div`
 // App Component starts here
 class App extends Component {
   state = {
-    showingSignup: false,
-    showingLogin: true,
-    viewingNotes: false,
-    creatingNote: false,
-    editingNote: false,
-    showingNoteDetails: false,
     authenticated: false,
+    showingLogin: true,
+    showingNoteCreate: false,
+    showingNoteDetails: false,
+    showingNoteEdit: false,
+    showingNotesList: false,
+    showingSignup: false,
     username: "",
     userId: "",
     notes: [],
@@ -74,9 +74,9 @@ class App extends Component {
     this.setState({
       showingSignup: false,
       showingLogin: true,
-      viewingNotes: false,
-      creatingNote: false,
-      editingNote: false,
+      showingNotesList: false,
+      showingNoteCreate: false,
+      showingNoteEdit: false,
       showingNoteDetails: false,
       authenticated: false,
       username: "",
@@ -106,7 +106,7 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({
           authenticated: true,
-          viewingNotes: true,
+          showingNotesList: true,
           notes: response.data.notes,
           userId: response.data._id
         });
@@ -119,20 +119,20 @@ class App extends Component {
   viewNotes = async () => {
     await this.getNotes();
     this.setState({
-      viewingNotes: true,
-      creatingNote: false,
+      showingNotesList: true,
+      showingNoteCreate: false,
       showingNoteDetails: false,
-      editingNote: false,
+      showingNoteEdit: false,
       deletingNote: false
     });
   };
 
   createNewNoteForm = () => {
     this.setState({
-      viewingNotes: false,
-      creatingNote: true,
+      showingNotesList: false,
+      showingNoteCreate: true,
       showingNoteDetails: false,
-      editingNote: false,
+      showingNoteEdit: false,
       deletingNote: false
     });
   };
@@ -141,20 +141,20 @@ class App extends Component {
     const noteToView = this.state.notes.find(note => note._id === id);
     this.setState({
       noteDetails: { ...noteToView },
-      viewingNotes: false,
-      creatingNote: false,
+      showingNotesList: false,
+      showingNoteCreate: false,
       showingNoteDetails: true,
-      editingNote: false,
+      showingNoteEdit: false,
       deletingNote: false
     });
   };
 
   showNoteEditForm = () => {
     this.setState({
-      viewingNotes: false,
-      creatingNote: false,
+      showingNotesList: false,
+      showingNoteCreate: false,
       showingNoteDetails: false,
-      editingNote: true,
+      showingNoteEdit: true,
       deletingNote: false
     });
   };
@@ -196,7 +196,7 @@ class App extends Component {
       );
 
       this.setState({
-        editingNote: false,
+        showingNoteEdit: false,
         showingNoteDetails: true,
         noteDetails: { ...response.data.updatedNote }
       });
@@ -244,14 +244,14 @@ class App extends Component {
             <Signup showLogin={this.showLogin} />
           )}
 
-          {this.state.authenticated && this.state.viewingNotes && (
+          {this.state.authenticated && this.state.showingNotesList && (
             <NotesList
               notes={this.state.notes}
               showNoteDetails={this.showNoteDetails}
             />
           )}
 
-          {this.state.authenticated && this.state.creatingNote && (
+          {this.state.authenticated && this.state.showingNoteCreate && (
             <CreateNote
               getNextId={this.getNextId}
               saveNewNote={this.saveNewNote}
@@ -267,7 +267,7 @@ class App extends Component {
             />
           )}
 
-          {this.state.authenticated && this.state.editingNote && (
+          {this.state.authenticated && this.state.showingNoteEdit && (
             <EditNote
               noteDetails={this.state.noteDetails}
               updateNote={this.updateNote}
