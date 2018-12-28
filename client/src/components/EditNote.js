@@ -29,13 +29,19 @@ const EditNoteStyled = styled.div`
     }
   }
 
-  .NoteTitleInput {
+  .EditNote__TitleInput {
     width: 50%;
     margin-top: 20px;
     font-size: 1rem;
   }
 
-  .NoteContentInput {
+  .EditNote__DescriptionInput {
+    width: 80%;
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+
+  .EditNote__ContentInput {
     width: 80%;
     height: 300px;
     margin-top: 20px;
@@ -67,6 +73,7 @@ const EditNoteStyled = styled.div`
 class EditNote extends Component {
   state = {
     title: "",
+    description: "",
     content: "",
     _id: ""
   };
@@ -84,6 +91,10 @@ class EditNote extends Component {
     this.setState({ content: e.target.value });
   };
 
+  handleDescriptionInput = e => {
+    this.setState({ description: e.target.value });
+  };
+
   handleTitleInput = e => {
     this.setState({ title: e.target.value });
   };
@@ -95,19 +106,28 @@ class EditNote extends Component {
 
   render() {
     return (
-      <EditNoteStyled className="EditNoteForm">
+      <EditNoteStyled className="EditNote">
         <h2>Edit Note:</h2>
         <input
-          className="NoteTitleInput"
+          className="EditNote__TitleInput"
           type="text"
+          placeholder="Title"
           value={this.state.title}
           onChange={this.handleTitleInput}
         />
+        <input
+          className="EditNote__DescriptionInput"
+          type="text"
+          placeholder="Description"
+          value={this.state.description}
+          onChange={this.handleDescriptionInput}
+        />
         <textarea
-          className="NoteContentInput"
+          className="EditNote__ContentInput"
           type="text"
           cols="50"
           rows="10"
+          placeholder="Content"
           value={this.state.content}
           onChange={this.handleContentInput}
         />
