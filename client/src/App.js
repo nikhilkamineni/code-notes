@@ -116,7 +116,8 @@ class App extends Component {
     }
   };
 
-  viewNotes = () => {
+  viewNotes = async () => {
+    await this.getNotes();
     this.setState({
       viewingNotes: true,
       creatingNote: false,
@@ -179,23 +180,29 @@ class App extends Component {
     }
   };
 
-  updateNote = updatedNote => {
-    const token = localStorage.getItem("token");
-    const header = { headers: { Authorization: token } };
-    const updatedNoteInfo = {
-      title: updatedNote.title,
-      content: updatedNote.content
-    };
-    axios
-      .put(`${API_URL}/notes/${updatedNote._id}`, updatedNoteInfo, header)
-      .then(res => {
-        this.setState({ noteDetails: { ...res.data.updatedNote } });
-      })
-      .then(() => this.getNotes())
-      .then(() =>
-        this.setState({ editingNote: false, showingNoteDetails: true })
-      )
-      .catch(err => console.error(err)); // eslint-disable-line
+  updateNote = async updatedNote => {
+    try {
+      const token = localStorage.getItem("token");
+      const header = { headers: { Authorization: token } };
+      const updatedNoteInfo = {
+        title: updatedNote.title,
+        content: updatedNote.content
+      };
+
+      const response = await axios.put(
+        `${API_URL}/notes/${updatedNote._id}`,
+        updatedNoteInfo,
+        header
+      );
+
+      this.setState({
+        editingNote: false,
+        showingNoteDetails: true,
+        noteDetails: { ...response.data.updatedNote }
+      });
+    } catch (err) {
+      console.error(err); // eslint-disable-line
+    }
   };
 
   deleteNote = () => {
