@@ -62,7 +62,7 @@ class App extends Component {
       const response = await axios.post(`${API_URL}/login`, userInfo);
       localStorage.setItem("token", response.data.token);
       await this.getNotes();
-      this.viewNotes();
+      this.showNotesList();
       this.setState({ authenticated: true, username: userInfo.username });
     } catch (err) {
       console.error(err); // eslint-disable-line
@@ -116,7 +116,7 @@ class App extends Component {
     }
   };
 
-  viewNotes = async () => {
+  showNotesList = async () => {
     await this.getNotes();
     this.setState({
       showingNotesList: true,
@@ -127,7 +127,7 @@ class App extends Component {
     });
   };
 
-  createNewNoteForm = () => {
+  showNoteCreateForm = () => {
     this.setState({
       showingNotesList: false,
       showingNoteCreate: true,
@@ -174,7 +174,7 @@ class App extends Component {
       note.createdBy = this.state.userId;
       const response = await axios.post(`${API_URL}/notes`, note, options);
       this.setState({ notes: [...this.state.notes, response.data] });
-      this.viewNotes();
+      this.showNotesList();
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
@@ -216,7 +216,7 @@ class App extends Component {
           note => note._id !== this.state.noteDetails._id
         );
         this.setState({ notes: updatedNotes });
-        this.viewNotes();
+        this.showNotesList();
       })
       .catch(err => console.error(err)); // eslint-disable-line
   };
@@ -225,14 +225,14 @@ class App extends Component {
     return (
       <AppStyled className="App">
         <Sidebar
-          viewNotes={this.viewNotes}
-          createNewNoteForm={this.createNewNoteForm}
           authenticated={this.state.authenticated}
-          showingLogin={this.state.showingLogin}
-          showingSignup={this.state.showingSignup}
+          logoutUser={this.logoutUser}
           showLogin={this.showLogin}
           showSignup={this.showSignup}
-          logoutUser={this.logoutUser}
+          showNoteCreateForm={this.showNoteCreateForm}
+          showNotesList={this.showNotesList}
+          showingLogin={this.state.showingLogin}
+          showingSignup={this.state.showingSignup}
         />
 
         <div className="Content">
@@ -260,9 +260,9 @@ class App extends Component {
 
           {this.state.authenticated && this.state.showingNoteDetails && (
             <NoteDetails
+              showDeleteModal={this.showDeleteModal}
               noteDetails={this.state.noteDetails}
               showNoteEditForm={this.showNoteEditForm}
-              showDeleteModal={this.showDeleteModal}
               style={{ padding: "0" }}
             />
           )}
@@ -279,8 +279,8 @@ class App extends Component {
 
         {this.state.authenticated && this.state.deletingNote && (
           <DeleteModal
-            deleteNote={this.deleteNote}
             closeDeleteModal={this.closeDeleteModal}
+            deleteNote={this.deleteNote}
           />
         )}
       </AppStyled>

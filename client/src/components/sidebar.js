@@ -62,10 +62,10 @@ const Sidebar = props => {
 
         {props.authenticated && (
           <div>
-            <ButtonStyled onClick={props.viewNotes}>
+            <ButtonStyled onClick={props.showNotesList}>
               View Your Notes
             </ButtonStyled>
-            <ButtonStyled onClick={props.createNewNoteForm}>
+            <ButtonStyled onClick={props.showNoteCreateForm}>
               + Create New Note
             </ButtonStyled>
 
