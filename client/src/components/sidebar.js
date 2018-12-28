@@ -1,5 +1,6 @@
-import React from 'react'; //eslint-disable-line
+import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 // Styles
 const SideBarStyled = styled.div`
@@ -75,6 +76,17 @@ const Sidebar = props => {
       </div>
     </SideBarStyled>
   );
+};
+
+Sidebar.propTypes = {
+  authenticated: PropTypes.bool,
+  logoutUser: PropTypes.func,
+  showLogin: PropTypes.func,
+  showSignup: PropTypes.func,
+  showingLogin: PropTypes.bool,
+  showingSignup: PropTypes.bool,
+  showNotesList: PropTypes.func,
+  showNoteCreateForm: PropTypes.func
 };
 
 export default Sidebar;
