@@ -52,26 +52,21 @@ class App extends Component {
   componentDidMount() {
     try {
       this.getNotes();
-      // this.setState({ authenticated: true, viewingNotes: true });
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
   }
 
-  loginUser = userInfo => {
-    axios
-      .post(`${API_URL}/login`, userInfo)
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-      })
-      .then(() => {
-        this.setState({ authenticated: true, username: userInfo.username });
-      })
-      .then(() => {
-        this.getNotes();
-        this.viewNotes();
-      })
-      .catch(err => console.error(err)); // eslint-disable-line
+  loginUser = async userInfo => {
+    try {
+      const response = await axios.post(`${API_URL}/login`, userInfo);
+      localStorage.setItem("token", response.data.token);
+      await this.getNotes();
+      this.viewNotes();
+      this.setState({ authenticated: true, username: userInfo.username });
+    } catch (err) {
+      console.error(err); // eslint-disable-line
+    }
   };
 
   logoutUser = () => {
@@ -109,7 +104,7 @@ class App extends Component {
       const header = { headers: { Authorization: token } };
       const response = await axios.get(`${API_URL}/user`, header);
       if (response.status === 200) {
-        console.log(response.data.notes)
+        console.log(response.data.notes);
         this.setState({
           authenticated: true,
           viewingNotes: true,
