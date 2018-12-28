@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Styles
@@ -22,19 +23,29 @@ const CreateNoteStyled = styled.div`
     font-size: 0.9rem;
     font-weight: bold;
     border: none;
+    cursor: pointer;
 
     &:hover {
       border: 2px solid white;
     }
   }
 
-  .NoteTitleInput {
+  .CreateNote__TitleInput {
+    padding: 5px;
     width: 50%;
     margin-top: 20px;
     font-size: 1rem;
   }
 
-  .NoteContentInput {
+  .CreateNote__DescriptionInput {
+    padding: 5px;
+    width: 80%;
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+
+  .CreateNote__ContentInput {
+    padding: 5px;
     width: 80%;
     height: 300px;
     margin-top: 20px;
@@ -66,15 +77,20 @@ const CreateNoteStyled = styled.div`
 class CreateNote extends Component {
   state = {
     title: "",
+    description: "",
     content: ""
   };
 
-  handleTitleInput = event => {
-    this.setState({ title: event.target.value });
+  handleTitleInput = e => {
+    this.setState({ title: e.target.value });
   };
 
-  handleContentInput = event => {
-    this.setState({ content: event.target.value });
+  handleDescriptionInput = e => {
+    this.setState({ description: e.target.value });
+  };
+
+  handleContentInput = e => {
+    this.setState({ content: e.target.value });
   };
 
   handleSave = () => {
@@ -90,18 +106,28 @@ class CreateNote extends Component {
       <CreateNoteStyled>
         <h2>Create New Note:</h2>
         <input
-          className="NoteTitleInput"
+          className="CreateNote__TitleInput"
           type="text"
-          placeholder="Note Title"
+          placeholder="Title"
+          name="title"
           value={this.state.title}
           onChange={this.handleTitleInput}
         />
-        <textarea
-          className="NoteContentInput"
+        <input
+          className="CreateNote__DescriptionInput"
           type="text"
-          placeholder="Note Content"
+          placeholder="Description"
+          name="description"
+          value={this.state.description}
+          onChange={this.handleDescriptionInput}
+        />
+        <textarea
+          className="CreateNote__ContentInput"
+          type="text"
+          placeholder="Content"
           rows="10"
           cols="50"
+          name="content"
           value={this.state.content}
           onChange={this.handleContentInput}
         />
@@ -110,5 +136,9 @@ class CreateNote extends Component {
     );
   }
 } // CreateNote Component
+
+CreateNote.propTypes = {
+  saveNewNote: PropTypes.func
+};
 
 export default CreateNote;
