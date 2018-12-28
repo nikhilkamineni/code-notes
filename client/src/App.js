@@ -104,7 +104,6 @@ class App extends Component {
       const header = { headers: { Authorization: token } };
       const response = await axios.get(`${API_URL}/user`, header);
       if (response.status === 200) {
-        console.log(response.data.notes);
         this.setState({
           authenticated: true,
           viewingNotes: true,
@@ -167,18 +166,17 @@ class App extends Component {
     this.setState({ deletingNote: false });
   };
 
-  saveNewNote = note => {
-    const token = localStorage.getItem("token");
-    const options = { headers: { Authorization: token } };
-    note.createdBy = this.state.userId;
-    axios
-      .post(`${API_URL}/notes`, note, options)
-      .then(res => {
-        this.setState({ notes: [...this.state.notes, res.data] });
-        this.getNotes();
-      })
-      .then(() => this.viewNotes())
-      .catch(err => console.error(err)); // eslint-disable-line
+  saveNewNote = async note => {
+    try {
+      const token = localStorage.getItem("token");
+      const options = { headers: { Authorization: token } };
+      note.createdBy = this.state.userId;
+      const response = await axios.post(`${API_URL}/notes`, note, options);
+      this.setState({ notes: [...this.state.notes, response.data] });
+      this.viewNotes();
+    } catch (err) {
+      console.error(err); // eslint-disable-line
+    }
   };
 
   updateNote = updatedNote => {
