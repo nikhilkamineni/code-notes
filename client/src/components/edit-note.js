@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 // Styles
 const EditNoteStyled = styled.div`
@@ -71,7 +72,7 @@ class EditNote extends Component {
   };
 
   componentDidMount() {
-    let { title, content, _id } = this.props.noteDetails;
+    const { title, content, _id } = this.props.noteDetails;
     this.setState({
       title: title,
       content: content,
@@ -79,21 +80,17 @@ class EditNote extends Component {
     });
   }
 
-  handleTitleInput = event => {
-    this.setState({ title: event.target.value });
+  handleContentInput = e => {
+    this.setState({ content: e.target.value });
   };
 
-  handleContentInput = event => {
-    this.setState({ content: event.target.value });
+  handleTitleInput = e => {
+    this.setState({ title: e.target.value });
   };
 
   handleUpdate = () => {
-    let updatedNote = {
-      title: this.state.title,
-      content: this.state.content,
-      _id: this.state._id
-    };
-    this.props.updateNote(updatedNote);
+    const { title, content, _id } = this.state;
+    this.props.updateNote({ title, content, _id });
   };
 
   render() {
@@ -119,5 +116,14 @@ class EditNote extends Component {
     );
   }
 } // Edit Note Component
+
+EditNote.propTypes = {
+  noteDetails: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string,
+    _id: PropTypes.number
+  }),
+  updateNote: PropTypes.func
+};
 
 export default EditNote;
