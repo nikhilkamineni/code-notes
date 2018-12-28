@@ -106,6 +106,7 @@ class App extends Component {
       const token = localStorage.getItem("token");
       const header = { headers: { Authorization: token } };
       const response = await axios.get(`${API_URL}/user`, header);
+      console.log(response.data.notes)
       if (response.status === 200) {
         this.setState({
           authenticated: true,

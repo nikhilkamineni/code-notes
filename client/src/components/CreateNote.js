@@ -94,11 +94,8 @@ class CreateNote extends Component {
   };
 
   handleSave = () => {
-    let newNote = {
-      title: this.state.title,
-      content: this.state.content
-    };
-    this.props.saveNewNote(newNote);
+    const { title, description, content } = this.state;
+    this.props.saveNewNote({ title, description, content });
   };
 
   render() {

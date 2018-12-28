@@ -29,12 +29,13 @@ server.get('/notes', authenticate, (req, res) => {
 
 // Save new note
 server.post('/notes', authenticate, (req, res) => {
-  const { title, content, createdBy } = req.body;
+  const { title, description, content, createdBy } = req.body;
   if (!title || !content) {
     res.json({ message: 'You need to enter a title and content!' });
     return;
   }
-  const newNote = new Note({ title, content, createdBy });
+
+  const newNote = new Note({ title, content, description, createdBy });
   newNote
     .save()
     .then(savedNote => {
