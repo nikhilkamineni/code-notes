@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import ReactMarkdown from 'react-markdown';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import ReactMarkdown from "react-markdown";
+import styled from "styled-components";
 
 // Styles
 const NoteDetailsStyled = styled.div`
@@ -109,19 +110,14 @@ const NoteDetailsStyled = styled.div`
 // Note Details Component
 class NoteDetails extends Component {
   state = {
-    title: '',
-    content: '',
-    _id: '',
-    createdOn: ''
+    title: this.props.noteDetails.title,
+    description: this.props.noteDetails.description,
+    content: this.props.noteDetails.content,
+    _id: this.props.noteDetails._id,
+    createdOn: this.props.noteDetails.createdOn
   };
 
   componentDidMount() {
-    this.setState({
-      title: this.props.noteDetails.title,
-      content: this.props.noteDetails.content,
-      _id: this.props.noteDetails._id,
-      createdOn: this.props.noteDetails.createdOn
-    });
     window.scrollTo(0, 0);
   }
 
@@ -149,5 +145,17 @@ class NoteDetails extends Component {
     );
   }
 } // NoteDetails Component
+
+NoteDetails.propTypes = {
+  noteDetails: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    content: PropTypes.string,
+    _id: PropTypes.string,
+    createdOn: PropTypes.string
+  }),
+  showDeleteModal: PropTypes.func,
+  showNoteEditForm: PropTypes.func
+};
 
 export default NoteDetails;

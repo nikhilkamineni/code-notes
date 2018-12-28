@@ -72,19 +72,14 @@ const EditNoteStyled = styled.div`
 // Edit Note Component
 class EditNote extends Component {
   state = {
-    title: "",
-    description: "",
-    content: "",
-    _id: ""
+    title: this.props.noteDetails,
+    description: this.props.noteDetails.description,
+    content: this.props.noteDetails.content,
+    _id: this.props.noteDetails._id
   };
 
   componentDidMount() {
-    const { title, content, _id } = this.props.noteDetails;
-    this.setState({
-      title: title,
-      content: content,
-      _id: _id
-    });
+    this.setState({ ...this.props.noteDetails });
   }
 
   handleContentInput = e => {
@@ -100,8 +95,7 @@ class EditNote extends Component {
   };
 
   handleUpdate = () => {
-    const { title, content, _id } = this.state;
-    this.props.updateNote({ title, content, _id });
+    this.props.updateNote({ ...this.state });
   };
 
   render() {
@@ -140,8 +134,9 @@ class EditNote extends Component {
 EditNote.propTypes = {
   noteDetails: PropTypes.shape({
     title: PropTypes.string,
+    description: PropTypes.string,
     content: PropTypes.string,
-    _id: PropTypes.number
+    _id: PropTypes.string
   }),
   updateNote: PropTypes.func
 };

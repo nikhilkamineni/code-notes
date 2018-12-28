@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Styles
@@ -74,6 +75,11 @@ const DeleteModal = props => {
       </div>
     </DeleteModalContainerStyled>
   );
+};
+
+DeleteModal.propTypes = {
+  deleteNote: PropTypes.func,
+  closeDeleteModal: PropTypes.func
 };
 
 export default DeleteModal;

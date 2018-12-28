@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from "styled-components";
 import Note from "./Note";
@@ -114,5 +115,10 @@ class NotesList extends Component {
     );
   }
 } // COMPONENT ENDS HERE
+
+NotesList.propTypes = {
+  showNoteDetails: PropTypes.func,
+  notes: PropTypes.array
+};
 
 export default NotesList;

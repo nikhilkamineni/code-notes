@@ -1,6 +1,7 @@
-import React, { Component } from 'react'; //eslint-disable-line
-import styled from 'styled-components';
-import ReactMarkdown from 'react-markdown'; //eslint-disable-line
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
 
 const NoteStyled = styled.a`
   display: flex;
@@ -25,7 +26,7 @@ const NoteStyled = styled.a`
   p {
     font-size: 0.8rem;
     line-height: 25px;
-    margin: 0 3px;;
+    margin: 0 3px;
     white-space: pre-line;
   }
 
@@ -39,18 +40,23 @@ const NoteStyled = styled.a`
     list-style-position: inside;
   }
 
-  li, tbody, thead {
+  li,
+  tbody,
+  thead {
     font-size: 0.8rem;
     line-height: 20px;
   }
 
-    thead, td, th {
+  thead,
+  td,
+  th {
     font-size: 0.6rem;
     border: 1px dashed rgb(166, 166, 166);
     padding: 3px;
   }
 
-  th, table {
+  th,
+  table {
     border: 1px solid rgb(166, 166, 166);
   }
 
@@ -81,24 +87,41 @@ const NoteStyled = styled.a`
   }
 `;
 
-const getNoteContentPreview = (content) => {
+const getNoteContentPreview = content => {
   if (content.length > 130) {
     let contentPreview = content.slice(0, 120);
-    return `${contentPreview}...`
+    return `${contentPreview}...`;
   }
   return content;
-}
+};
 
 class Note extends Component {
   render() {
     return (
-      <NoteStyled onClick={() => { this.props.showNoteDetails(this.props.note._id) }} className="NoteTile">
+      <NoteStyled
+        onClick={() => {
+          this.props.showNoteDetails(this.props.note._id);
+        }}
+        className="NoteTile"
+      >
         <h4>{this.props.note.title}</h4>
         <hr style={{ width: "100%" }} />
-        <ReactMarkdown source={getNoteContentPreview(this.props.note.content)} />
+        <ReactMarkdown
+          source={getNoteContentPreview(this.props.note.content)}
+        />
       </NoteStyled>
-    )
+    );
   }
 }
+
+Note.propTypes = {
+  showNoteDetails: PropTypes.func,
+  note: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    content: PropTypes.string,
+    _id: PropTypes.number
+  })
+};
 
 export default Note;

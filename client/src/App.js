@@ -44,6 +44,7 @@ class App extends Component {
     notes: [],
     noteDetails: {
       title: "",
+      description: "",
       content: "",
       _id: ""
     }
@@ -84,6 +85,7 @@ class App extends Component {
       notes: [],
       noteDetails: {
         title: "",
+        description: "",
         content: "",
         _id: ""
       }
@@ -184,14 +186,10 @@ class App extends Component {
     try {
       const token = localStorage.getItem("token");
       const header = { headers: { Authorization: token } };
-      const updatedNoteInfo = {
-        title: updatedNote.title,
-        content: updatedNote.content
-      };
 
       const response = await axios.put(
         `${API_URL}/notes/${updatedNote._id}`,
-        updatedNoteInfo,
+        updatedNote,
         header
       );
 
