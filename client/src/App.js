@@ -3,14 +3,14 @@ import styled from "styled-components";
 import axios from "axios";
 
 // Components
-import Sidebar from "./components/sidebar";
-import NotesList from "./components/notes-list";
-import CreateNote from "./components/create-note";
-import NoteDetails from "./components/note-details";
-import EditNote from "./components/edit-note";
-import DeleteModal from "./components/delete-modal";
-import Signup from "./components/signup";
-import Login from "./components/login";
+import CreateNote from "./components/CreateNote";
+import DeleteModal from "./components/DeleteModal";
+import EditNote from "./components/EditNote";
+import Login from "./components/Login";
+import NoteDetails from "./components/NoteDetails";
+import NotesList from "./components/NotesList";
+import Sidebar from "./components/Sidebar";
+import Signup from "./components/Signup";
 
 import "./App.css";
 

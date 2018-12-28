@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Note from "./note";
+import Note from "./Note";
 
 // STYLES
 const NoteListStyled = styled.div`
