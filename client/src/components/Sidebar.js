@@ -52,7 +52,7 @@ const Sidebar = props => {
   return (
     <SideBarStyled className="Sidebar">
       <div className="SidebarContainer">
-        <h1>Code Notes</h1>
+        <h1>{"{ Code Notes }"}</h1>
         {!props.authenticated && props.showingLogin && !props.showingSignup && (
           <ButtonStyled onClick={props.showSignup}>Sign Up</ButtonStyled>
         )}

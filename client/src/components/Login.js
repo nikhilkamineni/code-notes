@@ -33,14 +33,15 @@ const LoginStyled = styled.div`
     }
   }
 
-  input,
-  textarea {
+  input {
     outline: 1px solid rgba(0 0 0 0);
     border-style: solid;
     border: 1px solid grey;
-    padding: 20px;
+    padding: 15px;
     margin: 10px;
-    width: 50%;
+    width: 30%;
+    min-width: 200px;
+    font-size: 16px;
 
     &:hover {
       border-style: solid;
