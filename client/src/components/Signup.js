@@ -1,7 +1,7 @@
 import axios from "axios";
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 

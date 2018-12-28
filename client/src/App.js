@@ -1,6 +1,6 @@
+import axios from "axios";
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
 
 // Components
 import CreateNote from "./components/CreateNote";
@@ -15,6 +15,7 @@ import Signup from "./components/Signup";
 import "./App.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
+
 axios.defaults.withCredentials = true;
 
 // Styles for App Component
