@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import PropTypes from "prop-types";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
@@ -99,26 +100,29 @@ class Signup extends Component {
     }
   };
 
-  handleSignup = () => {
-    if (!this.state.username || !this.state.password) return;
-    if (!this.state.passwordMatch) return;
-    let newUserInfo = {
-      username: this.state.username,
-      password: this.state.password
-    };
+  handleSignup = async () => {
+    const { username, password } = this.state;
 
-    axios
-      .post(`${API_URL}/signup`, newUserInfo)
-      .then(res => {
-        this.setState({
-          username: "",
-          password: "",
-          confirmPassword: "",
-          passwordMatch: true
-        });
-      })
-      .then(() => this.props.showLogin())
-      .catch(err => console.log(err));
+    if (!username || !password)
+      //eslint-disable-next-line
+      return console.error('Username and Password are required!');
+
+    if (!this.state.passwordMatch)
+      //eslint-disable-next-line
+      return console.error("Passwords do not match!");
+
+    try {
+      await axios.post(`${API_URL}/signup`, { username, password });
+      await this.setState({
+        username: "",
+        password: "",
+        confirmPassword: "",
+        passwordMatch: true
+      });
+      this.props.showLogin();
+    } catch (err) {
+      console.error(err); // eslint-disable-line
+    }
   };
 
   render() {
@@ -152,4 +156,9 @@ class Signup extends Component {
     );
   }
 }
+
+Signup.propTypes = {
+  showLogin: PropTypes.func
+};
+
 export default Signup;
