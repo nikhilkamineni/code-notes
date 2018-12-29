@@ -1,56 +1,10 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import styled from "styled-components";
 
 import NoteCard from "./NoteCard";
+import NotesListStyled from "./NotesList.styled.js";
 
-// STYLES
-const NoteListStyled = styled.div`
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: rgb(243, 243, 243);
-  display: flex;
-  flex-direction: column;
-  border-left: 1px solid rgb(151, 151, 151);
-  border-right: 1px solid rgb(151, 151, 151);
-
-  header {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 10px;
-
-    .searchContainer {
-      margin-top: 20px;
-
-      input {
-        border-style: solid;
-        border: 1px solid grey;
-        height: 30px;
-        padding: 5px;
-        font-size: 1rem;
-        width: 172px;
-
-        &:hover {
-          border-style: solid;
-          border: 1px solid black;
-        }
-
-        &:focus {
-          outline: 1px solid rgb(94, 190, 195);
-          border: 1px solid rgb(94, 190, 195);
-          border-style: solid;
-        }
-      }
-    }
-  }
-`; // STYLES END HERE
-
-// COMPONENT STARTS HERE
+// NotesList component starts
 class NotesList extends Component {
   state = {
     notesFiltered: []
@@ -80,7 +34,7 @@ class NotesList extends Component {
 
   render() {
     return (
-      <NoteListStyled className="NotesList">
+      <NotesListStyled className="NotesList">
         <header className="NotesList__header">
           <h2>Your Notes:</h2>
           <div className="searchContainer">
@@ -109,7 +63,7 @@ class NotesList extends Component {
             <p style={{ padding: "15px" }}>You have no notes yet!</p>
           )}
         </div>
-      </NoteListStyled>
+      </NotesListStyled>
     );
   }
 } // COMPONENT ENDS HERE
