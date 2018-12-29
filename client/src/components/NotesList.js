@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import Note from "./Note";
+import NoteCard from "./NoteCard";
 
 // STYLES
 const NoteListStyled = styled.div`
@@ -98,7 +98,7 @@ class NotesList extends Component {
           {this.state.notesFiltered && this.state.notesFiltered.length > 0 ? (
             this.state.notesFiltered.map(note => {
               return (
-                <Note
+                <NoteCard
                   key={note._id}
                   note={note}
                   showNoteDetails={this.props.showNoteDetails}
