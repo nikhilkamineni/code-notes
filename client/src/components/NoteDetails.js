@@ -18,11 +18,19 @@ const NoteDetailsStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin: 10px 30px 20px 0;
+    margin: 10px 30px 20px 20px;
     width: 100%;
+
+    .Header__Actions {
+      padding-right: 40px;
+    }
   }
 
-  .NoteDetails_Content {
+  .NoteDetails__Description {
+    margin-left: 20px;
+  }
+
+  .NoteDetails__Content {
     border: 1px dashed rgb(151, 151, 151);
     background-color: rgb(240, 240, 240);
     padding: 15px 0 15px 15px;
@@ -129,16 +137,17 @@ class NoteDetails extends Component {
     let date = new Date(this.state.createdOn).toLocaleString();
     return (
       <NoteDetailsStyled className="NoteDetails">
-        <header>
-          <h2>{this.state.title}</h2>
-          <div>
+        <header className="NoteDetails__Header">
+          <h2 className="Header__Title">{this.state.title}</h2>
+          <div className="Header__Actions">
             <button onClick={this.props.showNoteEditForm}>Edit</button>
             <button onClick={this.props.showDeleteModal}>Delete</button>
           </div>
         </header>
+        <p className="NoteDetails__Description">{this.state.description}</p>
         <ReactMarkdown
           source={this.state.content}
-          className="NoteDetails_Content"
+          className="NoteDetails__Content"
         />
         <div className="Date">{date}</div>
       </NoteDetailsStyled>
