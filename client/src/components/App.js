@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { Component } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
 // Components
-import CreateNote from "./CreateNote";
+import NoteCreate from "./NoteCreate.js";
 import DeleteModal from "./DeleteModal";
 import EditNote from "./EditNote";
 import Login from "./Login";
@@ -12,26 +12,12 @@ import NotesList from "./NotesList";
 import Sidebar from "./Sidebar";
 import Signup from "./Signup";
 
+// App styles
+import AppStyled from "./App.styled.js";
+
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
 axios.defaults.withCredentials = true;
-
-// Styles for App Component
-const AppStyled = styled.div`
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  background-color: rgb(216, 216, 216);
-  font-family: Raleway;
-  display: flex;
-  flex-flow: row no-wrap;
-  height: auto;
-
-  .Content {
-    height: 80%;
-    width: 100%;
-  }
-`;
 
 // App Component starts here
 class App extends Component {
@@ -254,7 +240,7 @@ class App extends Component {
           )}
 
           {this.state.authenticated && this.state.showingNoteCreate && (
-            <CreateNote
+            <NoteCreate
               getNextId={this.getNextId}
               saveNewNote={this.saveNewNote}
             />
