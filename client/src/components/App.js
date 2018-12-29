@@ -3,14 +3,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 // Components
-import CreateNote from "./components/CreateNote";
-import DeleteModal from "./components/DeleteModal";
-import EditNote from "./components/EditNote";
-import Login from "./components/Login";
-import NoteDetails from "./components/NoteDetails";
-import NotesList from "./components/NotesList";
-import Sidebar from "./components/Sidebar";
-import Signup from "./components/Signup";
+import CreateNote from "./CreateNote";
+import DeleteModal from "./DeleteModal";
+import EditNote from "./EditNote";
+import Login from "./Login";
+import NoteDetails from "./NoteDetails";
+import NotesList from "./NotesList";
+import Sidebar from "./Sidebar";
+import Signup from "./Signup";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
@@ -23,7 +23,6 @@ const AppStyled = styled.div`
   width: 100%;
   background-color: rgb(216, 216, 216);
   font-family: Raleway;
-
   display: flex;
   flex-flow: row no-wrap;
   height: auto;
