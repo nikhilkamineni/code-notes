@@ -19,7 +19,7 @@ const NoteDetailsStyled = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     margin: 10px 30px 20px 20px;
-    width: 100%;
+    width: 90%;
 
     .Header__Actions {
       padding-right: 40px;
@@ -31,17 +31,22 @@ const NoteDetailsStyled = styled.div`
   }
 
   .NoteDetails__Content {
+    width: 90%;
     border: 1px dashed rgb(151, 151, 151);
     background-color: rgb(240, 240, 240);
     padding: 15px 0 15px 15px;
     min-height: 50%;
   }
 
-  .Date {
-    margin: 10px 0;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: flex-end;
+  footer {
+    width: 90%;
+
+    .Date {
+      margin: 10px 0;
+      font-size: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 
   a {
@@ -149,7 +154,9 @@ class NoteDetails extends Component {
           source={this.state.content}
           className="NoteDetails__Content"
         />
-        <div className="Date">{date}</div>
+        <footer>
+          <div className="Date">{date}</div>
+        </footer>
       </NoteDetailsStyled>
     );
   }

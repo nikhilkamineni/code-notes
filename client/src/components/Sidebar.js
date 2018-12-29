@@ -9,7 +9,7 @@ const SideBarStyled = styled.div`
   flex-direction: column;
   align-items: center;
   width: 200px;
-  height: 100%;
+  height: 100vh;
   padding: 20px;
   background-color: rgb(216, 216, 216);
   flex-grow: 1;

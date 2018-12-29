@@ -12,7 +12,7 @@ import NotesList from "./components/NotesList";
 import Sidebar from "./components/Sidebar";
 import Signup from "./components/Signup";
 
-import "./App.css";
+// import "./App.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
@@ -20,6 +20,13 @@ axios.defaults.withCredentials = true;
 
 // Styles for App Component
 const AppStyled = styled.div`
+  body {
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    font-family: Raleway;
+  }
   display: flex;
   flex-flow: row no-wrap;
   height: auto;
@@ -106,7 +113,6 @@ class App extends Component {
       const token = localStorage.getItem("token");
       const header = { headers: { Authorization: token } };
       const response = await axios.get(`${API_URL}/user`, header);
-      console.log(response.data.notes)
       if (response.status === 200) {
         this.setState({
           authenticated: true,
