@@ -3,14 +3,14 @@ import React, { Component } from "react";
 // import styled from "styled-components";
 
 // Components
-import NoteCreate from "./NoteCreate.js";
-import DeleteModal from "./DeleteModal";
-import NoteEdit from "./NoteEdit";
-import Login from "./Login";
-import NoteDetails from "./NoteDetails";
-import NotesList from "./NotesList";
-import Sidebar from "./Sidebar";
-import Signup from "./Signup";
+import NoteCreate from "../NoteCreate/NoteCreate.js";
+import DeleteModal from "../DeleteModal/DeleteModal.js";
+import NoteEdit from "../NoteEdit/NoteEdit.js";
+import Login from "../Login/Login.js";
+import NoteDetails from "../NoteDetails/NoteDetails.js";
+import NotesList from "../NotesList/NotesList.js";
+import Sidebar from "../Sidebar/Sidebar.js";
+import Signup from "../Signup/Signup.js";
 
 // App styles
 import AppStyled from "./App.styled.js";

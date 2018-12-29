@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 
-import NoteCard from "./NoteCard";
+import NoteCard from "../NoteCard/NoteCard.js";
 import NotesListStyled from "./NotesList.styled.js";
 
 // NotesList component starts
