@@ -5,7 +5,7 @@ import React, { Component } from "react";
 // Components
 import NoteCreate from "./NoteCreate.js";
 import DeleteModal from "./DeleteModal";
-import EditNote from "./EditNote";
+import NoteEdit from "./NoteEdit";
 import Login from "./Login";
 import NoteDetails from "./NoteDetails";
 import NotesList from "./NotesList";
@@ -256,7 +256,7 @@ class App extends Component {
           )}
 
           {this.state.authenticated && this.state.showingNoteEdit && (
-            <EditNote
+            <NoteEdit
               noteDetails={this.state.noteDetails}
               updateNote={this.updateNote}
               showNoteEditForm={this.showNoteEditForm}
