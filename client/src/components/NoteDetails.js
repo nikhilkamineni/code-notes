@@ -134,10 +134,6 @@ class NoteDetails extends Component {
     window.scrollTo(0, 0);
   }
 
-  handleDelete = () => {
-    this.props.showDeleteModal();
-  };
-
   render() {
     let date = new Date(this.state.createdOn).toLocaleString();
     return (

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const NoteStyled = styled.a`
+const NoteStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 160px;

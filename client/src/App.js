@@ -12,21 +12,18 @@ import NotesList from "./components/NotesList";
 import Sidebar from "./components/Sidebar";
 import Signup from "./components/Signup";
 
-// import "./App.css";
-
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
 axios.defaults.withCredentials = true;
 
 // Styles for App Component
 const AppStyled = styled.div`
-  body {
-    margin: 0;
-    padding: 0;
-    width: 90%;
-    background-color: rgb(216, 216, 216);
-    font-family: Raleway;
-  }
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: rgb(216, 216, 216);
+  font-family: Raleway;
+
   display: flex;
   flex-flow: row no-wrap;
   height: auto;
