@@ -24,17 +24,10 @@ const SidebarStyled = styled.div`
       padding-left: 15px;
     }
 
-    .Logo__MiddleLine {
+    .Logo__BottomLine {
       margin-top: 0px;
-      margin-bottom: 0px;
       padding-top: 0px;
       padding-left: 38px;
-    }
-
-    .Logo__BottomLine {
-      padding-top: 0px;
-      padding-left: 18px;
-      margin-top: 0px;
     }
   }
 

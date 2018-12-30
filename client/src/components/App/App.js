@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-// import styled from "styled-components";
 
 // Components
 import NoteCreate from "../NoteCreate/NoteCreate.js";

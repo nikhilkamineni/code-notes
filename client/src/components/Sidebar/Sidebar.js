@@ -8,9 +8,8 @@ const Sidebar = props => {
   return (
     <SidebarStyled className="Sidebar">
       <div className={"Sidebar__Logo"}>
-        <h1 className="Logo__TopLine">{"Code {"}</h1>
-        <h1 className="Logo__MiddleLine">{"Notes"}</h1>
-        <h1 className="Logo__BottomLine">{"}"}</h1>
+        <h1 className="Logo__TopLine">{"Code"}</h1>
+        <h1 className="Logo__BottomLine">{"Notes"}</h1>
       </div>
       {!props.authenticated && props.showingLogin && !props.showingSignup && (
         <button onClick={props.showSignup}>Sign Up</button>
