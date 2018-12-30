@@ -20,6 +20,19 @@ const NoteDetailsStyled = styled.div`
 
     .Header__Actions {
       padding-right: 40px;
+      button {
+        border: none;
+        background: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+
+        &:hover {
+          font-weight: bolder;
+          text-decoration: underline;
+        }
+      }
     }
   }
 

@@ -31,12 +31,14 @@ const NoteEditStyled = styled.div`
     width: 50%;
     margin-top: 20px;
     font-size: 1rem;
+    padding: 10px;
   }
 
   .NoteEdit__DescriptionInput {
     width: 80%;
     margin-top: 20px;
     font-size: 1rem;
+    padding: 10px;
   }
 
   .NoteEdit__ContentInput {
@@ -45,6 +47,7 @@ const NoteEditStyled = styled.div`
     margin-top: 20px;
     font-size: 1rem;
     resize: none;
+    padding: 10px;
   }
 
   input,
