@@ -26,6 +26,9 @@ const corsOptions = {
 };
 server.use(cors(corsOptions));
 
+// SERVE STATIC REACT BUILD AT ROOT ENDPOINT
+server.use(express.static(path.join(__dirname, 'client/build')));
+
 // NOTES ENDPOINTS //
 // Get all notes from all users
 server.get('/notes', authenticate, (req, res) => {

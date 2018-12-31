@@ -134,3 +134,4 @@ tags
 
 .tern-port
 globalConfig.json
+build/
