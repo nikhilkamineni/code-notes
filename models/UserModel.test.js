@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const User = require('./UserModel.js');
 
-describe('insert', () => {
+describe('UserModel', () => {
   let connection;
   let db;
-  const options = { useNewUrlParser: true, dbName: global.__MONGO_DB_NAME__ }; // fixes deprecation warnings
+  const options = {
+    useNewUrlParser: true, // fixes deprecation warnings
+    dbName: global.__MONGO_DB_NAME__
+  };
 
   beforeAll(async () => {
     await mongoose.connect(
@@ -18,7 +21,10 @@ describe('insert', () => {
   });
 
   it('should insert a User into collection', async () => {
-    const mockUser = await new User({ username: 'testUser1', password: '123456' }).save();
+    const mockUser = await new User({
+      username: 'testUser1',
+      password: '123456'
+    }).save();
 
     const savedUser = await User.findOne({ username: 'testUser1' });
     expect(savedUser.toJSON()).toEqual(mockUser.toJSON());
@@ -29,8 +35,8 @@ describe('insert', () => {
     const savedUser = await User.findOne({ username: 'testUser1' });
     expect(savedUser.toJSON()).toBeDefined();
 
-    await User.findOneAndRemove({ username: 'testUser1' })
+    await User.findOneAndRemove({ username: 'testUser1' });
     const deletedUser = await User.findOne({ username: 'testUser1' });
     expect(deletedUser).toBe(null);
-  })
+  });
 });
