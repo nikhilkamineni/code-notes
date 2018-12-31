@@ -18,11 +18,19 @@ describe('insert', () => {
   });
 
   it('should insert a User into collection', async () => {
-    // const users = db.collection('users');
-
     const mockUser = await new User({ username: 'testUser1', password: '123456' }).save();
 
     const savedUser = await User.findOne({ username: 'testUser1' });
     expect(savedUser.toJSON()).toEqual(mockUser.toJSON());
+    expect(savedUser.password !== '123456');
   });
+
+  it('should remove a User from collection', async () => {
+    const savedUser = await User.findOne({ username: 'testUser1' });
+    expect(savedUser.toJSON()).toBeDefined();
+
+    await User.findOneAndRemove({ username: 'testUser1' })
+    const deletedUser = await User.findOne({ username: 'testUser1' });
+    expect(deletedUser).toBe(null);
+  })
 });
