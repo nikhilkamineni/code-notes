@@ -3,9 +3,10 @@ const {MongoClient} = require('mongodb');
 describe('insert', () => {
   let connection;
   let db;
+  const options = { useNewUrlParser: true }; // fixes deprecation warnings
 
   beforeAll(async () => {
-    connection = await MongoClient.connect(global.__MONGO_URI__);
+    connection = await MongoClient.connect(global.__MONGO_URI__, options);
     db = await connection.db(global.__MONGO_DB_NAME__);
   });
 
