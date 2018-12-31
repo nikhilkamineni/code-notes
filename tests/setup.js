@@ -5,7 +5,7 @@ const globalConfigPath = path.join(__dirname, 'globalConfig.json');
 
 const mongod = new MongodbMemoryServer.default({
   instance: {
-    dbName: 'jest'
+    dbName: 'code-notes-test-db'
   },
   autoStart: false,
 });
@@ -16,7 +16,7 @@ module.exports = async () => {
   }
 
   const mongoConfig = {
-    mongoDBName: 'jest',
+    mongoDBName: 'code-notes-test-db',
     mongoUri: await mongod.getConnectionString()
   };
 
