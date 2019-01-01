@@ -21,9 +21,21 @@ const Sidebar = props => {
 
       {props.authenticated && (
         <div>
-          <button onClick={props.showNotesList}>View Your Notes</button>
-          <button onClick={props.showNoteCreateForm}>+ Create New Note</button>
-          <button onClick={props.logoutUser}>Logout</button>
+          <button className="Sidebar__ViewNotes" onClick={props.showNotesList}>
+            View Your Notes
+          </button>
+          <button
+            className="Sidebar__CreateNotes"
+            onClick={props.showNoteCreateForm}
+          >
+            + Create New Note
+          </button>
+          <button className="Sidebar__Settings" onClick={props.showSettings}>
+            Settings
+          </button>
+          <button className="Sidebar__Logout" onClick={props.logoutUser}>
+            Logout
+          </button>
         </div>
       )}
     </SidebarStyled>
@@ -34,11 +46,12 @@ Sidebar.propTypes = {
   authenticated: PropTypes.bool,
   logoutUser: PropTypes.func,
   showLogin: PropTypes.func,
-  showSignup: PropTypes.func,
-  showingLogin: PropTypes.bool,
-  showingSignup: PropTypes.bool,
   showNotesList: PropTypes.func,
-  showNoteCreateForm: PropTypes.func
+  showNoteCreateForm: PropTypes.func,
+  showSignup: PropTypes.func,
+  showSettings: PropTypes.func,
+  showingLogin: PropTypes.bool,
+  showingSignup: PropTypes.bool
 };
 
 export default Sidebar;

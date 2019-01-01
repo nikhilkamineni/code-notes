@@ -8,6 +8,7 @@ import NoteEdit from "../NoteEdit/NoteEdit.js";
 import Login from "../Login/Login.js";
 import NoteDetails from "../NoteDetails/NoteDetails.js";
 import NotesList from "../NotesList/NotesList.js";
+import Settings from "../Settings/Settings.js";
 import Sidebar from "../Sidebar/Sidebar.js";
 import Signup from "../Signup/Signup.js";
 
@@ -27,6 +28,7 @@ class App extends Component {
     showingNoteDetails: false,
     showingNoteEdit: false,
     showingNotesList: false,
+    showingSettings: false,
     showingSignup: false,
     username: "",
     userId: "",
@@ -46,6 +48,24 @@ class App extends Component {
       console.error(err); // eslint-disable-line
     }
   }
+
+  getNotes = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const header = { headers: { Authorization: token } };
+      const response = await axios.get(`${API_URL}/user`, header);
+      if (response.status === 200) {
+        this.setState({
+          authenticated: true,
+          showingNotesList: true,
+          notes: response.data.notes,
+          userId: response.data._id
+        });
+      }
+    } catch (err) {
+      console.error(err); // eslint-disable-line
+    }
+  };
 
   loginUser = async userInfo => {
     try {
@@ -89,24 +109,6 @@ class App extends Component {
     this.setState({ showingSignup: true, showingLogin: false });
   };
 
-  getNotes = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const header = { headers: { Authorization: token } };
-      const response = await axios.get(`${API_URL}/user`, header);
-      if (response.status === 200) {
-        this.setState({
-          authenticated: true,
-          showingNotesList: true,
-          notes: response.data.notes,
-          userId: response.data._id
-        });
-      }
-    } catch (err) {
-      console.error(err); // eslint-disable-line
-    }
-  };
-
   showNotesList = async () => {
     await this.getNotes();
     this.setState({
@@ -114,6 +116,7 @@ class App extends Component {
       showingNoteCreate: false,
       showingNoteDetails: false,
       showingNoteEdit: false,
+      showingSettings: false,
       deletingNote: false
     });
   };
@@ -124,6 +127,7 @@ class App extends Component {
       showingNoteCreate: true,
       showingNoteDetails: false,
       showingNoteEdit: false,
+      showingSettings: false,
       deletingNote: false
     });
   };
@@ -136,6 +140,7 @@ class App extends Component {
       showingNoteCreate: false,
       showingNoteDetails: true,
       showingNoteEdit: false,
+      showingSettings: false,
       deletingNote: false
     });
   };
@@ -146,6 +151,18 @@ class App extends Component {
       showingNoteCreate: false,
       showingNoteDetails: false,
       showingNoteEdit: true,
+      showingSettings: false,
+      deletingNote: false
+    });
+  };
+
+  showSettings = () => {
+    this.setState({
+      showingNotesList: false,
+      showingNoteCreate: false,
+      showingNoteDetails: false,
+      showingNoteEdit: false,
+      showingSettings: true,
       deletingNote: false
     });
   };
@@ -218,6 +235,7 @@ class App extends Component {
           showSignup={this.showSignup}
           showNoteCreateForm={this.showNoteCreateForm}
           showNotesList={this.showNotesList}
+          showSettings={this.showSettings}
           showingLogin={this.state.showingLogin}
           showingSignup={this.state.showingSignup}
         />
@@ -261,6 +279,10 @@ class App extends Component {
               showNoteEditForm={this.showNoteEditForm}
               showNoteDetails={this.showNoteDetails}
             />
+          )}
+
+          {this.state.authenticated && this.state.showingSettings && (
+            <Settings showSettings={this.showSettings} />
           )}
         </div>
 

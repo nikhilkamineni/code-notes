@@ -62,7 +62,7 @@ server.post('/notes', authenticate, (req, res) => {
         userId,
         { $push: { notes: [savedNoteId] } },
         err => {
-          if (err) console.log(err);
+          if (err) console.error(err);
         }
       );
     })
@@ -119,7 +119,6 @@ server.delete('/notes/:id', authenticate, (req, res) => {
 // Get user data from JWT token
 server.get('/user', authenticate, async (req, res) => {
   try {
-    console.log(req.decoded);
     const username = req.decoded.username;
     const user = await User.findOne({ username })
       .populate('notes')
@@ -139,11 +138,9 @@ server.put('/user/change-password', authenticate, async (req, res) => {
 
     // Hash password here (mongoose doesn't support pre-update hooks)
     await bcrypt.hash(password, 11, async (err, hash) => {
-      console.log(err, hash);
       if (err)
         return res.status(500).json({ message: 'Internal Server Error', err });
       else {
-        console.log(hashedPassword);
         const updatedUser = await User.findByIdAndUpdate(
           _id,
           { password: hash },
