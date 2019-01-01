@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const User = require('./UserModel.js');
 
@@ -20,8 +21,9 @@ describe('UserModel', () => {
     await mongoose.disconnect();
   });
 
+  let mockUser;
   it('should insert a User into collection', async () => {
-    const mockUser = await new User({
+    mockUser = await new User({
       username: 'testUser1',
       password: '123456'
     }).save();
@@ -31,6 +33,15 @@ describe('UserModel', () => {
     expect(savedUser.password !== '123456');
   });
 
+  it('should succeed when comparing a correct Users password', async () => {
+    isMatch = await bcrypt.compare('123456', mockUser.password)
+    expect(isMatch).toBe(true)
+  })
+
+  it('should fail when comparing an incorrect Users password', async () => {
+    isMatch = await bcrypt.compare('113456', mockUser.password)
+    expect(isMatch).toBe(false)
+  })
   it('should remove a User from collection', async () => {
     const savedUser = await User.findOne({ username: 'testUser1' });
     expect(savedUser.toJSON()).toBeDefined();
