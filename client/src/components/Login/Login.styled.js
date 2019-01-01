@@ -38,8 +38,9 @@ const LoginStyled = styled.div`
     border: 1px solid grey;
     padding: 15px;
     margin: 10px;
-    width: 30%;
-    min-width: 200px;
+    width: 20%;
+    min-width: 150px;
+    max-with: 300px;
     font-size: 16px;
 
     &:hover {

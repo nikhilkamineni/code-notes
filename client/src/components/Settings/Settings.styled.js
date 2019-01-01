@@ -31,6 +31,22 @@ const SettingsStyled = styled.div`
     .ChangePasswordForm__Label {
       margin-bottom: 15px;
     }
+    .ChangePasswordForm__Submit {
+      width: 100px;
+      margin-top: 20px;
+      height: 50px;
+      background-color: rgb(94, 190, 195);
+      color: #ffffff;
+      outline: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        border: 2px solid white;
+      }
+    }
   }
 `;
 
