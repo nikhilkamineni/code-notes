@@ -42,6 +42,7 @@ describe('UserModel', () => {
     isMatch = await bcrypt.compare('113456', mockUser.password)
     expect(isMatch).toBe(false)
   })
+
   it('should remove a User from collection', async () => {
     const savedUser = await User.findOne({ username: 'testUser1' });
     expect(savedUser.toJSON()).toBeDefined();

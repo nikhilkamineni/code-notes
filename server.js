@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
@@ -10,6 +11,7 @@ const authenticate = require('./middleware/authenticate');
 const Note = require('./models/NoteModel.js');
 const User = require('./models/UserModel.js');
 
+const BCRYPT_COST = process.env.BCRYPT_COST || 11;
 const SECRET = process.env.SECRET || 'DevelopmentSecret';
 
 const arr = [0, 1, 2, 3, 4];
@@ -29,7 +31,7 @@ server.use(cors(corsOptions));
 // SERVE STATIC REACT BUILD AT ROOT ENDPOINT
 server.use(express.static(path.join(__dirname, 'client/build')));
 
-// NOTES ENDPOINTS //
+/* NOTES ENDPOINTS */
 // Get all notes from all users
 server.get('/notes', authenticate, (req, res) => {
   Note.find({}, (err, notes) => {
@@ -113,7 +115,49 @@ server.delete('/notes/:id', authenticate, (req, res) => {
     );
 });
 
-// USER ENDPOINTS //
+/* USER ENDPOINTS */
+// Get user data from JWT token
+server.get('/user', authenticate, async (req, res) => {
+  try {
+    console.log(req.decoded);
+    const username = req.decoded.username;
+    const user = await User.findOne({ username })
+      .populate('notes')
+      .lean();
+    res.status(200).json({ ...user });
+  } catch (err) {
+    res.status(500).json({ message: 'Internal Server Error!', err });
+  }
+});
+
+// Update a users password
+server.put('/user/change-password', authenticate, async (req, res) => {
+  try {
+    const _id = req.decoded._id;
+    let password = req.body.password;
+    let hashedPassword;
+
+    // Hash password here (mongoose doesn't support pre-update hooks)
+    await bcrypt.hash(password, 11, async (err, hash) => {
+      console.log(err, hash);
+      if (err)
+        return res.status(500).json({ message: 'Internal Server Error', err });
+      else {
+        console.log(hashedPassword);
+        const updatedUser = await User.findByIdAndUpdate(
+          _id,
+          { password: hash },
+          { new: true }
+        );
+        res.status(200).json(updatedUser);
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Internal Server Error!', err });
+  }
+});
+
+/* AUTH ENDPOINT */
 // Create new User
 server.post('/signup', (req, res) => {
   let { username, password } = req.body;
@@ -133,19 +177,6 @@ server.post('/signup', (req, res) => {
     .catch(err =>
       res.status(500).json({ message: 'Error creating user', error: err })
     );
-});
-
-// Get user data from JWT token
-server.get('/user', authenticate, async (req, res) => {
-  try {
-    const username = req.decoded.username;
-    const user = await User.findOne({ username })
-      .populate('notes')
-      .lean();
-    res.status(200).json({ ...user });
-  } catch (err) {
-    res.status(500).json({ message: 'Internal Server ', err });
-  }
 });
 
 // Login user
@@ -174,7 +205,10 @@ server.post('/login', (req, res) => {
       }
       if (hashMatch) {
         const payload = {
-          username: user.username
+          username: user.username,
+          _id: user._id,
+          createdOn: user.createdOn,
+          notes: user.notes
         };
         const token = jwt.sign(payload, SECRET);
         res.json({ token });

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
-const BCRYPT_COST = 11;
+const BCRYPT_COST = process.env.BCRYPT_COST || 11;
 
 const UserSchema = new Schema({
   username: {
