@@ -41,7 +41,7 @@ const NoteDetailsStyled = styled.div`
     border: 1px dashed rgb(151, 151, 151);
     background-color: rgb(238, 238, 238);
     padding: 15px 0 15px 15px;
-    min-height: 50%;
+    min-height: 300px;
   }
 
   footer {

@@ -43,23 +43,39 @@ class Settings extends Component {
         <header>
           <h2>Settings</h2>
         </header>
-        <form
-          className="Settings__ChangePasswordForm"
-          onSubmit={this.handleSubmit}
-        >
-          <h3 className="ChangePasswordForm__Label">Change password</h3>
-          <input type="text" name="newPassword" placeholder="New password" />
-          <input
-            type="text"
-            name="confirmNewPassword"
-            placeholder="Confrim new password"
-          />
-          <input
-            className="ChangePasswordForm__Submit"
-            type="submit"
-            placeholder="submit"
-          />
-        </form>
+        <div className="Settings__Content">
+          <form
+            className="Settings__ChangePasswordForm"
+            onSubmit={this.handleSubmit}
+          >
+            <h3 className="ChangePasswordForm__Label">Change Password</h3>
+            <input
+              className="ChangePasswordForm__Input"
+              type="text"
+              name="newPassword"
+              placeholder="New password"
+            />
+            <input
+              className="ChangePasswordForm__Input"
+              type="text"
+              name="confirmNewPassword"
+              placeholder="Confrim new password"
+            />
+            <input
+              type="submit"
+              className="ChangePasswordForm__Submit SubmitButton"
+            />
+          </form>
+          <form className="Settings__Theme">
+            <h3>Theme</h3>
+            <div className="Theme__option">
+              <input type="radio" name="theme" value="light" /> Light <br />
+            </div>
+            <div className="Theme__option">
+              <input type="radio" name="theme" value="dark" /> Dark <br />
+            </div>
+          </form>
+        </div>
       </SettingsStyled>
     );
   }

@@ -24,13 +24,13 @@ const Sidebar = props => {
       {props.authenticated && (
         <React.Fragment>
           <button className="Sidebar__ViewNotes" onClick={props.showNotesList}>
-            View Your Notes
+            View Notes
           </button>
           <button
             className="Sidebar__CreateNotes"
             onClick={props.showNoteCreateForm}
           >
-            + Create New Note
+            + Create Note
           </button>
           <button className="Sidebar__Settings" onClick={props.showSettings}>
             Settings

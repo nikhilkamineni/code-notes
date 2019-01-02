@@ -18,7 +18,6 @@ const AppStyled = styled.div`
     min-height: 100vh;
     width: 100%;
     border-left: 1px solid rgb(151, 151, 151);
-    border-right: 1px solid rgb(151, 151, 151);
   }
 `;
 
