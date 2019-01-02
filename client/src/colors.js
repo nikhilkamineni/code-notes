@@ -1,7 +1,12 @@
 const colors = {
   light: {
     App: {
-      "background-color": "rgb(243, 243, 243)"
+      "background-color": "rgb(216, 216, 216)",
+      ".Content": {
+        "background-color": "rgb(243, 243, 243)",
+        "border-left": "1px solid rgb(151, 151, 151)",
+        "border-right": "1px solid rgb(151, 151, 151)"
+      }
     },
 
     DeleteModal: {
@@ -27,8 +32,6 @@ const colors = {
     },
 
     Login: {
-      "border-left": "1px solid rgb(151, 151, 151)",
-      "border-right": "1px solid rgb(151, 151, 151)",
       button: {
         "background-color": "rgb(94, 190, 195)",
         color: "#ffffff",
@@ -62,8 +65,6 @@ const colors = {
     },
 
     NoteCreate: {
-      "border-left": "1px solid rgb(151, 151, 151)",
-      "border-right": "1px solid rgb(151, 151, 151)",
       button: {
         "background-color": "rgb(94, 190, 195)",
         color: "#ffffff",
@@ -86,15 +87,12 @@ const colors = {
     },
 
     NoteDetails: {
-      "border-left": "1px solid rgb(151, 151, 151)",
-      "border-right": "1px solid rgb(151, 151, 151)",
       NoteDetails__Content: {
         border: "1px dashed rgb(151, 151, 151)",
         "background-color": "rgb(238, 238, 238)"
       },
       "thead, td": {
-        border: "1px dashed rgb(166, 166, 166)",
-        padding: "10px"
+        border: "1px dashed rgb(166, 166, 166)"
       },
       "th, table": {
         border: "1px solid rgb(166, 166, 166)",
@@ -116,8 +114,6 @@ const colors = {
     },
 
     NoteEdit: {
-      "border-left": "1px solid rgb(151, 151, 151)",
-      "border-right": "1px solid rgb(151, 151, 151)",
       button: {
         "background-color": "rgb(94, 190, 195)",
         color: "#ffffff",
