@@ -1,7 +1,7 @@
 const colors = {
   light: {
     App: {
-      "background-color": "rgb(216, 216, 216)"
+      "background-color": "rgb(243, 243, 243)"
     },
 
     DeleteModal: {
@@ -27,7 +27,6 @@ const colors = {
     },
 
     Login: {
-      "background-color": "rgb(243, 243, 243)",
       "border-left": "1px solid rgb(151, 151, 151)",
       "border-right": "1px solid rgb(151, 151, 151)",
       button: {
@@ -63,7 +62,6 @@ const colors = {
     },
 
     NoteCreate: {
-      "background-color": "rgb(243, 243, 243)",
       "border-left": "1px solid rgb(151, 151, 151)",
       "border-right": "1px solid rgb(151, 151, 151)",
       button: {
@@ -88,12 +86,11 @@ const colors = {
     },
 
     NoteDetails: {
-      "background-color": "rgb(243, 243, 243)",
       "border-left": "1px solid rgb(151, 151, 151)",
       "border-right": "1px solid rgb(151, 151, 151)",
       NoteDetails__Content: {
         border: "1px dashed rgb(151, 151, 151)",
-        "background-color": "rgb(240, 240, 240)"
+        "background-color": "rgb(238, 238, 238)"
       },
       "thead, td": {
         border: "1px dashed rgb(166, 166, 166)",
@@ -119,7 +116,6 @@ const colors = {
     },
 
     NoteEdit: {
-      "background-color": "rgb(243, 243, 243)",
       "border-left": "1px solid rgb(151, 151, 151)",
       "border-right": "1px solid rgb(151, 151, 151)",
       button: {
@@ -161,7 +157,6 @@ const colors = {
     },
 
     Settings: {
-      "background-color": "rgb(243, 243, 243)",
       Settings__ChangePasswordForm: {
         ChangePasswordForm__Submit: {
           "background-color": "rgb(94, 190, 195)",

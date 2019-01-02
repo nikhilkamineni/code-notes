@@ -7,7 +7,6 @@ const SettingsStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: rgb(243, 243, 243);
 
   h1 {
     padding-left: 30px 10px;

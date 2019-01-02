@@ -5,7 +5,7 @@ const AppStyled = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: rgb(216, 216, 216);
+  background-color: rgb(243, 243, 243);
   font-family: Raleway;
   display: flex;
   flex-flow: row no-wrap;

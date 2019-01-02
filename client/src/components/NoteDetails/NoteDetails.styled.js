@@ -7,7 +7,6 @@ const NoteDetailsStyled = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background-color: rgb(243, 243, 243);
   border-left: 1px solid rgb(151, 151, 151);
   border-right: 1px solid rgb(151, 151, 151);
 
@@ -43,7 +42,7 @@ const NoteDetailsStyled = styled.div`
   .NoteDetails__Content {
     width: 90%;
     border: 1px dashed rgb(151, 151, 151);
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(238, 238, 238);
     padding: 15px 0 15px 15px;
     min-height: 50%;
   }
