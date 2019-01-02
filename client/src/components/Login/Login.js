@@ -17,7 +17,8 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  handleLogin = () => {
+  handleLogin = e => {
+    e.preventDefault();
     let userInfo = {
       username: this.state.username,
       password: this.state.password
@@ -30,21 +31,25 @@ class Login extends Component {
     return (
       <LoginStyled>
         <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          className="Input_Username"
-          value={this.state.username}
-          onChange={this.handleUsernameInput}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="Input_Password"
-          value={this.state.password}
-          onChange={this.handlePasswordInput}
-        />
-        <button onClick={this.handleLogin}>Login</button>
+        <form id="LoginForm" onSubmit={this.handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            className="Input_Username"
+            value={this.state.username}
+            onChange={this.handleUsernameInput}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="Input_Password"
+            value={this.state.password}
+            onChange={this.handlePasswordInput}
+          />
+        </form>
+        <button type="submit" form="LoginForm">
+          Login
+        </button>
       </LoginStyled>
     );
   }

@@ -6,6 +6,13 @@ const LoginStyled = styled.div`
   padding: 20px;
   align-items: center;
 
+  #LoginForm {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+  }
+
   h2 {
     padding: 20px;
   }

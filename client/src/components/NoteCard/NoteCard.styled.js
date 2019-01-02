@@ -17,7 +17,6 @@ const NoteCardStyled = styled.div`
 
   h4 {
     margin: 3px 3px 0 3px;
-    color: #000000;
   }
 
   p {

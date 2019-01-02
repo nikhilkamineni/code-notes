@@ -1,11 +1,19 @@
+const colorPalette = {
+  background1: "rgb(216, 216, 216)",
+  background2: "rgb(243, 243, 243)",
+  border: "rgb(151, 151, 151)",
+  buttonBackground: "rgb(94, 190, 195)",
+  fontColor1: "#444",
+  fontColor2: "#fff"
+};
+
 const colors = {
   light: {
     App: {
       "background-color": "rgb(216, 216, 216)",
       ".Content": {
         "background-color": "rgb(243, 243, 243)",
-        "border-left": "1px solid rgb(151, 151, 151)",
-        "border-right": "1px solid rgb(151, 151, 151)"
+        "border-left": "1px solid rgb(151, 151, 151)"
       }
     },
 
@@ -58,9 +66,6 @@ const colors = {
       "background-color": "rgb(255, 255, 255)",
       "&:hover": {
         border: "1px solid black"
-      },
-      h4: {
-        color: "#000000"
       }
     },
 
@@ -177,4 +182,4 @@ const colors = {
   }
 };
 
-export default colors;
+export default colorPalette;

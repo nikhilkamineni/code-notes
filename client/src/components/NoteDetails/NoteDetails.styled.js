@@ -112,9 +112,8 @@ const NoteDetailsStyled = styled.div`
   pre {
     border: 1px solid rgb(225, 225, 225);
     background-color: rgba(166, 166, 166, 0.1);
+    margin: 10px 25px 10px 10px;
     padding: 5px;
-    width: 80%;
-    margin: 10px 0;
 
     code {
       border: none;
