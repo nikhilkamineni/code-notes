@@ -24,12 +24,12 @@ class NoteDetails extends Component {
       <NoteDetailsStyled className="NoteDetails">
         <header className="NoteDetails__Header">
           <h2 className="Header__Title">{this.state.title}</h2>
-          <div className="Header__Actions">
-            <button onClick={this.props.showNoteEditForm}>Edit</button>
-            <button onClick={this.props.showDeleteModal}>Delete</button>
-          </div>
         </header>
-        <p className="NoteDetails__Description">{this.state.description}</p>
+        <h3 className="NoteDetails__Description">{this.state.description}</h3>
+        <div className="NoteDetails__Actions">
+          <button onClick={this.props.showNoteEditForm}>Edit</button>
+          <button onClick={this.props.showDeleteModal}>Delete</button>
+        </div>
         <ReactMarkdown
           source={this.state.content}
           className="NoteDetails__Content"

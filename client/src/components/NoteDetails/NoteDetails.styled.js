@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // Styles
 const NoteDetailsStyled = styled.div`
+  margin: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -10,33 +11,34 @@ const NoteDetailsStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin: 10px 30px 20px 20px;
-    width: 90%;
+    margin-bottom: 20px;
+  }
 
-    .Header__Actions {
-      padding-right: 40px;
-      button {
-        border: none;
-        background: none;
-        color: inherit;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
+  .NoteDetails__Actions {
+    padding-right: 5px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      border: none;
+      background: none;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
 
-        &:hover {
-          font-weight: bolder;
-          text-decoration: underline;
-        }
+      &:hover {
+        font-weight: bolder;
+        text-decoration: underline;
       }
     }
   }
 
   .NoteDetails__Description {
-    margin-left: 20px;
+    margin-bottom: 20px;
   }
 
   .NoteDetails__Content {
-    width: 90%;
     border: 1px dashed rgb(151, 151, 151);
     background-color: rgb(238, 238, 238);
     padding: 15px 0 15px 15px;
@@ -44,10 +46,9 @@ const NoteDetailsStyled = styled.div`
   }
 
   footer {
-    width: 90%;
-
     .Date {
       margin: 10px 0;
+      padding-right: 10px;
       font-size: 1rem;
       display: flex;
       justify-content: flex-end;
@@ -65,9 +66,8 @@ const NoteDetailsStyled = styled.div`
   }
 
   p {
-    width: 90%;
     white-space: pre-line;
-    padding-bottom: 15px;
+    margin-right: 15px;
     line-height: 25px;
   }
 
