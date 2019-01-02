@@ -181,9 +181,7 @@ server.post('/login', (req, res) => {
   let { username, password } = req.body;
   username = username.toLowerCase();
   if (!username || !password) {
-    res
-      .status(422)
-      .json({ error: 'You need to provide a username and password' });
+    return res.status(422).json({ error: 'You need to provide a username and password' });
   }
   // Find the user object matching the username
   User.findOne({ username }, (err, user) => {
@@ -191,24 +189,21 @@ server.post('/login', (req, res) => {
       return res.status(403).json({ error: 'Invalid Username/Password' });
     }
     if (user === null) {
-      res.status(422).json({ error: 'User does not exist' });
-      return;
+      return res.status(422).json({ error: 'User does not exist' });
     }
     // Use the method on the User model to hash and check PW
     user.checkPassword(password, (nonMatch, hashMatch) => {
       if (nonMatch !== null) {
-        res.status(422).json({ error: 'Incorrect password' });
-        return;
+        return res.status(422).json({ error: 'Incorrect password' });
       }
       if (hashMatch) {
         const payload = {
           username: user.username,
           _id: user._id,
-          createdOn: user.createdOn,
-          notes: user.notes
+          theme: user.theme
         };
         const token = jwt.sign(payload, SECRET);
-        res.json({ token });
+        return res.json({ token, user: { ...payload } });
       }
     });
   });

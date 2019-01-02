@@ -31,7 +31,6 @@ class App extends Component {
     showingSettings: false,
     showingSignup: false,
     username: "",
-    userId: "",
     notes: [],
     noteDetails: {
       title: "",
@@ -59,7 +58,9 @@ class App extends Component {
           authenticated: true,
           showingNotesList: true,
           notes: response.data.notes,
-          userId: response.data._id
+          username: response.data.username,
+          _id: response.data._id,
+          theme: response.data.theme
         });
       }
     } catch (err) {
@@ -70,10 +71,11 @@ class App extends Component {
   loginUser = async userInfo => {
     try {
       const response = await axios.post(`${API_URL}/login`, userInfo);
+      console.log(response.data.user)
       localStorage.setItem("token", response.data.token);
       await this.getNotes();
       this.showNotesList();
-      this.setState({ authenticated: true, username: userInfo.username });
+      this.setState({ authenticated: true, ...response.data.user });
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
@@ -90,7 +92,6 @@ class App extends Component {
       showingNoteDetails: false,
       authenticated: false,
       username: "",
-      userId: "",
       notes: [],
       noteDetails: {
         title: "",
@@ -179,7 +180,7 @@ class App extends Component {
     try {
       const token = localStorage.getItem("token");
       const options = { headers: { Authorization: token } };
-      note.createdBy = this.state.userId;
+      note.createdBy = this.state._id;
       const response = await axios.post(`${API_URL}/notes`, note, options);
       this.setState({ notes: [...this.state.notes, response.data] });
       this.showNotesList();

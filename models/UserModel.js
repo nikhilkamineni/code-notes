@@ -20,7 +20,16 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  notes: [{ type: ObjectId, ref: 'Note' }]
+  notes: [
+    {
+      type: ObjectId,
+      ref: 'Note'
+    }
+  ],
+  theme: {
+    type: String,
+    default: 'light'
+  }
 });
 
 UserSchema.pre('save', function(next) {
