@@ -1,47 +1,53 @@
-const colorPalette = {
-  background1: "rgb(216, 216, 216)",
-  background2: "rgb(243, 243, 243)",
-  border: "rgb(151, 151, 151)",
-  buttonBackground: "rgb(94, 190, 195)",
-  fontColor1: "#444",
-  fontColor2: "#fff"
+const color = {
+  background1: { light: "#d8d8d8" },
+  background2: { light: "#f3f3f3" },
+  border: { light: "#979797" },
+  inputBorder: { light: "#808080" },
+  buttonBackground:  { light: "#5ebec3" },
+  deleteButtonBackground: { light: "#bf2828" },
+  modalBackground: { light: "rgba(0, 0, 0, 0.3)" },
+  codeBackground: { light: "#e1e1e1" },
+  NoteCardBackground: { light: "#000" },
+  NoteCardHoverBorder: { light: "#000" },
+  fontColor1: { light: "#444" },
+  fontColor2: { light: "#fff" }
 };
 
 const colors = {
   light: {
     App: {
-      "background-color": "rgb(216, 216, 216)",
+      "background-color": "#d8d8d8",
       ".Content": {
-        "background-color": "rgb(243, 243, 243)",
-        "border-left": "1px solid rgb(151, 151, 151)"
+        "background-color": "#f3f3f3",
+        "border-left": "1px solid #979797"
       }
     },
 
     DeleteModal: {
       "background-color": "rgba(0, 0, 0, 0.3)",
       DeleteModalDialog: {
-        border: "2px solid rgb(151, 151, 151)"
+        border: "2px solid #979797"
       },
       DeleteModalButtons: {
         button: {
           color: "#ffffff",
           "&:hover": {
-            border: "2px solid rgb(151, 151, 151)"
+            border: "2px solid #979797"
           }
         },
         DeleteButton: {
-          "background-color": "rgb(191, 40, 40)"
+          "background-color": "#bf2828"
         },
 
         NoButton: {
-          "background-color": "rgb(94, 190, 195)"
+          "background-color": "#bf2828"
         }
       }
     },
 
     Login: {
       button: {
-        "background-color": "rgb(94, 190, 195)",
+        "background-color": "#bf2828",
         color: "#ffffff",
         "&:hover": {
           border: "2px solid white"
@@ -55,17 +61,17 @@ const colors = {
           border: "1px solid black"
         },
         "&:focus": {
-          outline: "1px solid rgb(94, 190, 195)",
-          border: "1px solid rgb(94, 190, 195)"
+          outline: "1px solid #5ebec3",
+          border: "1px solid #5ebec3"
         }
       }
     },
 
     NoteCard: {
-      border: "1px solid rgb(166, 166, 166)",
-      "background-color": "rgb(255, 255, 255)",
+      border: "1px solid #979797",
+      "background-color": "#fff",
       "&:hover": {
-        border: "1px solid black"
+        border: "1px solid #000"
       }
     },
 
@@ -106,11 +112,11 @@ const colors = {
       code: {
         border: "1px solid rgb(225, 225, 225)",
         color: "rgb(215, 43, 63)",
-        "background-color": "rgba(166, 166, 166, 0.2)"
+        "background-color": "rgb(225, 225, 225)"
       },
       pre: {
         border: "1px solid rgb(225, 225, 225)",
-        "background-color": "rgba(166, 166, 166, 0.1)",
+        "background-color": "rgb(225, 225, 225)"
 
         code: {
           "background-color": "rgba(166, 166, 166, 0)"
@@ -159,9 +165,11 @@ const colors = {
 
     Settings: {
       Settings__ChangePasswordForm: {
+        border: "1px solid rgb(151, 151, 151)",
+        "background-color": "rgb(255, 255, 255)",
         ChangePasswordForm__Submit: {
           "background-color": "rgb(94, 190, 195)",
-          color: "#ffffff",
+          color: "#fff",
           "&:hover": {
             border: "2px solid white"
           }

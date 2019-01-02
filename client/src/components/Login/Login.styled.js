@@ -21,7 +21,7 @@ const LoginStyled = styled.div`
     width: 100px;
     margin-top: 20px;
     height: 50px;
-    background-color: rgb(94, 190, 195);
+    background-color: #5ebec3;
     color: #ffffff;
     outline: none;
     font-size: 0.9rem;
@@ -36,7 +36,7 @@ const LoginStyled = styled.div`
   input {
     outline: 1px solid rgba(0 0 0 0);
     border-style: solid;
-    border: 1px solid grey;
+    border: 1px solid #808080;
     padding: 15px;
     margin: 10px;
     width: 20%;

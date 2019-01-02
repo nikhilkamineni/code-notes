@@ -18,12 +18,12 @@ const DeleteModalStyled = styled.div`
 
   .DeleteModalDialog {
     margin: auto;
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 40px 80px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid rgb(151, 151, 151);
+    border: 2px solid #979797;
   }
 
   .DeleteModalButtons {
@@ -41,16 +41,16 @@ const DeleteModalStyled = styled.div`
       cursor: pointer;
 
       &:hover {
-        border: 2px solid rgb(151, 151, 151);
+        border: 2px solid #979797;
       }
     }
 
     .DeleteButton {
-      background-color: rgb(191, 40, 40);
+      background-color: #bf2828;
     }
 
     .NoButton {
-      background-color: rgb(94, 190, 195);
+      background-color: #5ebec3;
     }
   }
 `;

@@ -6,18 +6,18 @@ const AppStyled = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-color: rgb(216, 216, 216);
+  background-color: #d8d8d8;
   font-family: Raleway;
   display: flex;
   flex-flow: row no-wrap;
   color: #444;
 
   .Content {
-    background-color: rgb(243, 243, 243);
+    background-color: #f3f3f3;
     height: 100%;
     min-height: 100vh;
     width: 100%;
-    border-left: 1px solid rgb(151, 151, 151);
+    border-left: 1px solid #979797;
   }
 `;
 

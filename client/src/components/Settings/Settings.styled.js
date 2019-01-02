@@ -25,7 +25,7 @@ const SettingsStyled = styled.div`
     align-items: center;
     padding: 30px 30px 20px;
     margin: 30px;
-    border: 1px solid rgb(166, 166, 166);
+    border: 1px solid rgb(151, 151, 151);
     background-color: rgb(255, 255, 255);
 
     .ChangePasswordForm__Label {
@@ -59,8 +59,8 @@ const SettingsStyled = styled.div`
       margin-top: 10px;
       width: 100px;
       padding: 10px;
-      background-color: rgb(94, 190, 195);
-      color: #ffffff;
+      background-color: #5ebec3;
+      color: #fff;
       font-weight: bold;
       font-size: 13px;
       cursor: pointer;
@@ -69,7 +69,7 @@ const SettingsStyled = styled.div`
 
       &:hover {
         outline: 2px solid rgba(0 0 0 0);
-        border: 2px solid white;
+        border: 2px solid #fff;
       }
     }
   }
@@ -83,8 +83,8 @@ const SettingsStyled = styled.div`
     height: 240px;
     padding: 30px 30px 20px;
     margin: 30px;
-    border: 1px solid rgb(166, 166, 166);
-    background-color: rgb(255, 255, 255);
+    border: 1px solid #979797;
+    background-color: #fff;
 
     h3 {
       margin-bottom: 30px;

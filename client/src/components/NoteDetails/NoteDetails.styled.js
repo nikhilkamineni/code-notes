@@ -105,13 +105,13 @@ const NoteDetailsStyled = styled.div`
     border-radius: 2px;
     padding: 3px;
     font-family: monospace;
-    background-color: rgba(166, 166, 166, 0.2);
+    background-color: rgb(225, 225, 225);
     line-height: 15px;
   }
 
   pre {
     border: 1px solid rgb(225, 225, 225);
-    background-color: rgba(166, 166, 166, 0.1);
+    background-color: rgb(225, 225, 225);
     margin: 10px 25px 10px 10px;
     padding: 5px;
 

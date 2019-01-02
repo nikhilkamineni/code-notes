@@ -9,8 +9,8 @@ const NoteCreateStyled = styled.div`
     width: 100px;
     margin-top: 20px;
     height: 50px;
-    background-color: rgb(94, 190, 195);
-    color: #ffffff;
+    background-color: #5ebec3;
+    color: #fff;
     outline: none;
     font-size: 0.9rem;
     font-weight: bold;
@@ -18,7 +18,7 @@ const NoteCreateStyled = styled.div`
     cursor: pointer;
 
     &:hover {
-      border: 2px solid white;
+      border: 2px solid #fff;
     }
   }
 
@@ -49,17 +49,17 @@ const NoteCreateStyled = styled.div`
   textarea {
     outline: 1px solid rgba(0 0 0 0);
     border-style: solid;
-    border: 1px solid grey;
+    border: 1px solid #808080;
 
     &:hover {
       border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid black;
+      border: 1px solid #000;
     }
 
     &:focus {
-      outline: 1px solid rgb(94, 190, 195);
-      border: 1px solid rgb(94, 190, 195);
+      outline: 1px solid #5ebec3;
+      border: 1px solid #5ebec3;
       border-style: solid;
     }
   }

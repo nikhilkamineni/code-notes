@@ -5,13 +5,13 @@ const NoteCardStyled = styled.div`
   flex-direction: column;
   width: 160px;
   height: 200px;
-  border: 1px solid rgb(166, 166, 166);
+  border: 1px solid #979797;
   padding: 10px;
   margin: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
 
   &:hover {
-    border: 1px solid black;
+    border: 1px solid #000;
     cursor: pointer;
   }
 
