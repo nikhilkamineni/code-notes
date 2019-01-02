@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../colors";
 
 const AppStyled = styled.div`
   margin: 0;
@@ -6,18 +7,18 @@ const AppStyled = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-color: #d8d8d8;
+  background-color: ${props => colors.background1[props.theme]};
   font-family: Raleway;
   display: flex;
   flex-flow: row no-wrap;
-  color: #444;
+  color: ${props => colors.font1[props.theme]};
 
   .Content {
-    background-color: #f3f3f3;
+    background-color: ${props => colors.background2[props.theme]};
     height: 100%;
     min-height: 100vh;
     width: 100%;
-    border-left: 1px solid #979797;
+    border-left: 1px solid ${props => colors.border[props.theme]};
   }
 `;
 

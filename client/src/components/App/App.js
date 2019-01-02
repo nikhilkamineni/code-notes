@@ -71,7 +71,6 @@ class App extends Component {
   loginUser = async userInfo => {
     try {
       const response = await axios.post(`${API_URL}/login`, userInfo);
-      console.log(response.data.user)
       localStorage.setItem("token", response.data.token);
       await this.getNotes();
       this.showNotesList();
@@ -228,7 +227,7 @@ class App extends Component {
 
   render() {
     return (
-      <AppStyled className="App">
+      <AppStyled className="App" theme={this.state.theme}>
         <Sidebar
           authenticated={this.state.authenticated}
           logoutUser={this.logoutUser}
