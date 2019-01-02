@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// STYLES
 const NotesListStyled = styled.div`
   padding: 20px;
   display: flex;
@@ -44,4 +43,4 @@ const NotesListStyled = styled.div`
   }
 `;
 
-export default NotesListStyled
+export default NotesListStyled;

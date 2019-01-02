@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Styles
 const DeleteModalStyled = styled.div`
   position: fixed;
   display: flex;

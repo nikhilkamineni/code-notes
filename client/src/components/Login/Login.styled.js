@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Styles
 const LoginStyled = styled.div`
   display: flex;
   flex-direction: column;

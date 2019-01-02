@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Styles
 const NoteDetailsStyled = styled.div`
   margin: 20px;
   padding: 20px;

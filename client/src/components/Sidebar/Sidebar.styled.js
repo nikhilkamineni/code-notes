@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-// Styles
 const SidebarStyled = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 200px;
   height: 100%;
-  padding: 20px;
+  padding: 10px;
 
   h1 {
     margin-bottom: 31px;
@@ -17,16 +17,17 @@ const SidebarStyled = styled.div`
   }
 
   .Sidebar__Logo {
-    padding-left: 6px;
+    padding-left: 30px;
+    margin-left: 15px;
+    color: #444;
     .Logo__TopLine {
       margin-bottom: 0px;
-      padding-left: 15px;
     }
 
     .Logo__BottomLine {
       margin-top: 0px;
       padding-top: 0px;
-      padding-left: 38px;
+      padding-left: 20px;
     }
   }
 

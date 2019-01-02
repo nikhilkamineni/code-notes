@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Styles for App Component
 const AppStyled = styled.div`
   margin: 0;
   padding: 0;
@@ -11,6 +10,7 @@ const AppStyled = styled.div`
   font-family: Raleway;
   display: flex;
   flex-flow: row no-wrap;
+  color: #444;
 
   .Content {
     background-color: rgb(243, 243, 243);

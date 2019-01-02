@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Styles
 const NoteCreateStyled = styled.div`
   display: flex;
   flex-direction: column;

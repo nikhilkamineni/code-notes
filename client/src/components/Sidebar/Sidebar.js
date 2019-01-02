@@ -8,19 +8,21 @@ const Sidebar = props => {
   return (
     <SidebarStyled className="Sidebar">
       <div className={"Sidebar__Logo"}>
-        <h1 className="Logo__TopLine">{"Code"}</h1>
-        <h1 className="Logo__BottomLine">{"Notes"}</h1>
+        <h1 className="Logo__TopLine">{"{ Code"}</h1>
+        <h1 className="Logo__BottomLine">{"Notes }"}</h1>
       </div>
-      {!props.authenticated && props.showingLogin && !props.showingSignup && (
-        <button onClick={props.showSignup}>Sign Up</button>
-      )}
+      <div>
+        {!props.authenticated && props.showingLogin && !props.showingSignup && (
+          <button onClick={props.showSignup}>Sign Up</button>
+        )}
 
-      {!props.authenticated && props.showingSignup && !props.showingLogin && (
-        <button onClick={props.showLogin}>Login</button>
-      )}
+        {!props.authenticated && props.showingSignup && !props.showingLogin && (
+          <button onClick={props.showLogin}>Login</button>
+        )}
+      </div>
 
       {props.authenticated && (
-        <div>
+        <React.Fragment>
           <button className="Sidebar__ViewNotes" onClick={props.showNotesList}>
             View Your Notes
           </button>
@@ -36,7 +38,7 @@ const Sidebar = props => {
           <button className="Sidebar__Logout" onClick={props.logoutUser}>
             Logout
           </button>
-        </div>
+        </React.Fragment>
       )}
     </SidebarStyled>
   );
