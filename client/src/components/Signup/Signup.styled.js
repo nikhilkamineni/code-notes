@@ -18,11 +18,11 @@ const SignupStyled = styled.div`
     margin-top: 40px;
     align-items: center;
     border: 1px solid ${colors.border1.light};
-    background-color: #fff;
+    background-color: ${colors.background4.light};
 
     #SignupForm__Logo {
       margin-bottom: 15px;
-      color: #444;
+      color: ${colors.font1.light};
 
       #Logo__TopLine {
         margin-bottom: 0px;
@@ -102,7 +102,7 @@ const SignupStyled = styled.div`
     &:hover {
       border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid #000;
+      border: 1px solid ${colors.border3.light};
     }
 
     &:focus {

@@ -18,7 +18,7 @@ const LoginStyled = styled.div`
     margin-top: 40px;
     align-items: center;
     border: 1px solid ${colors.border1.light};
-    background-color: #fff;
+    background-color: ${colors.background4.light};
 
     #Login__Logo {
       margin-bottom: 15px;
