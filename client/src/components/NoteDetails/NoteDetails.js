@@ -21,7 +21,7 @@ class NoteDetails extends Component {
   render() {
     let date = new Date(this.state.createdOn).toLocaleString();
     return (
-      <NoteDetailsStyled className="NoteDetails">
+      <NoteDetailsStyled className="NoteDetails" theme={this.props.theme}>
         <header className="NoteDetails__Header">
           <h2 className="Header__Title">{this.state.title}</h2>
         </header>
@@ -51,7 +51,8 @@ NoteDetails.propTypes = {
     createdOn: PropTypes.string
   }),
   showDeleteModal: PropTypes.func,
-  showNoteEditForm: PropTypes.func
+  showNoteEditForm: PropTypes.func,
+  theme: PropTypes.string
 };
 
 export default NoteDetails;

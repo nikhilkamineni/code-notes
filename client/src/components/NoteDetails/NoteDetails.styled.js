@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const NoteDetailsStyled = styled.div`
   margin: 20px;
   padding: 20px;
@@ -38,8 +40,8 @@ const NoteDetailsStyled = styled.div`
   }
 
   .NoteDetails__Content {
-    border: 1px dashed rgb(151, 151, 151);
-    background-color: rgb(238, 238, 238);
+    border: 1px dashed ${props => colors.border1[props.theme]};
+    background-color: ${props => colors.background5[props.theme]};
     padding: 15px 0 15px 15px;
     min-height: 300px;
   }
@@ -88,36 +90,33 @@ const NoteDetailsStyled = styled.div`
 
   thead,
   td {
-    border: 1px dashed rgb(166, 166, 166);
+    border: 1px dashed ${props => colors.border1[props.theme]};
     padding: 10px;
   }
 
   th,
   table {
-    border: 1px solid rgb(166, 166, 166);
+    border: 1px solid ${props => colors.border1[props.theme]};
     padding: 10px;
-    background-color: rgb(243, 243, 243);
+    background-color: ${props => colors.background2[props.theme]};
   }
 
   code {
-    border: 1px solid rgb(225, 225, 225);
-    color: rgb(215, 43, 63);
+    color: ${props => colors.font3[props.theme]};
     border-radius: 2px;
     padding: 3px;
     font-family: monospace;
-    background-color: rgb(225, 225, 225);
+    background-color: ${props => colors.background3[props.theme]};
     line-height: 15px;
   }
 
   pre {
-    border: 1px solid rgb(225, 225, 225);
-    background-color: rgb(225, 225, 225);
+    background-color: ${props => colors.background3[props.theme]};
     margin: 10px 25px 10px 10px;
     padding: 5px;
 
     code {
       border: none;
-      background-color: rgba(166, 166, 166, 0);
       border-radius: 4px;
     }
   }
