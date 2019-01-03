@@ -6,6 +6,7 @@ const NoteCreateStyled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 30px;
+  margin-top: 10px;
 
   button {
     height: 50px;

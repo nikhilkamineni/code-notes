@@ -6,7 +6,8 @@ const SettingsStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px;
+  padding: 20px 30px;
+  margin-top: 10px;
 
   header {
     padding-left: 30px 10px;
@@ -15,7 +16,6 @@ const SettingsStyled = styled.div`
   .Settings__Content {
     display: flex;
     flex-flow: row wrap;
-    padding: 20px;
     display: flex;
   }
 
@@ -26,7 +26,7 @@ const SettingsStyled = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 30px 30px 20px;
-    margin: 30px;
+    margin: 30px 0;
     border: 1px solid ${props => colors.border1[props.theme]};
     background-color: ${props => colors.background4[props.theme]};
 
