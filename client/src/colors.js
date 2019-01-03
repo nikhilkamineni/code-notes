@@ -4,7 +4,8 @@ const colors = {
   background3: { light: "#e1e1e1" }, // Markdown code blocks
   background4: { light: "#fff" }, // NoteCard, Login/Signup Containers
   background5: { light: "#eee" }, //NoteDetails content
-  background6: { light: "rgba(0, 0, 0, 0.3)" }, // transparent background for modal
+  background6: { light: "#f9f9f9" }, // Content
+  background7: { light: "rgba(0, 0, 0, 0.3)" }, // transparent background for modal
   border1: { light: "#979797" }, // main component borders
   border2: { light: "#808080" }, // border for input elements
   border3: { light: "#000" }, // border for input elements
