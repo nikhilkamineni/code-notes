@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const NoteCardStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 160px;
   height: 200px;
-  border: 1px solid #979797;
+  border: 1px solid ${props => colors.border1[props.theme]};
   padding: 10px;
   margin: 10px;
-  background-color: #fff;
+  background-color: ${props => colors.background4[props.theme]};
 
   &:hover {
-    border: 1px solid #000;
+    border: 1px solid ${props => colors.border3[props.theme]};
     cursor: pointer;
   }
 

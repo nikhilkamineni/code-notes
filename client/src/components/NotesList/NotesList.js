@@ -56,6 +56,7 @@ class NotesList extends Component {
                   key={note._id}
                   note={note}
                   showNoteDetails={this.props.showNoteDetails}
+                  theme={this.props.theme}
                 />
               );
             })

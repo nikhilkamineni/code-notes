@@ -20,6 +20,7 @@ class Note extends Component {
         onClick={() => {
           this.props.showNoteDetails(this.props.note._id);
         }}
+        theme={this.props.theme}
       >
         <h4>{this.props.note.title}</h4>
         <hr style={{ width: "100%" }} />
@@ -36,7 +37,8 @@ Note.propTypes = {
     description: PropTypes.string,
     content: PropTypes.string,
     _id: PropTypes.string
-  })
+  }),
+  theme: PropTypes.string
 };
 
 export default Note;
