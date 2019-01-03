@@ -30,7 +30,7 @@ class NoteCreate extends Component {
 
   render() {
     return (
-      <NoteCreateStyled>
+      <NoteCreateStyled theme={this.props.theme}>
         <h2>Create New Note:</h2>
         <input
           className="CreateNote__TitleInput"
@@ -65,7 +65,8 @@ class NoteCreate extends Component {
 } // NoteCreate Component ends
 
 NoteCreate.propTypes = {
-  saveNewNote: PropTypes.func
+  saveNewNote: PropTypes.func,
+  theme: PropTypes.string
 };
 
 export default NoteCreate;

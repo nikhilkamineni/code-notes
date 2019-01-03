@@ -1,24 +1,25 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const NoteCreateStyled = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 30px;
 
   button {
+    height: 50px;
     width: 100px;
     margin-top: 20px;
-    height: 50px;
-    background-color: #5ebec3;
-    color: #fff;
+    background-color: ${props => colors.highlight1[props.theme]};
+    color: ${props => colors.font2[props.theme]};
     outline: none;
-    font-size: 0.9rem;
+    font-size: 15px;
     font-weight: bold;
-    border: none;
     cursor: pointer;
 
     &:hover {
-      border: 2px solid #fff;
+      border: 2px solid ${props => colors.font2[props.theme]};
     }
   }
 
@@ -48,19 +49,16 @@ const NoteCreateStyled = styled.div`
   input,
   textarea {
     outline: 1px solid rgba(0 0 0 0);
-    border-style: solid;
-    border: 1px solid #808080;
+    border: 1px solid ${props => colors.border2[props.theme]};
 
     &:hover {
-      border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid #000;
+      border: 1px solid ${props => colors.border3[props.theme]};
     }
 
     &:focus {
-      outline: 1px solid #5ebec3;
-      border: 1px solid #5ebec3;
-      border-style: solid;
+      outline: 1px solid ${props => colors.highlight1[props.theme]};
+      border: 1px solid ${props => colors.highlight1[props.theme]};
     }
   }
 `;
