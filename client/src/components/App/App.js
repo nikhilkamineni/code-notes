@@ -232,13 +232,9 @@ class App extends Component {
           <Sidebar
             authenticated={this.state.authenticated}
             logoutUser={this.logoutUser}
-            showLogin={this.showLogin}
-            showSignup={this.showSignup}
             showNoteCreateForm={this.showNoteCreateForm}
             showNotesList={this.showNotesList}
             showSettings={this.showSettings}
-            showingLogin={this.state.showingLogin}
-            showingSignup={this.state.showingSignup}
           />
         )}
 

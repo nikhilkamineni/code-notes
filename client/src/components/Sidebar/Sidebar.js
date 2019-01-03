@@ -3,22 +3,12 @@ import React from "react";
 
 import SidebarStyled from "./Sidebar.styled.js";
 
-// Sidebar Component
 const Sidebar = props => {
   return (
-    <SidebarStyled className="Sidebar">
+    <SidebarStyled className="Sidebar" theme={props.theme}>
       <div className={"Sidebar__Logo"}>
         <h1 className="Logo__TopLine">{"{ Code"}</h1>
         <h1 className="Logo__BottomLine">{"Notes }"}</h1>
-      </div>
-      <div>
-        {!props.authenticated && props.showingLogin && !props.showingSignup && (
-          <button onClick={props.showSignup}>Sign Up</button>
-        )}
-
-        {!props.authenticated && props.showingSignup && !props.showingLogin && (
-          <button onClick={props.showLogin}>Login</button>
-        )}
       </div>
 
       {props.authenticated && (
@@ -53,7 +43,8 @@ Sidebar.propTypes = {
   showSignup: PropTypes.func,
   showSettings: PropTypes.func,
   showingLogin: PropTypes.bool,
-  showingSignup: PropTypes.bool
+  showingSignup: PropTypes.bool,
+  theme: PropTypes.string
 };
 
 export default Sidebar;
