@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const SidebarStyled = styled.div`
   display: flex;
   position: relative;
@@ -19,7 +21,7 @@ const SidebarStyled = styled.div`
   .Sidebar__Logo {
     padding-left: 30px;
     margin-left: 15px;
-    color: #444;
+    color: ${props => colors.font1[props.theme]};
     .Logo__TopLine {
       margin-bottom: 0px;
     }
@@ -36,16 +38,17 @@ const SidebarStyled = styled.div`
     font-family: Roboto;
     height: 50px;
     width: 150px;
-    background-color: rgb(94, 190, 195);
-    color: #ffffff;
+    background-color: ${props => colors.highlight1[props.theme]};
+    color: ${props => colors.font2[props.theme]};
     outline: none;
     font-size: 0.9rem;
     font-weight: bold;
     border: none;
     cursor: pointer;
+    border: 2px solid ${props => colors.background1[props.theme]};
 
     &:hover {
-      border: 2px solid rgb(243, 243, 243);
+      border: 2px solid ${props => colors.background2[props.theme]};
     }
   }
 `;

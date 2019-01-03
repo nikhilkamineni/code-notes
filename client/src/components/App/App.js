@@ -235,6 +235,7 @@ class App extends Component {
             showNoteCreateForm={this.showNoteCreateForm}
             showNotesList={this.showNotesList}
             showSettings={this.showSettings}
+            theme={this.state.theme}
           />
         )}
 
