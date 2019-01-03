@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const DeleteModalStyled = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${props => colors.background7[props.theme]};
   left: auto;
   right: auto;
   top: auto;
@@ -18,12 +20,12 @@ const DeleteModalStyled = styled.div`
 
   .DeleteModalDialog {
     margin: auto;
-    background-color: #fff;
+    background-color: ${props => colors.background4[props.theme]};
     padding: 40px 80px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid #979797;
+    border: 2px solid ${props => colors.border1[props.theme]};
   }
 
   .DeleteModalButtons {
@@ -33,7 +35,7 @@ const DeleteModalStyled = styled.div`
       margin: 0 20px;
       height: 50px;
       width: 150px;
-      color: #ffffff;
+      color: ${props => colors.font2[props.theme]};
       font-size: 0.8rem;
       font-weight: bold;
       outline: none;
@@ -41,16 +43,16 @@ const DeleteModalStyled = styled.div`
       cursor: pointer;
 
       &:hover {
-        border: 2px solid #979797;
+        border: 2px solid ${props => colors.font2[props.theme]};
       }
     }
 
     .DeleteButton {
-      background-color: #bf2828;
+      background-color: ${props => colors.highlight2[props.theme]};
     }
 
     .NoButton {
-      background-color: #5ebec3;
+      background-color: ${props => colors.highlight1[props.theme]};
     }
   }
 `;

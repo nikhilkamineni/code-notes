@@ -6,7 +6,7 @@ import DeleteModalStyled from "./DeleteModal.styled.js";
 // DeleteModal Component
 const DeleteModal = props => {
   return (
-    <DeleteModalStyled>
+    <DeleteModalStyled theme={props.theme}>
       <div className="DeleteModalDialog">
         <h3>Are you sure you want to delete this?</h3>
         <div className="DeleteModalButtons">
@@ -24,7 +24,8 @@ const DeleteModal = props => {
 
 DeleteModal.propTypes = {
   deleteNote: PropTypes.func,
-  closeDeleteModal: PropTypes.func
+  closeDeleteModal: PropTypes.func,
+  theme: PropTypes.string
 };
 
 export default DeleteModal;
