@@ -86,7 +86,7 @@ const LoginStyled = styled.div`
   input {
     outline: 1px solid rgba(0 0 0 0);
     border-style: solid;
-    border: 1px solid ${colors.border2.light};
+    border: 1px solid ${colors.border1.light};
     padding: 15px;
     margin: 10px;
     width: 20%;

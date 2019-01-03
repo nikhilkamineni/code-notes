@@ -34,7 +34,7 @@ class NotesList extends Component {
 
   render() {
     return (
-      <NotesListStyled className="NotesList">
+      <NotesListStyled className="NotesList" theme={this.props.theme}>
         <header className="NotesList__header">
           <h2>Your Notes:</h2>
           <div className="searchContainer">
@@ -70,7 +70,8 @@ class NotesList extends Component {
 
 NotesList.propTypes = {
   showNoteDetails: PropTypes.func,
-  notes: PropTypes.array
+  notes: PropTypes.array,
+  theme: PropTypes.string
 };
 
 export default NotesList;

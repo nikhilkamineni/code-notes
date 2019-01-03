@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const NotesListStyled = styled.div`
   padding: 20px;
   display: flex;
@@ -21,22 +23,19 @@ const NotesListStyled = styled.div`
       margin-top: 20px;
 
       input {
-        border-style: solid;
-        border: 1px solid grey;
+        border: 1px solid ${props => colors.border2[props.theme]};
         height: 30px;
-        padding: 5px;
+        padding: 5px 10px;
         font-size: 1rem;
-        width: 172px;
+        width: 160px;
 
         &:hover {
-          border-style: solid;
-          border: 1px solid black;
+          border: 1px solid ${props => colors.border3[props.theme]};
         }
 
         &:focus {
-          outline: 1px solid rgb(94, 190, 195);
-          border: 1px solid rgb(94, 190, 195);
-          border-style: solid;
+          outline: 1px solid ${props => colors.highlight1[props.theme]};
+          border: 1px solid ${props => colors.highlight1[props.theme]};
         }
       }
     }
