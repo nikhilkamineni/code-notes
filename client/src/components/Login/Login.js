@@ -30,12 +30,11 @@ class Login extends Component {
   render() {
     return (
       <LoginStyled className="Login">
-        <div className="Login__Logo">
-          <h1 className="Logo__TopLine">{"{ Code"}</h1>
-          <h1 className="Logo__BottomLine">{"Notes }"}</h1>
-        </div>
         <form id="LoginForm" onSubmit={this.handleLogin}>
-          <h2 id="Login__Title">Login</h2>
+          <div className="Login__Logo">
+            <h1 className="Logo__TopLine">{"{ Code"}</h1>
+            <h1 className="Logo__BottomLine">{"Notes }"}</h1>
+          </div>
           <input
             type="text"
             placeholder="Username"
@@ -51,7 +50,7 @@ class Login extends Component {
             onChange={this.handlePasswordInput}
           />
           <button type="submit" form="LoginForm" id="SubmitButton">
-            Submit
+            Login
           </button>
         </form>
         <div id="SignupContainer">

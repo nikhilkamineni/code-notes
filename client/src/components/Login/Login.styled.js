@@ -9,12 +9,10 @@ const LoginStyled = styled.div`
   background-color: ${colors.background2.light};
   min-height: 100vh;
 
-  #Login__Title {
-    color: ${colors.font1.light};
-  }
-
   .Login__Logo {
+    margin-bottom: 15px;
     color: #444;
+
     .Logo__TopLine {
       margin-bottom: 0px;
     }
@@ -22,14 +20,16 @@ const LoginStyled = styled.div`
     .Logo__BottomLine {
       margin-top: 0px;
       padding-top: 0px;
-      padding-left: 20px;
+      padding-left: 40px;
     }
   }
+
   #LoginForm {
     width: 280px;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    padding-top: 30px;
     margin-top: 40px;
     align-items: center;
     border: 1px solid ${colors.border1.light};
@@ -40,7 +40,7 @@ const LoginStyled = styled.div`
     }
 
     #SubmitButton {
-      margin-bottom: 20px;
+      margin: 10px 0 20px;
     }
   }
 
