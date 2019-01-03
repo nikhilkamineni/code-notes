@@ -12,18 +12,27 @@ class Signup extends Component {
     username: "",
     password: "",
     confirmPassword: "",
-    passwordMatch: true
+    passwordMatch: true,
+    signupError: false
   };
 
   handleUsernameInput = event => {
-    this.setState({ username: event.target.value });
+    this.setState({ username: event.target.value, signupError: false });
   };
 
   handlePasswordInput = event => {
     if (event.target.value === this.state.confirmPassword) {
-      this.setState({ passwordMatch: true, password: event.target.value });
+      this.setState({
+        passwordMatch: true,
+        password: event.target.value,
+        signupError: false
+      });
     } else {
-      this.setState({ passwordMatch: false, password: event.target.value });
+      this.setState({
+        passwordMatch: false,
+        password: event.target.value,
+        signupError: false
+      });
     }
   };
 
@@ -41,7 +50,8 @@ class Signup extends Component {
     }
   };
 
-  handleSignup = async () => {
+  handleSignup = async e => {
+    e.preventDefault();
     const { username, password } = this.state;
 
     if (!username || !password)
@@ -67,38 +77,56 @@ class Signup extends Component {
         this.props.loginUser({ username, password });
       }
     } catch (err) {
+      this.setState({ signupError: true });
       console.error(err); // eslint-disable-line
     }
   };
 
   render() {
     return (
-      <SignupStyled>
-        <h2>Signup</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          className="Input_Username"
-          value={this.state.username}
-          onChange={this.handleUsernameInput}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="Input_Password"
-          value={this.state.password}
-          onChange={this.handlePasswordInput}
-        />
-        <input
-          type="password"
-          placeholder="Confirm password"
-          className="Input_ConfirmPassword"
-          value={this.state.confirmPassword}
-          onChange={this.handleConfirmPasswordInput}
-        />
-        <button onClick={this.handleSignup}>Sign Up</button>
-        {!this.state.passwordMatch && <h3>Passwords do not match</h3>}
-        <button onClick={this.props.showLogin}>Login</button>
+      <SignupStyled id="Signup">
+        <form id="Signup__SignupForm">
+          <div id="SignupForm__Logo">
+            <h1 id="Logo__TopLine">{"{ Code"}</h1>
+            <h1 id="Logo__BottomLine">{"Notes }"}</h1>
+          </div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={this.state.username}
+            onChange={this.handleUsernameInput}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handlePasswordInput}
+          />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            value={this.state.confirmPassword}
+            onChange={this.handleConfirmPasswordInput}
+          />
+          <button
+            className="SignupForm__SubmitButton"
+            type="submit"
+            onClick={this.handleSignup}
+          >
+            Sign Up
+          </button>
+          <div className="SignupForm__Error">
+            {!this.state.passwordMatch && <p>Passwords do not match</p>}
+            {this.state.signupError && <p>There was an error signing up!</p>}
+          </div>
+        </form>
+
+        <div id="Signup__LoginContainer">
+          Already have an account?
+          <button id="LoginContainer__LoginLink" onClick={this.props.showLogin}>
+            Log in
+          </button>
+        </div>
       </SignupStyled>
     );
   }

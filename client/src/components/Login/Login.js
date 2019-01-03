@@ -29,33 +29,34 @@ class Login extends Component {
 
   render() {
     return (
-      <LoginStyled className="Login">
-        <form id="LoginForm" onSubmit={this.handleLogin}>
-          <div className="Login__Logo">
-            <h1 className="Logo__TopLine">{"{ Code"}</h1>
-            <h1 className="Logo__BottomLine">{"Notes }"}</h1>
+      <LoginStyled id="Login">
+        <form id="Login__LoginForm" onSubmit={this.handleLogin}>
+          <div id="Login__Logo">
+            <h1 id="Logo__TopLine">{"{ Code"}</h1>
+            <h1 id="Logo__BottomLine">{"Notes }"}</h1>
           </div>
           <input
             type="text"
             placeholder="Username"
-            className="Input_Username"
             value={this.state.username}
             onChange={this.handleUsernameInput}
           />
           <input
             type="password"
             placeholder="Password"
-            className="Input_Password"
             value={this.state.password}
             onChange={this.handlePasswordInput}
           />
-          <button type="submit" form="LoginForm" id="SubmitButton">
+          <button type="submit" className="SubmitButton">
             Login
           </button>
         </form>
-        <div id="SignupContainer">
+        <div id="Login__SignupContainer">
           {"Don't have an account?"}{" "}
-          <button id="SignupLink" onClick={this.props.showSignup}>
+          <button
+            id="SignupContainer__SignupLink"
+            onClick={this.props.showSignup}
+          >
             Sign Up
           </button>
         </div>

@@ -9,22 +9,7 @@ const LoginStyled = styled.div`
   background-color: ${colors.background2.light};
   min-height: 100vh;
 
-  .Login__Logo {
-    margin-bottom: 15px;
-    color: #444;
-
-    .Logo__TopLine {
-      margin-bottom: 0px;
-    }
-
-    .Logo__BottomLine {
-      margin-top: 0px;
-      padding-top: 0px;
-      padding-left: 40px;
-    }
-  }
-
-  #LoginForm {
+  #Login__LoginForm {
     width: 280px;
     display: flex;
     flex-direction: column;
@@ -35,11 +20,26 @@ const LoginStyled = styled.div`
     border: 1px solid ${colors.border1.light};
     background-color: #fff;
 
+    #Login__Logo {
+      margin-bottom: 15px;
+      color: #444;
+
+      #Logo__TopLine {
+        margin-bottom: 0px;
+      }
+
+      #Logo__BottomLine {
+        margin-top: 0px;
+        padding-top: 0px;
+        padding-left: 40px;
+      }
+    }
+
     input {
       background-color: ${colors.background2.light};
     }
 
-    #SubmitButton {
+    .SubmitButton {
       margin: 10px 0 20px;
     }
   }
@@ -57,7 +57,7 @@ const LoginStyled = styled.div`
     }
   }
 
-  #SignupContainer {
+  #Login__SignupContainer {
     display: inline;
     width: 280px;
     padding: 20px;
@@ -66,7 +66,7 @@ const LoginStyled = styled.div`
     text-align: center;
     margin-top: 20px;
 
-    #SignupLink {
+    #SignupContainer__SignupLink {
       cursor: pointer;
       color: ${colors.highlight1.light};
       width: auto;
@@ -86,7 +86,7 @@ const LoginStyled = styled.div`
   input {
     outline: 1px solid rgba(0 0 0 0);
     border-style: solid;
-    border: 1px solid #808080;
+    border: 1px solid ${colors.border2.light};
     padding: 15px;
     margin: 10px;
     width: 20%;
@@ -97,12 +97,12 @@ const LoginStyled = styled.div`
     &:hover {
       border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid black;
+      border: 1px solid #000;
     }
 
     &:focus {
-      outline: 1px solid rgb(94, 190, 195);
-      border: 1px solid rgb(94, 190, 195);
+      outline: 1px solid ${colors.highlight1.light};
+      border: 1px solid ${colors.highlight1.light};
       border-style: solid;
     }
   }

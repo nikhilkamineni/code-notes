@@ -5,6 +5,7 @@ const colors = {
   background4: { light: "rgba(0, 0, 0, 0.3)" }, // transparent background for modal
   border1: { light: "#979797" }, // main component borders
   border2: { light: "#808080" }, // border for input elements
+  border3: { light: "#000" }, // border for input elements
   highlight1: { light: "#5ebec3" }, // blue used on buttons
   highlight2: { light: "#bf2828" }, // red used on buttons (e.g. DeleteModal)
   NoteCardBackground: { light: "#000" },
