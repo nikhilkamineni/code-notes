@@ -34,7 +34,7 @@ class NoteEdit extends Component {
 
   render() {
     return (
-      <NoteEditStyled className="NoteEdit">
+      <NoteEditStyled className="NoteEdit" theme={this.props.theme}>
         <h2>Edit Note:</h2>
         <input
           className="NoteEdit__TitleInput"
@@ -72,7 +72,8 @@ NoteEdit.propTypes = {
     content: PropTypes.string,
     _id: PropTypes.string
   }),
-  updateNote: PropTypes.func
+  updateNote: PropTypes.func,
+  theme: PropTypes.string
 };
 
 export default NoteEdit;
