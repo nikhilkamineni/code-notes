@@ -18,7 +18,13 @@ const AppStyled = styled.div`
     height: 100%;
     min-height: 100vh;
     width: 100%;
-    border-left: 1px solid ${props => colors.border[props.theme]};
+    border-left: 1px solid ${props => colors.border1[props.theme]};
+  }
+
+  button {
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 `;
 

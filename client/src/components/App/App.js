@@ -228,31 +228,42 @@ class App extends Component {
   render() {
     return (
       <AppStyled className="App" theme={this.state.theme}>
-        <Sidebar
-          authenticated={this.state.authenticated}
-          logoutUser={this.logoutUser}
-          showLogin={this.showLogin}
-          showSignup={this.showSignup}
-          showNoteCreateForm={this.showNoteCreateForm}
-          showNotesList={this.showNotesList}
-          showSettings={this.showSettings}
-          showingLogin={this.state.showingLogin}
-          showingSignup={this.state.showingSignup}
-        />
+        {this.state.authenticated && (
+          <Sidebar
+            authenticated={this.state.authenticated}
+            logoutUser={this.logoutUser}
+            showLogin={this.showLogin}
+            showSignup={this.showSignup}
+            showNoteCreateForm={this.showNoteCreateForm}
+            showNotesList={this.showNotesList}
+            showSettings={this.showSettings}
+            showingLogin={this.state.showingLogin}
+            showingSignup={this.state.showingSignup}
+          />
+        )}
 
         <div className="Content">
           {!this.state.authenticated && this.state.showingLogin && (
-            <Login loginUser={this.loginUser} />
+            <Login
+              loginUser={this.loginUser}
+              theme={this.state.theme}
+              showSignup={this.showSignup}
+            />
           )}
 
           {!this.state.authenticated && this.state.showingSignup && (
-            <Signup loginUser={this.loginUser} />
+            <Signup
+              loginUser={this.loginUser}
+              theme={this.state.theme}
+              showLogin={this.showLogin}
+            />
           )}
 
           {this.state.authenticated && this.state.showingNotesList && (
             <NotesList
               notes={this.state.notes}
               showNoteDetails={this.showNoteDetails}
+              theme={this.state.theme}
             />
           )}
 
@@ -260,6 +271,7 @@ class App extends Component {
             <NoteCreate
               getNextId={this.getNextId}
               saveNewNote={this.saveNewNote}
+              theme={this.state.theme}
             />
           )}
 
@@ -269,6 +281,7 @@ class App extends Component {
               noteDetails={this.state.noteDetails}
               showNoteEditForm={this.showNoteEditForm}
               style={{ padding: "0" }}
+              theme={this.state.theme}
             />
           )}
 
@@ -278,11 +291,15 @@ class App extends Component {
               updateNote={this.updateNote}
               showNoteEditForm={this.showNoteEditForm}
               showNoteDetails={this.showNoteDetails}
+              theme={this.state.theme}
             />
           )}
 
           {this.state.authenticated && this.state.showingSettings && (
-            <Settings showSettings={this.showSettings} />
+            <Settings
+              showSettings={this.showSettings}
+              theme={this.state.theme}
+            />
           )}
         </div>
 
@@ -290,6 +307,7 @@ class App extends Component {
           <DeleteModal
             closeDeleteModal={this.closeDeleteModal}
             deleteNote={this.deleteNote}
+            theme={this.state.theme}
           />
         )}
       </AppStyled>

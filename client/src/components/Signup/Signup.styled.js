@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../colors";
 
 const SignupStyled = styled.div`
   display: flex;
@@ -21,12 +22,10 @@ const SignupStyled = styled.div`
     width: 100px;
     margin-top: 20px;
     height: 50px;
-    background-color: rgb(94, 190, 195);
+    background-color: ${colors.highlight1.light};
     color: #ffffff;
-    outline: none;
     font-size: 0.9rem;
     font-weight: bold;
-    border: none;
 
     &:hover {
       border: 2px solid white;

@@ -1,35 +1,85 @@
 import styled from "styled-components";
+import colors from "../../colors";
 
 const LoginStyled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
   align-items: center;
+  background-color: ${colors.background2.light};
+  min-height: 100vh;
 
+  #Login__Title {
+    color: ${colors.font1.light};
+  }
+
+  .Login__Logo {
+    color: #444;
+    .Logo__TopLine {
+      margin-bottom: 0px;
+    }
+
+    .Logo__BottomLine {
+      margin-top: 0px;
+      padding-top: 0px;
+      padding-left: 20px;
+    }
+  }
   #LoginForm {
+    width: 280px;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    margin-top: 40px;
     align-items: center;
-  }
+    border: 1px solid ${colors.border1.light};
+    background-color: #fff;
 
-  h2 {
-    padding: 20px;
+    input {
+      background-color: ${colors.background2.light};
+    }
+
+    #SubmitButton {
+      margin-bottom: 20px;
+    }
   }
 
   button {
-    width: 100px;
-    margin-top: 20px;
-    height: 50px;
-    background-color: #5ebec3;
-    color: #ffffff;
-    outline: none;
+    width: 80px;
+    height: 40px;
+    background-color: ${colors.highlight1.light};
+    color: ${colors.font2.light};
     font-size: 0.9rem;
     font-weight: bold;
-    border: none;
 
     &:hover {
-      border: 2px solid white;
+      border: 1px solid ${colors.border2.light};
+    }
+  }
+
+  #SignupContainer {
+    display: inline;
+    width: 280px;
+    padding: 20px;
+    border: 1px solid ${colors.border1.light};
+    background-color: ${colors.font2.light};
+    text-align: center;
+    margin-top: 20px;
+
+    #SignupLink {
+      cursor: pointer;
+      color: ${colors.highlight1.light};
+      width: auto;
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none
+      font: inherit;
+
+      &:hover {
+        color: ${colors.highlight2.light};
+        border: none;
+      }
     }
   }
 

@@ -98,13 +98,15 @@ class Signup extends Component {
         />
         <button onClick={this.handleSignup}>Sign Up</button>
         {!this.state.passwordMatch && <h3>Passwords do not match</h3>}
+        <button onClick={this.props.showLogin}>Login</button>
       </SignupStyled>
     );
   }
 }
 
 Signup.propTypes = {
-  loginUser: PropTypes.func
+  loginUser: PropTypes.func,
+  showLogin: PropTypes.func
 };
 
 export default Signup;

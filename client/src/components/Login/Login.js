@@ -29,9 +29,13 @@ class Login extends Component {
 
   render() {
     return (
-      <LoginStyled>
-        <h2>Login</h2>
+      <LoginStyled className="Login">
+        <div className="Login__Logo">
+          <h1 className="Logo__TopLine">{"{ Code"}</h1>
+          <h1 className="Logo__BottomLine">{"Notes }"}</h1>
+        </div>
         <form id="LoginForm" onSubmit={this.handleLogin}>
+          <h2 id="Login__Title">Login</h2>
           <input
             type="text"
             placeholder="Username"
@@ -46,17 +50,24 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handlePasswordInput}
           />
+          <button type="submit" form="LoginForm" id="SubmitButton">
+            Submit
+          </button>
         </form>
-        <button type="submit" form="LoginForm">
-          Login
-        </button>
+        <div id="SignupContainer">
+          {"Don't have an account?"}{" "}
+          <button id="SignupLink" onClick={this.props.showSignup}>
+            Sign Up
+          </button>
+        </div>
       </LoginStyled>
     );
   }
 }
 
 Login.propTypes = {
-  loginUser: PropTypes.func
+  loginUser: PropTypes.func,
+  showSignup: PropTypes.func
 };
 
 export default Login;
