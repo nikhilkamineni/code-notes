@@ -60,12 +60,10 @@ const SettingsStyled = styled.div`
       font-weight: bold;
       font-size: 13px;
       cursor: pointer;
-      border: 1px solid rgba(0 0 0 0);
       outline: 1px solid rgba(0 0 0 0);
 
       &:hover {
-        outline: 1px solid rgba(0 0 0 0);
-        border: 1px solid ${props => colors.border1[props.theme]};
+        border: 1px solid ${props => colors.border4[props.theme]};
       }
     }
   }
