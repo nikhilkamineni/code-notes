@@ -209,6 +209,24 @@ class App extends Component {
     }
   };
 
+  updateTheme = async theme => {
+    try {
+      const token = localStorage.getItem("token");
+      const header = { headers: { Authorization: token } };
+
+      const response = await axios.put(
+        `${API_URL}/user/change-theme`,
+        { theme },
+        header
+      );
+      if (response.status === 200) {
+        await this.setState({ theme: response.data.theme });
+      }
+    } catch (err) {
+      console.error('Failed to change theme!'); //eslint-disable-line
+    }
+  };
+
   deleteNote = () => {
     const token = localStorage.getItem("token");
     const header = { headers: { Authorization: token } };
@@ -295,6 +313,7 @@ class App extends Component {
           {this.state.authenticated && this.state.showingSettings && (
             <Settings
               showSettings={this.showSettings}
+              updateTheme={this.updateTheme}
               theme={this.state.theme}
             />
           )}

@@ -154,7 +154,25 @@ server.put('/user/change-password', authenticate, async (req, res) => {
   }
 });
 
-/* AUTH ENDPOINT */
+server.put('/user/change-theme', authenticate, async (req, res) => {
+  try {
+    const _id = req.decoded._id;
+    const theme = req.body.theme;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
+      { theme },
+      { new: true }
+    ).lean();
+    delete updatedUser.password;
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ message: 'Internal Server Error!' })
+  }
+});
+
+/* AUTH ENDPOINTS */
 // Create new User
 server.post('/signup', (req, res) => {
   let { username, password } = req.body;
@@ -181,7 +199,9 @@ server.post('/login', (req, res) => {
   let { username, password } = req.body;
   username = username.toLowerCase();
   if (!username || !password) {
-    return res.status(422).json({ error: 'You need to provide a username and password' });
+    return res
+      .status(422)
+      .json({ error: 'You need to provide a username and password' });
   }
   // Find the user object matching the username
   User.findOne({ username }, (err, user) => {

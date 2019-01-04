@@ -7,6 +7,10 @@ import SettingsStyled from "./Settings.styled.js";
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
 class Settings extends Component {
+  state = {
+    theme: this.props.theme
+  };
+
   updatePassword = async password => {
     try {
       const token = localStorage.getItem("token");
@@ -24,7 +28,7 @@ class Settings extends Component {
     }
   };
 
-  handleSubmit = async e => {
+  handleChangePassword = async e => {
     e.preventDefault();
     const newPassword = e.target.newPassword.value;
     const confirmNewPassword = e.target.newPassword.value;
@@ -37,16 +41,21 @@ class Settings extends Component {
     }
   };
 
+  handleChangeTheme = e => {
+    this.props.updateTheme(e.target.value);
+  };
+
   render() {
     return (
       <SettingsStyled className="Settings" theme={this.props.theme}>
         <header>
           <h2>Settings</h2>
         </header>
+
         <div className="Settings__Content">
           <form
             className="Settings__ChangePasswordForm"
-            onSubmit={this.handleSubmit}
+            onSubmit={this.handleChangePassword}
           >
             <h3 className="ChangePasswordForm__Label">Change Password</h3>
             <input
@@ -66,14 +75,15 @@ class Settings extends Component {
               className="ChangePasswordForm__Submit SubmitButton"
             />
           </form>
-          <form className="Settings__Theme">
+
+          <form className="Settings__Theme" onChange={this.handleChangeTheme}>
             <h3>Theme</h3>
             <div className="Theme__option">
               <input
                 type="radio"
                 name="theme"
                 value="light"
-                checked={this.props.theme === "light"}
+                defaultChecked={this.state.theme === "light"}
               />{" "}
               Light <br />
             </div>
@@ -82,7 +92,7 @@ class Settings extends Component {
                 type="radio"
                 name="theme"
                 value="dark"
-                checked={this.props.theme === "dark"}
+                defaultChecked={this.state.theme === "dark"}
               />{" "}
               Dark <br />
             </div>
@@ -94,6 +104,7 @@ class Settings extends Component {
 }
 
 Settings.propTypes = {
+  updateTheme: PropTypes.func,
   theme: PropTypes.string
 };
 
