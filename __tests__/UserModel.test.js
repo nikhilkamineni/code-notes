@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const User = require('../models/UserModel.js');
 
 describe('UserModel', () => {
-  let connection;
-  let db;
   const options = {
     useNewUrlParser: true, // fixes deprecation warnings
     dbName: global.__MONGO_DB_NAME__

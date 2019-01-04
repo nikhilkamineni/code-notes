@@ -31,6 +31,10 @@ server.use(cors(corsOptions));
 // SERVE STATIC REACT BUILD AT ROOT ENDPOINT
 server.use(express.static(path.join(__dirname, 'client/build')));
 
+server.get('/api', (req, res) => {
+  res.status(200).json({ message: 'API is up and running!' });
+});
+
 /* NOTES ENDPOINTS */
 // Get all notes from all users
 server.get('/notes', authenticate, (req, res) => {
@@ -168,7 +172,7 @@ server.put('/user/change-theme', authenticate, async (req, res) => {
 
     res.status(200).json(updatedUser);
   } catch (err) {
-    res.status(500).json({ message: 'Internal Server Error!' })
+    res.status(500).json({ message: 'Internal Server Error!' });
   }
 });
 
