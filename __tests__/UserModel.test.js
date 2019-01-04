@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const User = require('./UserModel.js');
+const User = require('../models/UserModel.js');
 
 describe('UserModel', () => {
   let connection;

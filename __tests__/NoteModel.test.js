@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('./UserModel.js');
-const Note = require('./NoteModel.js');
+const User = require('../models/UserModel.js');
+const Note = require('../models/NoteModel.js');
 
 describe('NoteModel', () => {
   let testUser;
