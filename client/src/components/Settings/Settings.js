@@ -78,23 +78,37 @@ class Settings extends Component {
 
           <form className="Settings__Theme" onChange={this.handleChangeTheme}>
             <h3>Theme</h3>
-            <div className="Theme__option">
-              <input
-                type="radio"
-                name="theme"
-                value="light"
-                defaultChecked={this.state.theme === "light"}
-              />{" "}
-              Light <br />
-            </div>
-            <div className="Theme__option">
-              <input
-                type="radio"
-                name="theme"
-                value="dark"
-                defaultChecked={this.state.theme === "dark"}
-              />{" "}
-              Dark <br />
+            <div id="Theme__Content">
+              <div className="Theme__option">
+                <input
+                  id="light"
+                  type="radio"
+                  name="theme"
+                  value="light"
+                  defaultChecked={this.state.theme === "light"}
+                />{" "}
+                <label
+                  htmlFor="light"
+                  id={this.props.theme === "light" ? "currentTheme" : null}
+                >
+                  Light
+                </label>
+              </div>
+              <div className={"Theme__option"}>
+                <input
+                  id="dark"
+                  type="radio"
+                  name="theme"
+                  value="dark"
+                  defaultChecked={this.state.theme === "dark"}
+                />{" "}
+                <label
+                  htmlFor="dark"
+                  id={this.props.theme === "dark" ? "currentTheme" : null}
+                >
+                  Dark
+                </label>
+              </div>
             </div>
           </form>
         </div>
