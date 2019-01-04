@@ -14,8 +14,6 @@ const User = require('./models/UserModel.js');
 const BCRYPT_COST = process.env.BCRYPT_COST || 11;
 const SECRET = process.env.SECRET || 'DevelopmentSecret';
 
-const arr = [0, 1, 2, 3, 4];
-
 const server = express();
 server.use(express.json());
 server.use(helmet());
@@ -26,6 +24,7 @@ const corsOptions = {
   credentials: true,
   methods: ['GET', 'PUT', 'POST', 'DELETE']
 };
+
 server.use(cors(corsOptions));
 
 // SERVE STATIC REACT BUILD AT ROOT ENDPOINT
@@ -33,6 +32,62 @@ server.use(express.static(path.join(__dirname, 'client/build')));
 
 server.get('/api', (req, res) => {
   res.status(200).json({ message: 'API is up and running!' });
+});
+
+/* AUTH ENDPOINTS */
+// Signup a new user
+server.post('/signup', (req, res) => {
+  let { username, password } = req.body;
+  username = username.toLowerCase();
+  if (!username || !password) {
+    return res
+      .status(422)
+      .json({ message: 'You need to provide a username and password!' });
+  }
+  const newUser = new User({ username, password });
+  newUser
+    .save()
+    .then(user =>
+      res.status(200).json({ message: 'Successfully created!', user })
+    )
+    .catch(err =>
+      res.status(500).json({ message: 'Error creating user', error: err })
+    );
+});
+
+// Login an existing user
+server.post('/login', (req, res) => {
+  let { username, password } = req.body;
+  username = username.toLowerCase();
+  if (!username || !password) {
+    return res
+      .status(422)
+      .json({ error: 'You need to provide a username and password' });
+  }
+  // Find the user object matching the username
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return res.status(403).json({ error: 'Invalid Username/Password' });
+    }
+    if (user === null) {
+      return res.status(422).json({ error: 'User does not exist' });
+    }
+    // Use the method on the User model to hash and check PW
+    user.checkPassword(password, (nonMatch, hashMatch) => {
+      if (nonMatch !== null) {
+        return res.status(422).json({ error: 'Incorrect password' });
+      }
+      if (hashMatch) {
+        const payload = {
+          username: user.username,
+          _id: user._id,
+          theme: user.theme
+        };
+        const token = jwt.sign(payload, SECRET);
+        return res.json({ token, user: { ...payload } });
+      }
+    });
+  });
 });
 
 /* NOTES ENDPOINTS */
@@ -181,62 +236,6 @@ server.put('/user/change-theme', authenticate, async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: 'Internal Server Error!' });
   }
-});
-
-/* AUTH ENDPOINTS */
-// Create new User
-server.post('/signup', (req, res) => {
-  let { username, password } = req.body;
-  username = username.toLowerCase();
-  if (!username || !password) {
-    return res
-      .status(422)
-      .json({ message: 'You need to provide a username and password!' });
-  }
-  const newUser = new User({ username, password });
-  newUser
-    .save()
-    .then(user =>
-      res.status(200).json({ message: 'Successfully created!', user })
-    )
-    .catch(err =>
-      res.status(500).json({ message: 'Error creating user', error: err })
-    );
-});
-
-// Login user
-server.post('/login', (req, res) => {
-  let { username, password } = req.body;
-  username = username.toLowerCase();
-  if (!username || !password) {
-    return res
-      .status(422)
-      .json({ error: 'You need to provide a username and password' });
-  }
-  // Find the user object matching the username
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: 'Invalid Username/Password' });
-    }
-    if (user === null) {
-      return res.status(422).json({ error: 'User does not exist' });
-    }
-    // Use the method on the User model to hash and check PW
-    user.checkPassword(password, (nonMatch, hashMatch) => {
-      if (nonMatch !== null) {
-        return res.status(422).json({ error: 'Incorrect password' });
-      }
-      if (hashMatch) {
-        const payload = {
-          username: user.username,
-          _id: user._id,
-          theme: user.theme
-        };
-        const token = jwt.sign(payload, SECRET);
-        return res.json({ token, user: { ...payload } });
-      }
-    });
-  });
 });
 
 module.exports = server;
