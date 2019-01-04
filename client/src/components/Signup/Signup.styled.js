@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import colors from "../../colors";
 
+const defaultTheme = "dark";
+
 const SignupStyled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
   align-items: center;
-  background-color: ${colors.background2.light};
+  background-color: ${colors.background2[defaultTheme]};
   min-height: 100vh;
 
   #Signup__SignupForm {
@@ -17,12 +19,12 @@ const SignupStyled = styled.div`
     padding-top: 30px;
     margin-top: 40px;
     align-items: center;
-    border: 1px solid ${colors.border1.light};
-    background-color: ${colors.background4.light};
+    border: 1px solid ${colors.border1[defaultTheme]};
+    background-color: ${colors.background4[defaultTheme]};
 
     #SignupForm__Logo {
       margin-bottom: 15px;
-      color: ${colors.font1.light};
+      color: ${colors.font1[defaultTheme]};
 
       #Logo__TopLine {
         margin-bottom: 0px;
@@ -36,7 +38,7 @@ const SignupStyled = styled.div`
     }
 
     input {
-      background-color: ${colors.background2.light};
+      background-color: ${colors.background2[defaultTheme]};
     }
 
     .SignupForm__SubmitButton {
@@ -45,7 +47,7 @@ const SignupStyled = styled.div`
 
     .SignupForm__Error {
       height: 15px;
-      color: ${colors.highlight2.light};
+      color: ${colors.highlight2[defaultTheme]};
     }
   }
 
@@ -53,14 +55,15 @@ const SignupStyled = styled.div`
     display: inline;
     width: 280px;
     padding: 20px;
-    border: 1px solid ${colors.border1.light};
-    background-color: ${colors.font2.light};
+    border: 1px solid ${colors.border1[defaultTheme]};
+    background-color: ${colors.background4[defaultTheme]};
+    color: ${colors.font1[defaultTheme]};
     text-align: center;
     margin-top: 20px;
 
     #LoginContainer__LoginLink {
       cursor: pointer;
-      color: ${colors.highlight1.light};
+      color: ${colors.highlight1[defaultTheme]};
       width: auto;
       padding: 0 0 0 5px;
       margin: 0;
@@ -69,7 +72,7 @@ const SignupStyled = styled.div`
       font: inherit;
 
       &:hover {
-        color: ${colors.highlight2.light};
+        color: ${colors.highlight2[defaultTheme]};
         border: none;
       }
     }
@@ -78,20 +81,20 @@ const SignupStyled = styled.div`
   button {
     width: 80px;
     height: 40px;
-    background-color: ${colors.highlight1.light};
-    color: ${colors.font2.light};
+    background-color: ${colors.highlight1[defaultTheme]};
+    color: ${colors.font2[defaultTheme]};
     font-size: 0.9rem;
     font-weight: bold;
 
     &:hover {
-      border: 1px solid ${colors.border2.light};
+      border: 1px solid ${colors.border2[defaultTheme]};
     }
   }
 
   input {
     outline: 1px solid rgba(0 0 0 0);
-    border-style: solid;
-    border: 1px solid ${colors.border2.light};
+    border: 1px solid ${colors.border1[defaultTheme]};
+    color: ${colors.font1[defaultTheme]};
     padding: 15px;
     margin: 10px;
     width: 20%;
@@ -100,15 +103,13 @@ const SignupStyled = styled.div`
     font-size: 16px;
 
     &:hover {
-      border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid ${colors.border3.light};
+      border: 1px solid ${colors.border2[defaultTheme]};
     }
 
     &:focus {
-      outline: 1px solid ${colors.highlight1.light};
-      border: 1px solid ${colors.highlight1.light};
-      border-style: solid;
+      outline: 1px solid ${colors.highlight1[defaultTheme]};
+      border: 1px solid ${colors.highlight1[defaultTheme]};
     }
   }
 `;

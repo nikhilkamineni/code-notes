@@ -89,7 +89,6 @@ const LoginStyled = styled.div`
 
   input {
     outline: 1px solid rgba(0 0 0 0);
-    border-style: solid;
     border: 1px solid ${colors.border1[defaultTheme]};
     color: ${colors.font1[defaultTheme]};
     padding: 15px;
@@ -100,7 +99,6 @@ const LoginStyled = styled.div`
     font-size: 16px;
 
     &:hover {
-      border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
       border: 1px solid ${colors.border2[defaultTheme]};
     }
@@ -108,7 +106,6 @@ const LoginStyled = styled.div`
     &:focus {
       outline: 1px solid ${colors.highlight1[defaultTheme]};
       border: 1px solid ${colors.highlight1[defaultTheme]};
-      border-style: solid;
     }
   }
 `;
