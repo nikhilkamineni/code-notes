@@ -34,9 +34,14 @@ Some up and coming features that are being considered:
     - Requires valid JWT
 
 ### `/user/change-password`
-- [PUT] Change a users password
-    - Requires a valid JWT
-    - A new password sent in the request body's `password` field is required
+- [PUT] change a users password
+    - requires a valid jwt
+    - a new password sent in the request body's `password` field is required
+
+### `/user/change-theme`
+- [PUT] change a users password
+    - requires a valid jwt
+    - a new theme sent in the request body's `theme` field is required
 
 ### `/notes`
 - [POST] Save new note

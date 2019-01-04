@@ -163,6 +163,13 @@ server.put('/user/change-theme', authenticate, async (req, res) => {
     const _id = req.decoded._id;
     const theme = req.body.theme;
 
+    if (!theme)
+      return res.status(400).json({ message: 'An updated theme is required!' });
+    if (!_id)
+      return res
+        .status(401)
+        .json({ message: 'There was a problem finding the user!' });
+
     const updatedUser = await User.findByIdAndUpdate(
       _id,
       { theme },
@@ -170,9 +177,9 @@ server.put('/user/change-theme', authenticate, async (req, res) => {
     ).lean();
     delete updatedUser.password;
 
-    res.status(200).json(updatedUser);
+    return res.status(200).json(updatedUser);
   } catch (err) {
-    res.status(500).json({ message: 'Internal Server Error!' });
+    return res.status(500).json({ message: 'Internal Server Error!' });
   }
 });
 
@@ -182,10 +189,9 @@ server.post('/signup', (req, res) => {
   let { username, password } = req.body;
   username = username.toLowerCase();
   if (!username || !password) {
-    res
+    return res
       .status(422)
       .json({ message: 'You need to provide a username and password!' });
-    return;
   }
   const newUser = new User({ username, password });
   newUser
