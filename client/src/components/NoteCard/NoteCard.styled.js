@@ -27,6 +27,10 @@ const NoteCardStyled = styled.div`
     margin: 0 3px;
     white-space: pre-line;
   }
+
+  hr {
+    border-color: ${props => colors.border1[props.theme]};
+  }
 `;
 
 export default NoteCardStyled;

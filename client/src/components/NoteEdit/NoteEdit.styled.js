@@ -52,6 +52,8 @@ const NoteEditStyled = styled.div`
   textarea {
     outline: 1px solid rgba(0 0 0 0);
     border: 1px solid ${props => colors.border1[props.theme]};
+    background-color: ${props => colors.background1[props.theme]};
+    color: ${props => colors.font1[props.theme]};
 
     &:hover {
       outline: 1px solid rgba(0 0 0 0);

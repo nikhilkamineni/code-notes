@@ -35,7 +35,7 @@ const SettingsStyled = styled.div`
     }
 
     .ChangePasswordForm__Input {
-      background-color: ${props => colors.background6[props.theme]};
+      background-color: ${props => colors.background2[props.theme]};
       outline: 1px solid rgba(0 0 0 0);
       border: 1px solid ${props => colors.border1[props.theme]};
       padding: 15px;
@@ -59,6 +59,7 @@ const SettingsStyled = styled.div`
       width: 100px;
       padding: 10px;
       background-color: ${props => colors.highlight1[props.theme]};
+      border: 2px solid ${props => colors.background2[props.theme]};
       color: ${props => colors.font2[props.theme]};
       font-weight: bold;
       font-size: 13px;
