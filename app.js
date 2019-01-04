@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 9000;
 const MONGODB_URL =
   process.env.MONGODB_URL || 'mongodb://localhost:27017/code-notes';
 
-const options = { useNewUrlParser: true, useCreateIndex: true }; // fixes deprecation warnings
+const options = { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false }; // fixes deprecation warnings
 
 mongoose
   .connect(
