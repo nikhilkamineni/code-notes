@@ -59,16 +59,21 @@ const colors = {
     dark: "#555"
   },
 
+  border4: {
+    light: "#fff",
+    dark: "#555"
+  },
+
   // blue used on buttons
   highlight1: {
     light: "#5ebec3",
-    dark: "#0A2342"
+    dark: "#154177"
   },
 
   // red used on buttons (e.g. DeleteModal)
   highlight2: {
     light: "#bf2828",
-    dark: "#4C061D"
+    dark: "#bf2828"
   },
 
   // Main text
@@ -80,7 +85,7 @@ const colors = {
   // Buttons
   font2: {
     light: "#fff",
-    dark: "#555"
+    dark: "#999"
   },
 
   // Markdown code font

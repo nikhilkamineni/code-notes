@@ -45,10 +45,10 @@ const SidebarStyled = styled.div`
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border: 2px solid ${props => colors.background1[props.theme]};
+    border: 1px solid ${props => colors.background1[props.theme]};
 
     &:hover {
-      border: 2px solid ${props => colors.background2[props.theme]};
+      border: 1px solid ${props => colors.border4[props.theme]};
     }
   }
 `;

@@ -28,7 +28,7 @@ const UserSchema = new Schema({
   ],
   theme: {
     type: String,
-    default: 'light'
+    default: 'dark'
   }
 });
 

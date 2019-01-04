@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import colors from "../../colors";
 
+const defaultTheme = "dark";
+
 const LoginStyled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
   align-items: center;
-  background-color: ${colors.background2.light};
+  background-color: ${colors.background2[defaultTheme]};
   min-height: 100vh;
 
   #Login__LoginForm {
@@ -17,12 +19,12 @@ const LoginStyled = styled.div`
     padding-top: 30px;
     margin-top: 40px;
     align-items: center;
-    border: 1px solid ${colors.border1.light};
-    background-color: ${colors.background4.light};
+    border: 1px solid ${colors.border1[defaultTheme]};
+    background-color: ${colors.background4[defaultTheme]};
 
     #Login__Logo {
       margin-bottom: 15px;
-      color: #444;
+      color: ${colors.font1[defaultTheme]};
 
       #Logo__TopLine {
         margin-bottom: 0px;
@@ -36,7 +38,7 @@ const LoginStyled = styled.div`
     }
 
     input {
-      background-color: ${colors.background2.light};
+      background-color: ${colors.background2[defaultTheme]};
     }
 
     .SubmitButton {
@@ -47,13 +49,14 @@ const LoginStyled = styled.div`
   button {
     width: 80px;
     height: 40px;
-    background-color: ${colors.highlight1.light};
-    color: ${colors.font2.light};
+    background-color: ${colors.highlight1[defaultTheme]};
+    border: 1px solid ${colors.highlight1[defaultTheme]};
+    color: ${colors.font1[defaultTheme]};
     font-size: 0.9rem;
     font-weight: bold;
 
     &:hover {
-      border: 1px solid ${colors.border2.light};
+      border: 1px solid ${colors.border2[defaultTheme]};
     }
   }
 
@@ -61,14 +64,15 @@ const LoginStyled = styled.div`
     display: inline;
     width: 280px;
     padding: 20px;
-    border: 1px solid ${colors.border1.light};
-    background-color: ${colors.font2.light};
+    border: 1px solid ${colors.border1[defaultTheme]};
+    background-color: ${colors.background4[defaultTheme]};
+    color: ${colors.font1[defaultTheme]};
     text-align: center;
     margin-top: 20px;
 
     #SignupContainer__SignupLink {
       cursor: pointer;
-      color: ${colors.highlight1.light};
+      color: ${colors.highlight1[defaultTheme]};
       width: auto;
       padding: 0;
       margin: 0;
@@ -77,7 +81,7 @@ const LoginStyled = styled.div`
       font: inherit;
 
       &:hover {
-        color: ${colors.highlight2.light};
+        color: ${colors.highlight2[defaultTheme]};
         border: none;
       }
     }
@@ -86,7 +90,8 @@ const LoginStyled = styled.div`
   input {
     outline: 1px solid rgba(0 0 0 0);
     border-style: solid;
-    border: 1px solid ${colors.border1.light};
+    border: 1px solid ${colors.border1[defaultTheme]};
+    color: ${colors.font1[defaultTheme]};
     padding: 15px;
     margin: 10px;
     width: 20%;
@@ -97,12 +102,12 @@ const LoginStyled = styled.div`
     &:hover {
       border-style: solid;
       outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid #000;
+      border: 1px solid ${colors.border2[defaultTheme]};
     }
 
     &:focus {
-      outline: 1px solid ${colors.highlight1.light};
-      border: 1px solid ${colors.highlight1.light};
+      outline: 1px solid ${colors.highlight1[defaultTheme]};
+      border: 1px solid ${colors.highlight1[defaultTheme]};
       border-style: solid;
     }
   }
