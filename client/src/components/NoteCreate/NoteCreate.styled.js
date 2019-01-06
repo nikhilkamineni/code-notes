@@ -45,13 +45,20 @@ const NoteCreateStyled = styled.div`
     margin-top: 20px;
     font-size: 1rem;
     resize: none;
+    border: 1px solid ${props => colors.border2[props.theme]};
+  }
+
+  .CodeMirror-scroll,
+  .CodeMirror-gutters,
+  .CodeMirror-gutter {
+    background: ${props => colors.background2[props.theme]};
   }
 
   input,
   textarea {
     outline: 1px solid rgba(0 0 0 0);
     border: 1px solid ${props => colors.border2[props.theme]};
-    background: ${props => colors.background1[props.theme]};
+    background: ${props => colors.background2[props.theme]};
     color: ${props => colors.font1[props.theme]};
     padding: 15px;
 

@@ -1,7 +1,26 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-
+import { UnControlled as CodeMirror } from "react-codemirror2";
 import NoteCreateStyled from "./NoteCreate.styled.js";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/darcula.css";
+import "codemirror/theme/xq-light.css";
+
+import "codemirror/mode/xml/xml";
+import "codemirror/mode/javascript/javascript";
+import "codemirror/mode/markdown/markdown";
+import "codemirror/mode/clike/clike";
+import "codemirror/mode/css/css";
+import "codemirror/mode/htmlmixed/htmlmixed";
+
+const languages = [
+  "xml",
+  "javascript",
+  "markdown",
+  "clike",
+  "css",
+  "htmlmixed"
+];
 
 // NoteCreate Component starts
 class NoteCreate extends Component {
@@ -19,8 +38,8 @@ class NoteCreate extends Component {
     this.setState({ description: e.target.value });
   };
 
-  handleContentInput = e => {
-    this.setState({ content: e.target.value });
+  handleContentInput = (editor, data, value) => {
+    this.setState({ content: value });
   };
 
   handleSave = () => {
@@ -29,6 +48,7 @@ class NoteCreate extends Component {
   };
 
   render() {
+    const cmTheme = this.props.theme === "dark" ? "darcula" : "xq-light";
     return (
       <NoteCreateStyled theme={this.props.theme}>
         <h2>Create New Note:</h2>
@@ -48,16 +68,33 @@ class NoteCreate extends Component {
           value={this.state.description}
           onChange={this.handleDescriptionInput}
         />
-        <textarea
+        <select id="CreateNote__LanguageDropDown" name="language">
+          {languages.map(lang => (
+            <option value={lang} key={lang}>
+              {lang}
+            </option>
+          ))}
+        </select>
+        <CodeMirror
           className="CreateNote__ContentInput"
-          type="text"
-          placeholder="Content"
-          rows="10"
-          cols="50"
-          name="content"
-          value={this.state.content}
+          value="Hello, World!"
+          options={{
+            mode: "javascript",
+            theme: cmTheme,
+            lineNumbers: true
+          }}
           onChange={this.handleContentInput}
         />
+        {/* <textarea */}
+        {/*   className="CreateNote__ContentInput" */}
+        {/*   type="text" */}
+        {/*   placeholder="Content" */}
+        {/*   rows="10" */}
+        {/*   cols="50" */}
+        {/*   name="content" */}
+        {/*   value={this.state.content} */}
+        {/*   onChange={this.handleContentInput} */}
+        {/* /> */}
         <button onClick={this.handleSave}>Save</button>
       </NoteCreateStyled>
     );
