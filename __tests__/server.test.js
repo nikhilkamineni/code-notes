@@ -25,4 +25,11 @@ describe('server', () => {
     expect(response.status).toBe(200);
     expect(response.data.message).toEqual('API is up and running!');
   });
+
+  it('should signup a new user successfully', async () => {
+    const response = await axiosist(server).post('/signup', { username: 'testUser', password: 'abc123' });
+    expect(response.status).toBe(201);
+    expect(response.data.message).toEqual('Successfully created!');
+    expect(response.data.user.username).toEqual('testuser');
+  })
 });

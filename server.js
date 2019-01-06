@@ -48,7 +48,7 @@ server.post('/signup', (req, res) => {
   newUser
     .save()
     .then(user =>
-      res.status(200).json({ message: 'Successfully created!', user })
+      res.status(201).json({ message: 'Successfully created!', user })
     )
     .catch(err =>
       res.status(500).json({ message: 'Error creating user', error: err })
