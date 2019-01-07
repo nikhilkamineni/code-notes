@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { UnControlled as CodeMirror } from "react-codemirror2";
+// import { UnControlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/darcula.css";
 import "codemirror/theme/xq-light.css";
@@ -11,16 +11,17 @@ import "codemirror/mode/clike/clike";
 import "codemirror/mode/css/css";
 import "codemirror/mode/htmlmixed/htmlmixed";
 
+import Editor from "../Editor/Editor.js";
 import NoteCreateStyled from "./NoteCreate.styled.js";
 
-const languages = [
-  "markdown",
-  "xml",
-  "javascript",
-  "clike",
-  "css",
-  "htmlmixed"
-];
+// const languages = [
+//   "markdown",
+//   "xml",
+//   "javascript",
+//   "clike",
+//   "css",
+//   "htmlmixed"
+// ];
 
 // NoteCreate Component starts
 class NoteCreate extends Component {
@@ -82,39 +83,19 @@ class NoteCreate extends Component {
           onChange={this.handleDescriptionInput}
         />
 
-        <div className="CreateNote__Options">
-          <select
-            className="Options__LanguageDropDown"
-            name="language"
-            onChange={this.handleLanguageDropdown}
-          >
-            {languages.map(lang => (
-              <option value={lang} key={lang}>
-                {lang}
-              </option>
-            ))}
-          </select>
-
-          <div className="Options__LineNumbers">
-            <label>Line Numbers</label>
-            <input
-              defaultChecked={this.state.lineNumbers}
-              type="checkbox"
-              name="lineNumbers"
-              onClick={this.handleLineNumbers}
-            />
-          </div>
-        </div>
-
-        <CodeMirror
-          value="Hello, World!"
+        <Editor
+          value={this.state.content}
           options={{
             mode: this.state.language,
             theme: cmTheme,
             lineNumbers: this.state.lineNumbers
           }}
-          onChange={this.handleContentInput}
+          handleLanguageDropdown={this.handleLanguageDropdown}
+          handleLineNumbers={this.handleLineNumbers}
+          lineNumbers={this.state.lineNumbers}
+          handleContentInput={this.handleContentInput}
         />
+
         <button onClick={this.handleSave} id="SaveButton">
           Save
         </button>
