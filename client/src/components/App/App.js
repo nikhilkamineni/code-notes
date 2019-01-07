@@ -36,6 +36,7 @@ class App extends Component {
       title: "",
       description: "",
       content: "",
+      language: "",
       _id: ""
     }
   };
@@ -83,8 +84,8 @@ class App extends Component {
   logoutUser = () => {
     localStorage.removeItem("token");
     this.setState({
-      showingSignup: false,
       showingLogin: true,
+      showingSignup: false,
       showingNotesList: false,
       showingNoteCreate: false,
       showingNoteEdit: false,
@@ -92,12 +93,7 @@ class App extends Component {
       authenticated: false,
       username: "",
       notes: [],
-      noteDetails: {
-        title: "",
-        description: "",
-        content: "",
-        _id: ""
-      }
+      noteDetails: {}
     });
   };
 
@@ -123,8 +119,8 @@ class App extends Component {
 
   showNoteCreateForm = () => {
     this.setState({
-      showingNotesList: false,
       showingNoteCreate: true,
+      showingNotesList: false,
       showingNoteDetails: false,
       showingNoteEdit: false,
       showingSettings: false,
@@ -136,9 +132,9 @@ class App extends Component {
     const noteToView = this.state.notes.find(note => note._id === id);
     this.setState({
       noteDetails: { ...noteToView },
+      showingNoteDetails: true,
       showingNotesList: false,
       showingNoteCreate: false,
-      showingNoteDetails: true,
       showingNoteEdit: false,
       showingSettings: false,
       deletingNote: false
@@ -147,10 +143,10 @@ class App extends Component {
 
   showNoteEditForm = () => {
     this.setState({
+      showingNoteEdit: true,
       showingNotesList: false,
       showingNoteCreate: false,
       showingNoteDetails: false,
-      showingNoteEdit: true,
       showingSettings: false,
       deletingNote: false
     });
@@ -158,11 +154,11 @@ class App extends Component {
 
   showSettings = () => {
     this.setState({
+      showingSettings: true,
       showingNotesList: false,
       showingNoteCreate: false,
       showingNoteDetails: false,
       showingNoteEdit: false,
-      showingSettings: true,
       deletingNote: false
     });
   };

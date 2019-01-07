@@ -54,8 +54,22 @@ const NoteCreateStyled = styled.div`
     background: ${props => colors.background2[props.theme]};
   }
 
-  input,
-  textarea {
+  .CreateNote__Options {
+    .Options__LanguageDropDown {
+      width: 120px;
+      padding: 5px;
+      margin-top: 30px;
+      display: inline;
+    }
+
+    .Options__LineNumbers {
+      padding: 5px;
+      margin-left: 30px;
+      display: inline;
+    }
+  }
+
+  input {
     outline: 1px solid rgba(0 0 0 0);
     border: 1px solid ${props => colors.border2[props.theme]};
     background: ${props => colors.background2[props.theme]};

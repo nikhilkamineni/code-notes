@@ -21,6 +21,10 @@ const NoteSchema = new Schema({
       required: false
     }
   ],
+  language: {
+    type: String,
+    default: 'markdown'
+  },
   color: {
     type: String,
     required: false

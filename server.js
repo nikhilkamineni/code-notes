@@ -94,24 +94,23 @@ server.post('/login', (req, res) => {
 // Get all notes from all users
 server.get('/notes', authenticate, (req, res) => {
   Note.find({}, (err, notes) => {
-    if (err) res.status(500).json('Failed to get notes: ', err);
-    res.status(200).json(notes);
+    if (err) return res.status(500).json('Failed to get notes: ', err);
+    return res.status(200).json(notes);
   });
 });
 
 // Save new note
 server.post('/notes', authenticate, (req, res) => {
-  const { title, description, content, createdBy } = req.body;
+  const { title, description, content, language, createdBy } = req.body;
   if (!title || !content) {
-    res.json({ message: 'You need to enter a title and content!' });
-    return;
+    return res.json({ message: 'You need to enter a title and content!' });
   }
 
   const newNote = new Note({ title, content, description, createdBy });
   newNote
     .save()
     .then(savedNote => {
-      res.status(200).json(savedNote);
+      res.status(201).json(savedNote);
       return savedNote;
     })
     .then(savedNote => {

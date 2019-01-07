@@ -14,9 +14,9 @@ import "codemirror/mode/css/css";
 import "codemirror/mode/htmlmixed/htmlmixed";
 
 const languages = [
+  "markdown",
   "xml",
   "javascript",
-  "markdown",
   "clike",
   "css",
   "htmlmixed"
@@ -27,7 +27,9 @@ class NoteCreate extends Component {
   state = {
     title: "",
     description: "",
-    content: ""
+    content: "",
+    language: "markdown",
+    lineNumbers: true
   };
 
   handleTitleInput = e => {
@@ -42,9 +44,17 @@ class NoteCreate extends Component {
     this.setState({ content: value });
   };
 
+  handleLanguageDropdown = e => {
+    this.setState({ language: e.target.value });
+  };
+
+  handleLineNumbers = e => {
+    this.setState({ lineNumbers: e.target.checked });
+  };
+
   handleSave = () => {
-    const { title, description, content } = this.state;
-    this.props.saveNewNote({ title, description, content });
+    const { title, description, content, language } = this.state;
+    this.props.saveNewNote({ title, description, content, language });
   };
 
   render() {
@@ -52,6 +62,7 @@ class NoteCreate extends Component {
     return (
       <NoteCreateStyled theme={this.props.theme}>
         <h2>Create New Note:</h2>
+
         <input
           className="CreateNote__TitleInput"
           type="text"
@@ -60,6 +71,7 @@ class NoteCreate extends Component {
           value={this.state.title}
           onChange={this.handleTitleInput}
         />
+
         <input
           className="CreateNote__DescriptionInput"
           type="text"
@@ -68,33 +80,41 @@ class NoteCreate extends Component {
           value={this.state.description}
           onChange={this.handleDescriptionInput}
         />
-        <select id="CreateNote__LanguageDropDown" name="language">
-          {languages.map(lang => (
-            <option value={lang} key={lang}>
-              {lang}
-            </option>
-          ))}
-        </select>
+
+        <div className="CreateNote__Options">
+          <select
+            className="Options__LanguageDropDown"
+            name="language"
+            onChange={this.handleLanguageDropdown}
+          >
+            {languages.map(lang => (
+              <option value={lang} key={lang}>
+                {lang}
+              </option>
+            ))}
+          </select>
+
+          <div className="Options__LineNumbers">
+            <label>Line Numbers</label>
+            <input
+              defaultChecked={this.state.lineNumbers}
+              type="checkbox"
+              name="lineNumbers"
+              onClick={this.handleLineNumbers}
+            />
+          </div>
+        </div>
+
         <CodeMirror
           className="CreateNote__ContentInput"
           value="Hello, World!"
           options={{
-            mode: "javascript",
+            mode: this.state.language,
             theme: cmTheme,
-            lineNumbers: true
+            lineNumbers: this.state.lineNumbers
           }}
           onChange={this.handleContentInput}
         />
-        {/* <textarea */}
-        {/*   className="CreateNote__ContentInput" */}
-        {/*   type="text" */}
-        {/*   placeholder="Content" */}
-        {/*   rows="10" */}
-        {/*   cols="50" */}
-        {/*   name="content" */}
-        {/*   value={this.state.content} */}
-        {/*   onChange={this.handleContentInput} */}
-        {/* /> */}
         <button onClick={this.handleSave}>Save</button>
       </NoteCreateStyled>
     );
