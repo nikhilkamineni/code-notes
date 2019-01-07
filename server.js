@@ -101,12 +101,13 @@ server.get('/notes', authenticate, (req, res) => {
 
 // Save new note
 server.post('/notes', authenticate, (req, res) => {
-  const { title, description, content, language, createdBy } = req.body;
+  const { title, description, language, content, createdBy } = req.body;
+
   if (!title || !content) {
     return res.json({ message: 'You need to enter a title and content!' });
   }
 
-  const newNote = new Note({ title, content, description, createdBy });
+  const newNote = new Note({ title, description, language, content, createdBy });
   newNote
     .save()
     .then(savedNote => {

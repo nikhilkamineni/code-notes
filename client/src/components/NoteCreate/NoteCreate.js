@@ -1,17 +1,17 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { UnControlled as CodeMirror } from "react-codemirror2";
-import NoteCreateStyled from "./NoteCreate.styled.js";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/darcula.css";
 import "codemirror/theme/xq-light.css";
-
 import "codemirror/mode/xml/xml";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/mode/markdown/markdown";
 import "codemirror/mode/clike/clike";
 import "codemirror/mode/css/css";
 import "codemirror/mode/htmlmixed/htmlmixed";
+
+import NoteCreateStyled from "./NoteCreate.styled.js";
 
 const languages = [
   "markdown",
@@ -59,6 +59,7 @@ class NoteCreate extends Component {
 
   render() {
     const cmTheme = this.props.theme === "dark" ? "darcula" : "xq-light";
+
     return (
       <NoteCreateStyled theme={this.props.theme}>
         <h2>Create New Note:</h2>
