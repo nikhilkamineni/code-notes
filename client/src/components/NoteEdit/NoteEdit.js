@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { UnControlled as CodeMirror } from "react-codemirror2";
+import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/darcula.css";
 import "codemirror/theme/xq-light.css";
@@ -112,24 +112,14 @@ class NoteEdit extends Component {
         </div>
 
         <CodeMirror
-          className="NoteEdit__ContentInput"
           value={this.state.content}
           options={{
             mode: this.state.language,
             theme: cmTheme,
             lineNumbers: this.state.lineNumbers
           }}
-          onChange={this.handleContentInput}
+          onBeforeChange={this.handleContentInput}
         />
-        {/* <textarea */}
-        {/*   className="NoteEdit__ContentInput" */}
-        {/*   type="text" */}
-        {/*   cols="50" */}
-        {/*   rows="10" */}
-        {/*   placeholder="Content" */}
-        {/*   value={this.state.content} */}
-        {/*   onChange={this.handleContentInput} */}
-        {/* /> */}
         <button onClick={this.handleUpdate}>Update</button>
       </NoteEditStyled>
     );

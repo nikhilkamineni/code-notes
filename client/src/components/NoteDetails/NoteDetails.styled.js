@@ -39,9 +39,6 @@ const NoteDetailsStyled = styled.div`
     margin-bottom: 20px;
   }
 
-  // .NoteDetails__Content {
-  // }
-
   .CodeMirror {
     background: ${props => colors.background1[props.theme]};
     border: 1px solid ${props => colors.border1[props.theme]};

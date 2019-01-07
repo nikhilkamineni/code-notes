@@ -107,7 +107,6 @@ class NoteCreate extends Component {
         </div>
 
         <CodeMirror
-          className="CreateNote__ContentInput"
           value="Hello, World!"
           options={{
             mode: this.state.language,

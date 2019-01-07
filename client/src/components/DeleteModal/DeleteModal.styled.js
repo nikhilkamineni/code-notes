@@ -4,6 +4,7 @@ import colors from "../../colors";
 
 const DeleteModalStyled = styled.div`
   position: fixed;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -55,7 +55,6 @@ const NoteEditStyled = styled.div`
   .CodeMirror {
     padding: 5px;
     width: auto;
-    height: 400px;
     margin-top: 20px;
     border: 1px solid ${props => colors.border2[props.theme]};
   }
