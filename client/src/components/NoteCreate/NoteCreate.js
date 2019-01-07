@@ -116,7 +116,9 @@ class NoteCreate extends Component {
           }}
           onChange={this.handleContentInput}
         />
-        <button onClick={this.handleSave}>Save</button>
+        <button onClick={this.handleSave} id="SaveButton">
+          Save
+        </button>
       </NoteCreateStyled>
     );
   }

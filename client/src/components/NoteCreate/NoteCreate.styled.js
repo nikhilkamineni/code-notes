@@ -38,13 +38,11 @@ const NoteCreateStyled = styled.div`
     font-size: 1rem;
   }
 
-  .CreateNote__ContentInput {
+  .CodeMirror {
     padding: 5px;
-    width: 80%;
-    height: 300px;
+    width: auto;
+    height: 400px;
     margin-top: 20px;
-    font-size: 1rem;
-    resize: none;
     border: 1px solid ${props => colors.border2[props.theme]};
   }
 
@@ -84,6 +82,12 @@ const NoteCreateStyled = styled.div`
     &:focus {
       outline: 1px solid ${props => colors.highlight1[props.theme]};
       border: 1px solid ${props => colors.highlight1[props.theme]};
+    }
+  }
+
+  #SaveButton {
+    &:hover {
+      border: 1px solid ${props => colors.border3[props.theme]};
     }
   }
 `;

@@ -6,8 +6,6 @@ const NoteEditStyled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 100%;
-  height: 100vh;
 
   button {
     width: 100px;
@@ -39,17 +37,36 @@ const NoteEditStyled = styled.div`
     padding: 10px;
   }
 
-  .NoteEdit__ContentInput {
-    width: 80%;
-    height: 300px;
-    margin-top: 20px;
-    font-size: 1rem;
-    resize: none;
-    padding: 10px;
+  .NoteEdit__Options {
+    .Options__LanguageDropDown {
+      width: 120px;
+      padding: 5px;
+      margin-top: 30px;
+      display: inline;
+    }
+
+    .Options__LineNumbers {
+      padding: 5px;
+      margin-left: 30px;
+      display: inline;
+    }
   }
 
-  input,
-  textarea {
+  .CodeMirror {
+    padding: 5px;
+    width: auto;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid ${props => colors.border2[props.theme]};
+  }
+
+  .CodeMirror-scroll,
+  .CodeMirror-gutters,
+  .CodeMirror-gutter {
+    background: ${props => colors.background4[props.theme]};
+  }
+
+  input {
     outline: 1px solid rgba(0 0 0 0);
     border: 1px solid ${props => colors.border1[props.theme]};
     background-color: ${props => colors.background1[props.theme]};
