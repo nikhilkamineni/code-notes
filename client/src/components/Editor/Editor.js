@@ -31,7 +31,11 @@ class Editor extends Component {
             onChange={this.props.handleLanguageDropdown}
           >
             {languages.map(lang => (
-              <option value={lang} key={lang}>
+              <option
+                value={lang}
+                key={lang}
+                selected={lang === this.props.language}
+              >
                 {lang}
               </option>
             ))}
@@ -62,6 +66,7 @@ class Editor extends Component {
 Editor.propTypes = {
   value: PropTypes.string,
   options: PropTypes.obj,
+  language: PropTypes.string,
   lineNumbers: PropTypes.bool,
   handleContentInput: PropTypes.func,
   handleLanguageDropdown: PropTypes.func,

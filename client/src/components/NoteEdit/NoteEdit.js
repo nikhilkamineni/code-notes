@@ -1,28 +1,9 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Controlled as CodeMirror } from "react-codemirror2";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/darcula.css";
-import "codemirror/theme/xq-light.css";
-import "codemirror/mode/xml/xml";
-import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/markdown/markdown";
-import "codemirror/mode/clike/clike";
-import "codemirror/mode/css/css";
-import "codemirror/mode/htmlmixed/htmlmixed";
 
+import Editor from "../Editor/Editor.js";
 import NoteEditStyled from "./NoteEdit.styled.js";
 
-const languages = [
-  "markdown",
-  "xml",
-  "javascript",
-  "clike",
-  "css",
-  "htmlmixed"
-];
-
-// NoteEdit Component
 class NoteEdit extends Component {
   state = {
     title: this.props.noteDetails,
@@ -37,16 +18,8 @@ class NoteEdit extends Component {
     this.setState({ ...this.props.noteDetails });
   }
 
-  handleTitleInput = e => {
-    this.setState({ title: e.target.value });
-  };
-
-  handleDescriptionInput = e => {
-    this.setState({ description: e.target.value });
-  };
-
-  handleLanguageDropdown = e => {
-    this.setState({ language: e.target.value });
+  handleInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleContentInput = (editor, data, value) => {
@@ -71,55 +44,34 @@ class NoteEdit extends Component {
         <input
           className="NoteEdit__TitleInput"
           type="text"
+          name="title"
           placeholder="Title"
           value={this.state.title}
-          onChange={this.handleTitleInput}
+          onChange={this.handleInput}
         />
         <input
           className="NoteEdit__DescriptionInput"
           type="text"
+          name="description"
           placeholder="Description"
           value={this.state.description}
-          onChange={this.handleDescriptionInput}
+          onChange={this.handleInput}
         />
 
-        <div className="NoteEdit__Options">
-          <select
-            className="Options__LanguageDropDown"
-            name="language"
-            onChange={this.handleLanguageDropdown}
-          >
-            {languages.map(lang => (
-              <option
-                value={lang}
-                key={lang}
-                selected={this.state.language === lang}
-              >
-                {lang}
-              </option>
-            ))}
-          </select>
-
-          <div className="Options__LineNumbers">
-            <label>Line Numbers</label>
-            <input
-              defaultChecked={this.state.lineNumbers}
-              type="checkbox"
-              name="lineNumbers"
-              onClick={this.handleLineNumbers}
-            />
-          </div>
-        </div>
-
-        <CodeMirror
+        <Editor
+          handleLanguageDropdown={this.handleInput}
+          handleLineNumbers={this.handleLineNumbers}
+          handleContentInput={this.handleContentInput}
+          language={this.state.language}
+          lineNumbers={this.state.lineNumbers}
           value={this.state.content}
           options={{
             mode: this.state.language,
             theme: cmTheme,
             lineNumbers: this.state.lineNumbers
           }}
-          onBeforeChange={this.handleContentInput}
         />
+
         <button onClick={this.handleUpdate}>Update</button>
       </NoteEditStyled>
     );
