@@ -1,29 +1,9 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-// import { UnControlled as CodeMirror } from "react-codemirror2";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/darcula.css";
-import "codemirror/theme/xq-light.css";
-import "codemirror/mode/xml/xml";
-import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/markdown/markdown";
-import "codemirror/mode/clike/clike";
-import "codemirror/mode/css/css";
-import "codemirror/mode/htmlmixed/htmlmixed";
 
 import Editor from "../Editor/Editor.js";
 import NoteCreateStyled from "./NoteCreate.styled.js";
 
-// const languages = [
-//   "markdown",
-//   "xml",
-//   "javascript",
-//   "clike",
-//   "css",
-//   "htmlmixed"
-// ];
-
-// NoteCreate Component starts
 class NoteCreate extends Component {
   state = {
     title: "",
@@ -33,20 +13,12 @@ class NoteCreate extends Component {
     lineNumbers: true
   };
 
-  handleTitleInput = e => {
-    this.setState({ title: e.target.value });
-  };
-
-  handleDescriptionInput = e => {
-    this.setState({ description: e.target.value });
+  handleInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleContentInput = (editor, data, value) => {
     this.setState({ content: value });
-  };
-
-  handleLanguageDropdown = e => {
-    this.setState({ language: e.target.value });
   };
 
   handleLineNumbers = e => {
@@ -71,7 +43,7 @@ class NoteCreate extends Component {
           placeholder="Title"
           name="title"
           value={this.state.title}
-          onChange={this.handleTitleInput}
+          onChange={this.handleInput}
         />
 
         <input
@@ -80,7 +52,7 @@ class NoteCreate extends Component {
           placeholder="Description"
           name="description"
           value={this.state.description}
-          onChange={this.handleDescriptionInput}
+          onChange={this.handleInput}
         />
 
         <Editor
@@ -90,7 +62,7 @@ class NoteCreate extends Component {
             theme: cmTheme,
             lineNumbers: this.state.lineNumbers
           }}
-          handleLanguageDropdown={this.handleLanguageDropdown}
+          handleLanguageDropdown={this.handleInput}
           handleLineNumbers={this.handleLineNumbers}
           lineNumbers={this.state.lineNumbers}
           handleContentInput={this.handleContentInput}
