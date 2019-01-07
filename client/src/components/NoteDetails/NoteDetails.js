@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-// import ReactMarkdown from "react-markdown";
-import { UnControlled as CodeMirror } from "react-codemirror2";
+import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/darcula.css";
 import "codemirror/theme/xq-light.css";
@@ -14,16 +13,6 @@ import "codemirror/mode/htmlmixed/htmlmixed";
 
 import NoteDetailsStyled from "./NoteDetails.styled.js";
 
-const languages = [
-  "markdown",
-  "xml",
-  "javascript",
-  "clike",
-  "css",
-  "htmlmixed"
-];
-
-// Note Details Component
 class NoteDetails extends Component {
   state = {
     title: this.props.noteDetails.title,
@@ -52,13 +41,7 @@ class NoteDetails extends Component {
           <h2 className="Header__Title">{this.state.title}</h2>
         </header>
         <h3 className="NoteDetails__Description">{this.state.description}</h3>
-        <div className="NoteDetails__Actions">
-          <button onClick={this.props.showNoteEditForm}>Edit</button>
-          <button onClick={this.props.showDeleteModal}>Delete</button>
-        </div>
-
-        <div className="CreateNote__Options">
-
+        <div className="NoteDetails__Options">
           <div className="Options__LineNumbers">
             <label>Line Numbers</label>
             <input
@@ -68,10 +51,12 @@ class NoteDetails extends Component {
               onClick={this.handleLineNumbers}
             />
           </div>
+          <button onClick={this.props.showNoteEditForm}>Edit</button>
+          <button onClick={this.props.showDeleteModal}>Delete</button>
         </div>
 
         <CodeMirror
-          className="CreateNote__ContentInput"
+          className="NoteDetails__Content"
           value={this.state.content}
           options={{
             mode: this.state.language,
@@ -81,10 +66,6 @@ class NoteDetails extends Component {
           }}
           onChange={this.handleContentInput}
         />
-        {/* <ReactMarkdown */}
-        {/*   source={this.state.content} */}
-        {/*   className="NoteDetails__Content" */}
-        {/* /> */}
         <footer>
           <div>{this.state.language}</div>
           <div className="Date">{date}</div>

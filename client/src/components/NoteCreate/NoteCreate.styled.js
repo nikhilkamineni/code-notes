@@ -51,7 +51,7 @@ const NoteCreateStyled = styled.div`
   .CodeMirror-scroll,
   .CodeMirror-gutters,
   .CodeMirror-gutter {
-    background: ${props => colors.background2[props.theme]};
+    background: ${props => colors.background4[props.theme]};
   }
 
   .CreateNote__Options {
@@ -72,7 +72,7 @@ const NoteCreateStyled = styled.div`
   input {
     outline: 1px solid rgba(0 0 0 0);
     border: 1px solid ${props => colors.border2[props.theme]};
-    background: ${props => colors.background2[props.theme]};
+    background: ${props => colors.background4[props.theme]};
     color: ${props => colors.font1[props.theme]};
     padding: 15px;
 

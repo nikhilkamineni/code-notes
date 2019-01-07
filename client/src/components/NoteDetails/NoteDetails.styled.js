@@ -15,7 +15,7 @@ const NoteDetailsStyled = styled.div`
     margin-bottom: 20px;
   }
 
-  .NoteDetails__Actions {
+  .NoteDetails__Options {
     padding-right: 5px;
     padding-bottom: 10px;
     display: flex;
@@ -39,11 +39,22 @@ const NoteDetailsStyled = styled.div`
     margin-bottom: 20px;
   }
 
-  .NoteDetails__Content {
-    border: 1px dashed ${props => colors.border1[props.theme]};
-    background-color: ${props => colors.background5[props.theme]};
-    padding: 15px 0 15px 15px;
-    min-height: 300px;
+  // .NoteDetails__Content {
+  // }
+
+  .CodeMirror {
+    background: ${props => colors.background1[props.theme]};
+    border: 1px solid ${props => colors.border1[props.theme]};
+    height: auto;
+    width: auto;
+    padding: 5px;
+  }
+
+  .CodeMirror-scroll,
+  .CodeMirror-lines,
+  .CodeMirror-gutters,
+  .CodeMirror-gutter {
+    background: ${props => colors.background4[props.theme]};
   }
 
   footer {
