@@ -242,17 +242,6 @@ class App extends Component {
   render() {
     return (
       <AppStyled className="App" theme={this.state.theme}>
-        {this.state.authenticated && (
-          <Sidebar
-            authenticated={this.state.authenticated}
-            logoutUser={this.logoutUser}
-            showNoteCreateForm={this.showNoteCreateForm}
-            showNotesList={this.showNotesList}
-            showSettings={this.showSettings}
-            theme={this.state.theme}
-          />
-        )}
-
         {!this.state.authenticated && this.state.showingLogin && (
           <Login
             loginUser={this.loginUser}
@@ -270,51 +259,62 @@ class App extends Component {
         )}
 
         {this.state.authenticated && (
-          <div className="Content">
-            {this.state.authenticated && this.state.showingNotesList && (
-              <NotesList
-                notes={this.state.notes}
-                showNoteDetails={this.showNoteDetails}
-                theme={this.state.theme}
-              />
-            )}
+          <>
+            <Sidebar
+              authenticated={this.state.authenticated}
+              logoutUser={this.logoutUser}
+              showNoteCreateForm={this.showNoteCreateForm}
+              showNotesList={this.showNotesList}
+              showSettings={this.showSettings}
+              theme={this.state.theme}
+            />
 
-            {this.state.authenticated && this.state.showingNoteCreate && (
-              <NoteCreate
-                getNextId={this.getNextId}
-                saveNewNote={this.saveNewNote}
-                theme={this.state.theme}
-              />
-            )}
+            <div className="Content">
+              {this.state.showingNotesList && (
+                <NotesList
+                  notes={this.state.notes}
+                  showNoteDetails={this.showNoteDetails}
+                  theme={this.state.theme}
+                />
+              )}
 
-            {this.state.authenticated && this.state.showingNoteDetails && (
-              <NoteDetails
-                showDeleteModal={this.showDeleteModal}
-                noteDetails={this.state.noteDetails}
-                showNoteEditForm={this.showNoteEditForm}
-                style={{ padding: "0" }}
-                theme={this.state.theme}
-              />
-            )}
+              {this.state.showingNoteCreate && (
+                <NoteCreate
+                  getNextId={this.getNextId}
+                  saveNewNote={this.saveNewNote}
+                  theme={this.state.theme}
+                />
+              )}
 
-            {this.state.authenticated && this.state.showingNoteEdit && (
-              <NoteEdit
-                noteDetails={this.state.noteDetails}
-                updateNote={this.updateNote}
-                showNoteEditForm={this.showNoteEditForm}
-                showNoteDetails={this.showNoteDetails}
-                theme={this.state.theme}
-              />
-            )}
+              {this.state.showingNoteDetails && (
+                <NoteDetails
+                  showDeleteModal={this.showDeleteModal}
+                  noteDetails={this.state.noteDetails}
+                  showNoteEditForm={this.showNoteEditForm}
+                  style={{ padding: "0" }}
+                  theme={this.state.theme}
+                />
+              )}
 
-            {this.state.authenticated && this.state.showingSettings && (
-              <Settings
-                showSettings={this.showSettings}
-                updateTheme={this.updateTheme}
-                theme={this.state.theme}
-              />
-            )}
-          </div>
+              {this.state.showingNoteEdit && (
+                <NoteEdit
+                  noteDetails={this.state.noteDetails}
+                  updateNote={this.updateNote}
+                  showNoteEditForm={this.showNoteEditForm}
+                  showNoteDetails={this.showNoteDetails}
+                  theme={this.state.theme}
+                />
+              )}
+
+              {this.state.showingSettings && (
+                <Settings
+                  showSettings={this.showSettings}
+                  updateTheme={this.updateTheme}
+                  theme={this.state.theme}
+                />
+              )}
+            </div>
+          </>
         )}
 
         {this.state.authenticated && this.state.deletingNote && (
