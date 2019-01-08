@@ -24,7 +24,7 @@ import "codemirror/mode/ruby/ruby";
 import "codemirror/mode/sql/sql";
 import "codemirror/mode/xml/xml";
 
-import EditorStyled from "./EditorStyled";
+import EditorStyled from "./Editor.styled";
 
 class Editor extends Component {
   render() {
