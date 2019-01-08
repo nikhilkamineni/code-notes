@@ -1,16 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Controlled as CodeMirror } from "react-codemirror2";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/darcula.css";
-import "codemirror/theme/xq-light.css";
-import "codemirror/mode/xml/xml";
-import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/markdown/markdown";
-import "codemirror/mode/clike/clike";
-import "codemirror/mode/css/css";
-import "codemirror/mode/htmlmixed/htmlmixed";
 
+import Editor from "../Editor/Editor.js";
 import NoteDetailsStyled from "./NoteDetails.styled.js";
 
 class NoteDetails extends Component {
@@ -40,23 +31,19 @@ class NoteDetails extends Component {
         <header className="NoteDetails__Header">
           <h2 className="Header__Title">{this.state.title}</h2>
         </header>
+
         <h3 className="NoteDetails__Description">{this.state.description}</h3>
+
         <div className="NoteDetails__Options">
-          <div className="Options__LineNumbers">
-            <label>Line Numbers</label>
-            <input
-              defaultChecked={this.state.lineNumbers}
-              type="checkbox"
-              name="lineNumbers"
-              onClick={this.handleLineNumbers}
-            />
-          </div>
           <button onClick={this.props.showNoteEditForm}>Edit</button>
           <button onClick={this.props.showDeleteModal}>Delete</button>
         </div>
 
-        <CodeMirror
-          className="NoteDetails__Content"
+        <Editor
+          handleLineNumbers={this.handleLineNumbers}
+          lineNumbers={this.state.lineNumbers}
+          language={this.state.language}
+          theme={this.props.theme}
           value={this.state.content}
           options={{
             mode: this.state.language,
@@ -64,8 +51,8 @@ class NoteDetails extends Component {
             lineNumbers: this.state.lineNumbers,
             readOnly: "nocursor"
           }}
-          onChange={this.handleContentInput}
         />
+
         <footer>
           <div>{this.state.language}</div>
           <div className="Date">{date}</div>

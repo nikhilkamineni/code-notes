@@ -56,16 +56,20 @@ class NoteCreate extends Component {
         />
 
         <Editor
+          handleLanguageDropdown={this.handleInput}
+          handleLineNumbers={this.handleLineNumbers}
+          handleContentInput={this.handleContentInput}
+          language={this.state.language}
+          lineNumbers={this.state.lineNumbers}
           value={this.state.content}
+          theme={this.props.theme}
           options={{
             mode: this.state.language,
             theme: cmTheme,
-            lineNumbers: this.state.lineNumbers
+            lineNumbers: this.state.lineNumbers,
+            matchBrackets: true,
+            autoCloseBrackets: true
           }}
-          handleLanguageDropdown={this.handleInput}
-          handleLineNumbers={this.handleLineNumbers}
-          lineNumbers={this.state.lineNumbers}
-          handleContentInput={this.handleContentInput}
         />
 
         <button onClick={this.handleSave} id="SaveButton">

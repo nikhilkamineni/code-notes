@@ -7,6 +7,23 @@ const NoteEditStyled = styled.div`
   flex-direction: column;
   padding: 20px;
 
+  input {
+    outline: 1px solid rgba(0 0 0 0);
+    border: 1px solid ${props => colors.border1[props.theme]};
+    background-color: ${props => colors.background1[props.theme]};
+    color: ${props => colors.font1[props.theme]};
+
+    &:hover {
+      outline: 1px solid rgba(0 0 0 0);
+      border: 1px solid ${props => colors.border3[props.theme]};
+    }
+
+    &:focus {
+      outline: 1px solid ${props => colors.highlight1[props.theme]};
+      border: 1px solid ${props => colors.highlight1[props.theme]};
+    }
+  }
+
   button {
     width: 100px;
     margin-top: 20px;
@@ -49,36 +66,6 @@ const NoteEditStyled = styled.div`
       padding: 5px;
       margin-left: 30px;
       display: inline;
-    }
-  }
-
-  .CodeMirror {
-    padding: 5px;
-    width: auto;
-    margin-top: 20px;
-    border: 1px solid ${props => colors.border2[props.theme]};
-  }
-
-  .CodeMirror-scroll,
-  .CodeMirror-gutters,
-  .CodeMirror-gutter {
-    background: ${props => colors.background4[props.theme]};
-  }
-
-  input {
-    outline: 1px solid rgba(0 0 0 0);
-    border: 1px solid ${props => colors.border1[props.theme]};
-    background-color: ${props => colors.background1[props.theme]};
-    color: ${props => colors.font1[props.theme]};
-
-    &:hover {
-      outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid ${props => colors.border3[props.theme]};
-    }
-
-    &:focus {
-      outline: 1px solid ${props => colors.highlight1[props.theme]};
-      border: 1px solid ${props => colors.highlight1[props.theme]};
     }
   }
 `;

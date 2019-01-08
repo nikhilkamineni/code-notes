@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import colors from "../../colors";
-
 const NoteDetailsStyled = styled.div`
   margin: 20px;
   padding: 20px;
@@ -37,21 +35,6 @@ const NoteDetailsStyled = styled.div`
 
   .NoteDetails__Description {
     margin-bottom: 20px;
-  }
-
-  .CodeMirror {
-    background: ${props => colors.background1[props.theme]};
-    border: 1px solid ${props => colors.border1[props.theme]};
-    height: auto;
-    width: auto;
-    padding: 5px;
-  }
-
-  .CodeMirror-scroll,
-  .CodeMirror-lines,
-  .CodeMirror-gutters,
-  .CodeMirror-gutter {
-    background: ${props => colors.background4[props.theme]};
   }
 
   footer {

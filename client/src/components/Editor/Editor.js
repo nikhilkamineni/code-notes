@@ -4,6 +4,8 @@ import { Controlled as CodeMirror } from "react-codemirror2";
 import languages from "./languages";
 
 import "codemirror/lib/codemirror.css";
+import "codemirror/addon/edit/matchbrackets";
+import "codemirror/addon/edit/closebrackets";
 import "codemirror/theme/darcula.css";
 import "codemirror/theme/xq-light.css";
 
@@ -20,28 +22,27 @@ import "codemirror/mode/ruby/ruby";
 import "codemirror/mode/sql/sql";
 import "codemirror/mode/xml/xml";
 
+import EditorStyled from "./EditorStyled";
+
 class Editor extends Component {
   render() {
     return (
-      <React.Fragment>
+      <EditorStyled theme={this.props.theme}>
         <div className="Editor__Options">
           <select
             className="Options__LanguageDropDown"
             name="language"
             onChange={this.props.handleLanguageDropdown}
+            value={this.props.language}
           >
             {languages.map(lang => (
-              <option
-                value={lang}
-                key={lang}
-                selected={lang === this.props.language}
-              >
+              <option value={lang} key={lang}>
                 {lang}
               </option>
             ))}
           </select>
 
-          <div className="Editor__LineNumbers">
+          <div className="Options__LineNumbers">
             <label className="LineNumbers__label">Line Numbers</label>
             <input
               className="LineNumbers__checkbox"
@@ -58,7 +59,7 @@ class Editor extends Component {
           value={this.props.value}
           options={this.props.options}
         />
-      </React.Fragment>
+      </EditorStyled>
     );
   }
 }
@@ -70,7 +71,8 @@ Editor.propTypes = {
   lineNumbers: PropTypes.bool,
   handleContentInput: PropTypes.func,
   handleLanguageDropdown: PropTypes.func,
-  handleLineNumbers: PropTypes.func
+  handleLineNumbers: PropTypes.func,
+  theme: PropTypes.string
 };
 
 export default Editor;

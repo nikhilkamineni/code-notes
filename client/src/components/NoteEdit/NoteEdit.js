@@ -41,6 +41,7 @@ class NoteEdit extends Component {
     return (
       <NoteEditStyled className="NoteEdit" theme={this.props.theme}>
         <h2>Edit Note:</h2>
+
         <input
           className="NoteEdit__TitleInput"
           type="text"
@@ -49,6 +50,7 @@ class NoteEdit extends Component {
           value={this.state.title}
           onChange={this.handleInput}
         />
+
         <input
           className="NoteEdit__DescriptionInput"
           type="text"
@@ -65,6 +67,7 @@ class NoteEdit extends Component {
           language={this.state.language}
           lineNumbers={this.state.lineNumbers}
           value={this.state.content}
+          theme={this.props.theme}
           options={{
             mode: this.state.language,
             theme: cmTheme,
