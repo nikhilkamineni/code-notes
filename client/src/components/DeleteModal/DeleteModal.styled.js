@@ -21,12 +21,12 @@ const DeleteModalStyled = styled.div`
 
   .DeleteModalDialog {
     margin: auto;
-    background-color: ${props => colors.background4[props.theme]};
-    padding: 40px 80px 25px;
+    background-color: ${props => colors.background1[props.theme]};
+    padding: 30px 60px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid ${props => colors.border1[props.theme]};
+    border: 1px solid ${props => colors.border1[props.theme]};
   }
 
   .DeleteModalButtons {
@@ -34,8 +34,8 @@ const DeleteModalStyled = styled.div`
 
     button {
       margin: 0 20px;
-      height: 50px;
-      width: 150px;
+      height: 40px;
+      width: 120px;
       color: ${props => colors.font2[props.theme]};
       font-size: 0.8rem;
       font-weight: bold;
@@ -44,7 +44,7 @@ const DeleteModalStyled = styled.div`
       cursor: pointer;
 
       &:hover {
-        border: 2px solid ${props => colors.font2[props.theme]};
+        border: 1px solid ${props => colors.border1[props.theme]};
       }
     }
 

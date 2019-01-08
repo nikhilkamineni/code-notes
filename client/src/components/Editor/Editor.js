@@ -33,20 +33,26 @@ class Editor extends Component {
         <div className="Editor__Options">
           <div className="Options__Language">
             {this.props.options.readOnly ? (
-              <p>{this.props.language}</p>
+              <>
+                <label className="Language__label">language:</label>{" "}
+                <span className="Language__current">{this.props.language}</span>
+              </>
             ) : (
-              <select
-                className="Options__LanguageDropDown"
-                name="language"
-                onChange={this.props.handleLanguageDropdown}
-                value={this.props.language}
-              >
-                {languages.map(lang => (
-                  <option value={lang} key={lang}>
-                    {lang}
-                  </option>
-                ))}
-              </select>
+              <p>
+                <label className="Language__label">language:</label>
+                <select
+                  className="Language__select"
+                  name="language"
+                  onChange={this.props.handleLanguageDropdown}
+                  value={this.props.language}
+                >
+                  {languages.map(lang => (
+                    <option value={lang} key={lang}>
+                      {lang}
+                    </option>
+                  ))}
+                </select>
+              </p>
             )}
           </div>
 

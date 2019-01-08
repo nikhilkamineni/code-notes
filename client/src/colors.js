@@ -7,7 +7,7 @@ const colors = {
 
   // Content
   background2: {
-    light: "#f3f3f3",
+    light: "#efefef",
     dark: "#292929"
   },
 
@@ -73,12 +73,12 @@ const colors = {
   // red used on buttons (e.g. DeleteModal)
   highlight2: {
     light: "#bf2828",
-    dark: "#bf2828"
+    dark: "#992222"
   },
 
   // Main text
   font1: {
-    light: "#444",
+    light: "#555",
     dark: "#999"
   },
 

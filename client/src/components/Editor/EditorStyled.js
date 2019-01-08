@@ -4,27 +4,35 @@ import colors from "../../colors";
 
 const EditorStyled = styled.div`
   .Editor__Options {
-    width: 400px;
+    width: 380px;
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border: 1px solid ${props => colors.border1[props.theme]};
     background-color: ${props => colors.background1[props.theme]};
     color: ${props => colors.font1[props.theme]};
     margin-top: 5px;
+    font-size: 10px;
 
     .Options__Language {
-      width: 120px;
-      padding: 5px;
+      width: 200px;
+      padding-left: 15px;
+      padding-right: 15px;
       display: flex;
-      margin-left: 20px;
-      margin-right: 20px;
+
+      .Language__label {
+        padding-right: 5px;
+      }
+
+      .Language__current {
+        font-weight: bold;
+      }
     }
 
     .Options__LineNumbers {
-      padding: 5px;
-      margin-left: 30px;
+      padding-left: 15px;
+      padding-right: 15px;
       display: inline;
     }
   }
@@ -32,15 +40,21 @@ const EditorStyled = styled.div`
   .CodeMirror {
     padding: 5px;
     width: auto;
+    height: auto;
+    min-height: 300px;
     margin-top: 5px;
     border: 1px solid ${props => colors.border2[props.theme]};
-    background: ${props => colors.background4[props.theme]};
+    background: ${props => colors.background1[props.theme]};
   }
 
   .CodeMirror-scroll,
   .CodeMirror-gutters,
   .CodeMirror-gutter {
-    background: ${props => colors.background4[props.theme]};
+    background: ${props => colors.background1[props.theme]};
+  }
+
+  .CodeMirror-gutter {
+    border-right: 1px solid ${props => colors.border2[props.theme]};
   }
 `;
 

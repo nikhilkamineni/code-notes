@@ -24,7 +24,7 @@ const NotesListStyled = styled.div`
 
       input {
         color: ${props => colors.font1[props.theme]};
-        background-color: ${props => colors.background4[props.theme]};
+        background-color: ${props => colors.background1[props.theme]};
         border: 1px solid ${props => colors.border1[props.theme]};
         height: 30px;
         padding: 5px 10px;

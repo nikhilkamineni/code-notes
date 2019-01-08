@@ -3,7 +3,6 @@ import React from "react";
 
 import DeleteModalStyled from "./DeleteModal.styled.js";
 
-// DeleteModal Component
 const DeleteModal = props => {
   return (
     <DeleteModalStyled theme={props.theme}>
