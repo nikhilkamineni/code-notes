@@ -71,7 +71,11 @@ class NoteEdit extends Component {
           options={{
             mode: this.state.language,
             theme: cmTheme,
-            lineNumbers: this.state.lineNumbers
+            lineNumbers: this.state.lineNumbers,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            matchTags: true,
+            autoCloseTags: true
           }}
         />
 

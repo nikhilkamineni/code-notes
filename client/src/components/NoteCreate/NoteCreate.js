@@ -68,7 +68,9 @@ class NoteCreate extends Component {
             theme: cmTheme,
             lineNumbers: this.state.lineNumbers,
             matchBrackets: true,
-            autoCloseBrackets: true
+            autoCloseBrackets: true,
+            matchTags: true,
+            autoCloseTags: true
           }}
         />
 

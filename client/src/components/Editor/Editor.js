@@ -6,6 +6,8 @@ import languages from "./languages";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/edit/matchbrackets";
 import "codemirror/addon/edit/closebrackets";
+import "codemirror/addon/edit/matchtags";
+import "codemirror/addon/edit/closetag";
 import "codemirror/theme/darcula.css";
 import "codemirror/theme/xq-light.css";
 
