@@ -41,6 +41,7 @@ const EditorStyled = styled.div`
     padding: 5px;
     width: auto;
     height: auto;
+    max-height: 100%;
     min-height: 300px;
     margin-top: 5px;
     border: 1px solid ${props => colors.border2[props.theme]};

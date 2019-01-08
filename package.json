@@ -1,7 +1,7 @@
 {
-  "name": "code-notes",
+  "name": "codex",
   "version": "1.0.0",
-  "description": "Note taking app for code snippets",
+  "description": "A place to stash all your code snippets",
   "main": "app.js",
   "author": "Nikhil Kamineni",
   "license": "MIT",

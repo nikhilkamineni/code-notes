@@ -5,7 +5,8 @@ const dbConnect = require('./database');
 
 const PORT = process.env.PORT || 9000;
 
-console.log('\n\n        ##### code-notes #####\n');
+console.log('\n\n        ##### { codex } #####\n');
+console.log('   Starting up app...');
 
 dbConnect();
 

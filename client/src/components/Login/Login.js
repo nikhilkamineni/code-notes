@@ -32,8 +32,8 @@ class Login extends Component {
       <LoginStyled id="Login">
         <form id="Login__LoginForm" onSubmit={this.handleLogin}>
           <div id="Login__Logo">
-            <h1 id="Logo__TopLine">{"{ Code"}</h1>
-            <h1 id="Logo__BottomLine">{"Notes }"}</h1>
+            <h1 id="Logo__TopLine">{"{ codex }"}</h1>
+            {/* <h1 id="Logo__BottomLine">{"Notes }"}</h1> */}
           </div>
           <input
             type="text"

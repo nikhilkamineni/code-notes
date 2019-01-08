@@ -19,18 +19,21 @@ const SidebarStyled = styled.div`
   }
 
   .Sidebar__Logo {
-    padding-left: 30px;
-    margin-left: 15px;
+    margin-left: 25px;
     color: ${props => colors.font1[props.theme]};
-    .Logo__TopLine {
-      margin-bottom: 0px;
-    }
+    position: fixed;
+    top: 20px;
+    left: 10px;
+  }
 
-    .Logo__BottomLine {
-      margin-top: 0px;
-      padding-top: 0px;
-      padding-left: 20px;
-    }
+  .Sidebar__Menu {
+    position: fixed;
+    display: flex;
+    top: 100px;
+    left: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   button {
