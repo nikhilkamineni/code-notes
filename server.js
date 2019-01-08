@@ -62,11 +62,11 @@ server.post('/login', async (req, res) => {
       .json({ error: 'You need to provide a username and password' });
   }
 
-  username = username.toLowerCase();
-
   try {
+    username = username.toLowerCase();
+
     // Find the user object matching the username
-    const user = await User.findOne({ username })
+    const user = await User.findOne({ username });
 
     if (user === null)
       return res.status(422).json({ error: 'User does not exist' });
@@ -87,32 +87,8 @@ server.post('/login', async (req, res) => {
       }
     });
   } catch (err) {
-    return res.status(500).json({ error: 'Internal server error!' })
+    return res.status(500).json({ error: 'Internal server error!' });
   }
-
-
-  // User.findOne({ username }, (err, user) => {
-  //   if (err) return res.status(403).json({ error: 'Invalid username' });
-
-  //   if (user === null)
-  //     return res.status(422).json({ error: 'User does not exist' });
-
-  //   // Use the method on the User model to hash and check PW
-  //   user.checkPassword(password, (nonMatch, hashMatch) => {
-  //     if (nonMatch !== null) {
-  //       return res.status(422).json({ error: 'Incorrect password' });
-  //     }
-  //     if (hashMatch) {
-  //       const payload = {
-  //         username: user.username,
-  //         _id: user._id,
-  //         theme: user.theme
-  //       };
-  //       const token = jwt.sign(payload, SECRET);
-  //       return res.json({ token, user: { ...payload } });
-  //     }
-  //   });
-  // });
 });
 
 /* NOTES ENDPOINTS */
@@ -125,40 +101,39 @@ server.get('/notes', authenticate, (req, res) => {
 });
 
 // Save new note
-server.post('/notes', authenticate, (req, res) => {
+server.post('/notes', authenticate, async (req, res) => {
+
   const { title, description, language, content, createdBy } = req.body;
 
   if (!title || !content) {
-    return res.json({ message: 'You need to enter a title and content!' });
+    return res
+      .status(400)
+      .json({ message: 'You need to enter a title and content!' });
   }
 
-  const newNote = new Note({
-    title,
-    description,
-    language,
-    content,
-    createdBy
-  });
-  newNote
-    .save()
-    .then(savedNote => {
-      res.status(201).json(savedNote);
-      return savedNote;
-    })
-    .then(savedNote => {
-      const userId = savedNote.createdBy; // Adds id of new note to users object
-      const savedNoteId = savedNote.id;
-      User.findByIdAndUpdate(
-        userId,
-        { $push: { notes: [savedNoteId] } },
-        err => {
-          if (err) console.error(err);
-        }
-      );
-    })
-    .catch(err =>
-      res.status(500).json({ message: 'Error saving note: ', error: err })
+  try {
+    // Save new note to Notes collection
+    const newNote = new Note({
+      title,
+      description,
+      language,
+      content,
+      createdBy
+    });
+
+    const savedNote = await newNote.save();
+
+     // Add id of new note to Notes array of User model
+    const userId = savedNote.createdBy;
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $push: { notes: [savedNote.id] } },
+      { new: true }
     );
+    return res.status(201).json(savedNote);
+  } catch (err) {
+    return res.status(500).json({ message: 'Error saving note: ', error: err });
+  }
 });
 
 // Get Note by ID
