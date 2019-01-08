@@ -40,33 +40,25 @@ const NoteEditStyled = styled.div`
     }
   }
 
+  .NoteEdit__TitleLabel {
+    margin 20px 0 5px 0;
+  }
+
+  .NoteEdit__DescriptionLabel {
+    margin 20px 0 5px 0;
+  }
+
   .NoteEdit__TitleInput {
-    width: 50%;
-    margin-top: 20px;
+    padding: 5px;
+    width: 40%;
     font-size: 1rem;
-    padding: 10px;
   }
 
   .NoteEdit__DescriptionInput {
+    padding: 5px;
     width: 80%;
-    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 1rem;
-    padding: 10px;
-  }
-
-  .NoteEdit__Options {
-    .Options__LanguageDropDown {
-      width: 120px;
-      padding: 5px;
-      margin-top: 30px;
-      display: inline;
-    }
-
-    .Options__LineNumbers {
-      padding: 5px;
-      margin-left: 30px;
-      display: inline;
-    }
   }
 `;
 
