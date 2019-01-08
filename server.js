@@ -36,16 +36,16 @@ server.get('/api', (req, res) => {
 
 /* AUTH ENDPOINTS */
 // Signup a new user
-server.post('/signup', (req, res) => {
+server.post('/signup', async (req, res) => {
   let { username, password } = req.body;
-  username = username.toLowerCase();
   if (!username || !password) {
     return res
       .status(422)
       .json({ message: 'You need to provide a username and password!' });
   }
+
   const newUser = new User({ username, password });
-  newUser
+  await newUser
     .save()
     .then(user =>
       res.status(201).json({ message: 'Successfully created!', user })
