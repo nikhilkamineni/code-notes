@@ -16,10 +16,10 @@ const AppStyled = styled.div`
 
   .Content {
     background-color: ${props => colors.background2[props.theme]};
+    border-left: 1px solid ${props => colors.border1[props.theme]};
     height: 100%;
     min-height: 100vh;
-    width: 100%;
-    border-left: 1px solid ${props => colors.border1[props.theme]};
+    width: 85%;
   }
 
   button {

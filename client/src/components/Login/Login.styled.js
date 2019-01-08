@@ -10,6 +10,7 @@ const LoginStyled = styled.div`
   align-items: center;
   background-color: ${colors.background2[defaultTheme]};
   min-height: 100vh;
+  width: 100%;
 
   #Login__LoginForm {
     width: 280px;

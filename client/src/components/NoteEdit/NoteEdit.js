@@ -42,6 +42,7 @@ class NoteEdit extends Component {
       <NoteEditStyled className="NoteEdit" theme={this.props.theme}>
         <h2>Edit Note:</h2>
 
+        <label className="NoteEdit__TitleLabel">Title:</label>
         <input
           className="NoteEdit__TitleInput"
           type="text"
@@ -51,6 +52,7 @@ class NoteEdit extends Component {
           onChange={this.handleInput}
         />
 
+        <label className="NoteEdit__DescriptionLabel">Description:</label>
         <input
           className="NoteEdit__DescriptionInput"
           type="text"

@@ -35,21 +35,21 @@ class NoteCreate extends Component {
 
     return (
       <NoteCreateStyled theme={this.props.theme}>
-        <h2>Create New Note:</h2>
+        <h2>Create New Note</h2>
 
+        <label className="CreateNote__TitleLabel">Title:</label>
         <input
           className="CreateNote__TitleInput"
           type="text"
-          placeholder="Title"
           name="title"
           value={this.state.title}
           onChange={this.handleInput}
         />
 
+        <label className="CreateNote__DescriptionLabel">Description:</label>
         <input
           className="CreateNote__DescriptionInput"
           type="text"
-          placeholder="Description"
           name="description"
           value={this.state.description}
           onChange={this.handleInput}

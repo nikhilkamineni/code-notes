@@ -6,6 +6,7 @@ import SidebarStyled from "./Sidebar.styled.js";
 const Sidebar = props => {
   return (
     <SidebarStyled className="Sidebar" theme={props.theme}>
+      <div className="Sidebar__spacer" />
       <div className={"Sidebar__Logo"}>
         <h1>{"{ codex }"}</h1>
       </div>

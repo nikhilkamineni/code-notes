@@ -87,8 +87,7 @@ class Signup extends Component {
       <SignupStyled id="Signup">
         <form id="Signup__SignupForm">
           <div id="SignupForm__Logo">
-            <h1 id="Logo__TopLine">{"{ Code"}</h1>
-            <h1 id="Logo__BottomLine">{"Notes }"}</h1>
+            <h1 id="Logo__TopLine">{"{ codex }"}</h1>
           </div>
           <input
             type="text"

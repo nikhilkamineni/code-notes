@@ -10,6 +10,7 @@ const SignupStyled = styled.div`
   align-items: center;
   background-color: ${colors.background2[defaultTheme]};
   min-height: 100vh;
+  width: 100%;
 
   #Signup__SignupForm {
     width: 280px;

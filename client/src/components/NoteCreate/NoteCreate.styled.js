@@ -30,6 +30,7 @@ const NoteCreateStyled = styled.div`
     background: ${props => colors.background1[props.theme]};
     color: ${props => colors.font1[props.theme]};
     padding: 15px;
+    margin-bottom: 5px;
 
     &:hover {
       outline: 1px solid rgba(0 0 0 0);
@@ -42,17 +43,25 @@ const NoteCreateStyled = styled.div`
     }
   }
 
+  .CreateNote__TitleLabel {
+    margin 20px 0 5px 0;
+  }
+
+  .CreateNote__DescriptionLabel {
+    margin 15px 0 5px 0;
+  }
+
   .CreateNote__TitleInput {
     padding: 5px;
-    width: 50%;
-    margin-top: 20px;
+    width: 40%;
+    // margin-top: 20px;
     font-size: 1rem;
   }
 
   .CreateNote__DescriptionInput {
     padding: 5px;
     width: 80%;
-    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 1rem;
   }
 `;

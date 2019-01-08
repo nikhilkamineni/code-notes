@@ -4,13 +4,18 @@ import colors from "../../colors";
 
 const SidebarStyled = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 200px;
+  min-width: 200px;
   height: 100%;
   padding: 10px;
+
+  .Sidebar__spacer {
+    width: 100vh;
+    height: 100vh;
+  }
 
   h1 {
     margin-bottom: 31px;
@@ -19,7 +24,7 @@ const SidebarStyled = styled.div`
   }
 
   .Sidebar__Logo {
-    margin-left: 25px;
+    margin-left: 38px;
     color: ${props => colors.font1[props.theme]};
     position: fixed;
     top: 20px;
@@ -30,7 +35,7 @@ const SidebarStyled = styled.div`
     position: fixed;
     display: flex;
     top: 100px;
-    left: 20px;
+    left: 33px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

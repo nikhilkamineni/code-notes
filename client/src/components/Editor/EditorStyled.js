@@ -4,21 +4,21 @@ import colors from "../../colors";
 
 const EditorStyled = styled.div`
   .Editor__Options {
-    width: 380px;
+    width: 360px;
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    border: 1px solid ${props => colors.border1[props.theme]};
-    background-color: ${props => colors.background1[props.theme]};
+    justify-content: flex-start;
+    // border: 1px solid ${props => colors.border1[props.theme]};
+    // background-color: ${props => colors.background2[props.theme]};
     color: ${props => colors.font1[props.theme]};
     margin-top: 5px;
-    font-size: 10px;
+    font-size: 11px;
 
     .Options__Language {
-      width: 200px;
-      padding-left: 15px;
-      padding-right: 15px;
+      width: 180px;
+      padding-left: 10px;
+      padding-right: 5px;
       display: flex;
 
       .Language__label {
@@ -28,11 +28,24 @@ const EditorStyled = styled.div`
       .Language__current {
         font-weight: bold;
       }
+
+      .Language__select {
+        border: 1px solid ${props => colors.border1[props.theme]};
+        background-color: ${props => colors.background1[props.theme]};
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        color: inherit;
+        font-size: inherit;
+        margin: 0;
+        overflow: hidden;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
 
     .Options__LineNumbers {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 10px;
       display: inline;
     }
   }
