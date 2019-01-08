@@ -35,8 +35,12 @@ class NoteDetails extends Component {
         <h3 className="NoteDetails__Description">{this.state.description}</h3>
 
         <div className="NoteDetails__Options">
-          <button onClick={this.props.showNoteEditForm}>Edit</button>
-          <button onClick={this.props.showDeleteModal}>Delete</button>
+          <button id="edit" onClick={this.props.showNoteEditForm}>
+            Edit
+          </button>
+          <button id="delete" onClick={this.props.showDeleteModal}>
+            Delete
+          </button>
         </div>
 
         <Editor
@@ -54,7 +58,6 @@ class NoteDetails extends Component {
         />
 
         <footer>
-          <div>{this.state.language}</div>
           <div className="Date">{date}</div>
         </footer>
       </NoteDetailsStyled>

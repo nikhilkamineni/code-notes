@@ -31,25 +31,28 @@ class Editor extends Component {
     return (
       <EditorStyled theme={this.props.theme}>
         <div className="Editor__Options">
-          {this.props.options.readOnly ? (
-            <div>{this.props.language}</div>
-          ) : (
-            <select
-              className="Options__LanguageDropDown"
-              name="language"
-              onChange={this.props.handleLanguageDropdown}
-              value={this.props.language}
-            >
-              {languages.map(lang => (
-                <option value={lang} key={lang}>
-                  {lang}
-                </option>
-              ))}
-            </select>
-          )}
+          <div className="Options__Language">
+            {this.props.options.readOnly ? (
+              <p>{this.props.language}</p>
+            ) : (
+              <select
+                className="Options__LanguageDropDown"
+                name="language"
+                onChange={this.props.handleLanguageDropdown}
+                value={this.props.language}
+              >
+                {languages.map(lang => (
+                  <option value={lang} key={lang}>
+                    {lang}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
 
           <div className="Options__LineNumbers">
             <label className="LineNumbers__label">Line Numbers</label>
+
             <input
               className="LineNumbers__checkbox"
               defaultChecked={this.props.lineNumbers}

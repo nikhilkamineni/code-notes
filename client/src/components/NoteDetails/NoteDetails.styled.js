@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import colors from "../../colors";
+
 const NoteDetailsStyled = styled.div`
   margin: 20px;
   padding: 20px;
@@ -11,13 +13,15 @@ const NoteDetailsStyled = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 20px;
+    margin-left: 5px;
   }
 
   .NoteDetails__Options {
     padding-right: 5px;
     padding-bottom: 10px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    margin-top: 5px;
     button {
       border: none;
       background: none;
@@ -31,10 +35,15 @@ const NoteDetailsStyled = styled.div`
         text-decoration: underline;
       }
     }
+
+    #delete {
+      color: ${props => colors.highlight2[props.theme]};
+    }
   }
 
   .NoteDetails__Description {
     margin-bottom: 20px;
+    margin-left: 5px;
   }
 
   footer {
