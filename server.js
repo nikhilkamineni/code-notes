@@ -142,7 +142,8 @@ server.get('/notes/:id', authenticate, (req, res) => {
   Note.findById(id)
     .populate('createdBy')
     .then(note => {
-      res.status(200).json(note);
+      if (note) return res.status(200).json(note);
+      else return res.status(400).json({ message: 'Cannot find note. Check the id.' }) 
     })
     .catch(err => {
       res.status(500).json({ message: 'Cannot find note', error: err });

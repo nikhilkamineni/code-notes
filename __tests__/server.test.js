@@ -27,7 +27,7 @@ describe('server', () => {
   });
 
   let testUser; // user data for subsequent tests
-  describe('/signup', () => {
+  describe('/signup [POST]', () => {
     it('should signup a new user successfully', async () => {
       const response = await axiosist(server).post('/signup', {
         username: 'testUser',
@@ -66,7 +66,7 @@ describe('server', () => {
     });
   });
 
-  describe('/login', () => {
+  describe('/login [POST]', () => {
     it('should login a user Successfully', async () => {
       const response = await axiosist(server).post('/login', {
         username: 'testUser',
@@ -105,7 +105,9 @@ describe('server', () => {
     });
   });
 
-  describe('/notes', () => {
+  /* TESTS FOR `/notes` ENDPOINT */
+  let savedTestNote;
+  describe('/notes [POST]', () => {
     it('should succeed with a token', async () => {
       const testNote = {
         title: 'Test Note Title',
@@ -121,6 +123,7 @@ describe('server', () => {
         headers: { Authorization: token }
       });
 
+      savedTestNote = response.data;
       expect(response.status).toBe(201);
       expect(response.data.title).toEqual(testNote.title);
       expect(response.data.description).toEqual(testNote.description);
@@ -151,13 +154,61 @@ describe('server', () => {
         createdBy: testUser._id
       };
 
-      const token = testUser.token.split('').reverse().join('')
+      const token = testUser.token
+        .split('')
+        .reverse()
+        .join('');
 
       const response = await axiosist(server).post('/notes', testNote, {
         headers: { Authorization: token }
       });
 
       expect(response.status).toBe(401);
+    });
+  });
+
+  describe('/notes/:id [GET]', () => {
+    it('should retrieve the correct note successfully', async () => {
+      const response = await axiosist(server).get(
+        `/notes/${savedTestNote._id}`,
+        { headers: { Authorization: testUser.token } }
+      );
+      expect(response.status).toBe(200);
+      expect(response.data.title).toEqual(savedTestNote.title);
+      expect(response.data.description).toEqual(savedTestNote.description);
+      expect(response.data.language).toEqual(savedTestNote.language);
+      expect(response.data.content).toEqual(savedTestNote.content);
+      expect(response.data.id).toEqual(savedTestNote.id);
+      expect(response.data.createdBy._id).toEqual(testUser._id);
+    });
+
+    it('fails with missing token', async () => {
+      const response = await axiosist(server).get(
+        `/notes/${savedTestNote._id}`
+      );
+      expect(response.status).toBe(401);
+    });
+
+    it('fails with incorrect token', async () => {
+      const token = testUser.token
+        .split('')
+        .reverse()
+        .join('');
+
+      const response = await axiosist(server).get(
+        `/notes/${savedTestNote._id}`,
+        { headers: { Authorization: token } }
+      );
+
+      expect(response.status).toBe(401);
+    });
+
+    it('fails with incorrect id', async () => {
+      const response = await axiosist(server).get(`/notes/${testUser._id}`, {
+        headers: { Authorization: testUser.token }
+      });
+
+      expect(response.status).toBe(400);
     });
   });
 });
