@@ -64,6 +64,15 @@ describe('server', () => {
       expect(response.data.token).toBeDefined();
     })
 
+    it('should handle uppercase usernames', async () => {
+      const response = await axiosist(server).post('/login', {
+        username: 'Testuser',
+        password: 'abc123'
+      });
+      expect(response.status).toBe(200);
+      expect(response.data.token).toBeDefined();
+    })
+
     it('should fail with an incorrect password', async () => {
       const response = await axiosist(server).post('/login', {
         username: 'testUser',

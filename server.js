@@ -45,42 +45,33 @@ server.post('/signup', async (req, res) => {
   }
 
   try {
-    const user = await new User({ username, password }).save()
-    return res.status(201).json({ message: 'Successfully created!', user })
+    const user = await new User({ username, password }).save();
+    return res.status(201).json({ message: 'Successfully created!', user });
   } catch (err) {
-
-    return res.status(500).json({ message: 'Error creating user', error: err })
+    return res.status(500).json({ message: 'Error creating user', error: err });
   }
-
-  // const newUser = new User({ username, password });
-  // await newUser
-  //   .save()
-  //   .then(user =>
-  //     res.status(201).json({ message: 'Successfully created!', user })
-  //   )
-  //   .catch(err =>
-  //     res.status(500).json({ message: 'Error creating user', error: err })
-  //   );
 });
 
 // Login an existing user
-server.post('/login', (req, res) => {
+server.post('/login', async (req, res) => {
   let { username, password } = req.body;
-  username = username.toLowerCase();
+
   if (!username || !password) {
     return res
       .status(422)
       .json({ error: 'You need to provide a username and password' });
   }
-  // Find the user object matching the username
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: 'Invalid Username/Password' });
-    }
-    if (user === null) {
+
+  username = username.toLowerCase();
+
+  try {
+    // Find the user object matching the username
+    const user = await User.findOne({ username })
+
+    if (user === null)
       return res.status(422).json({ error: 'User does not exist' });
-    }
-    // Use the method on the User model to hash and check PW
+
+    // Use the method on the User model to hash and check password
     user.checkPassword(password, (nonMatch, hashMatch) => {
       if (nonMatch !== null) {
         return res.status(422).json({ error: 'Incorrect password' });
@@ -95,7 +86,33 @@ server.post('/login', (req, res) => {
         return res.json({ token, user: { ...payload } });
       }
     });
-  });
+  } catch (err) {
+    return res.status(500).json({ error: 'Internal server error!' })
+  }
+
+
+  // User.findOne({ username }, (err, user) => {
+  //   if (err) return res.status(403).json({ error: 'Invalid username' });
+
+  //   if (user === null)
+  //     return res.status(422).json({ error: 'User does not exist' });
+
+  //   // Use the method on the User model to hash and check PW
+  //   user.checkPassword(password, (nonMatch, hashMatch) => {
+  //     if (nonMatch !== null) {
+  //       return res.status(422).json({ error: 'Incorrect password' });
+  //     }
+  //     if (hashMatch) {
+  //       const payload = {
+  //         username: user.username,
+  //         _id: user._id,
+  //         theme: user.theme
+  //       };
+  //       const token = jwt.sign(payload, SECRET);
+  //       return res.json({ token, user: { ...payload } });
+  //     }
+  //   });
+  // });
 });
 
 /* NOTES ENDPOINTS */
@@ -115,7 +132,13 @@ server.post('/notes', authenticate, (req, res) => {
     return res.json({ message: 'You need to enter a title and content!' });
   }
 
-  const newNote = new Note({ title, description, language, content, createdBy });
+  const newNote = new Note({
+    title,
+    description,
+    language,
+    content,
+    createdBy
+  });
   newNote
     .save()
     .then(savedNote => {
