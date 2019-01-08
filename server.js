@@ -44,15 +44,23 @@ server.post('/signup', async (req, res) => {
       .json({ message: 'You need to provide a username and password!' });
   }
 
-  const newUser = new User({ username, password });
-  await newUser
-    .save()
-    .then(user =>
-      res.status(201).json({ message: 'Successfully created!', user })
-    )
-    .catch(err =>
-      res.status(500).json({ message: 'Error creating user', error: err })
-    );
+  try {
+    const user = await new User({ username, password }).save()
+    return res.status(201).json({ message: 'Successfully created!', user })
+  } catch (err) {
+
+    return res.status(500).json({ message: 'Error creating user', error: err })
+  }
+
+  // const newUser = new User({ username, password });
+  // await newUser
+  //   .save()
+  //   .then(user =>
+  //     res.status(201).json({ message: 'Successfully created!', user })
+  //   )
+  //   .catch(err =>
+  //     res.status(500).json({ message: 'Error creating user', error: err })
+  //   );
 });
 
 // Login an existing user
