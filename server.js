@@ -102,7 +102,6 @@ server.get('/notes', authenticate, (req, res) => {
 
 // Save new note
 server.post('/notes', authenticate, async (req, res) => {
-
   const { title, description, language, content, createdBy } = req.body;
 
   if (!title || !content) {
@@ -123,7 +122,7 @@ server.post('/notes', authenticate, async (req, res) => {
 
     const savedNote = await newNote.save();
 
-     // Add id of new note to Notes array of User model
+    // Add id of new note to Notes array of User model
     const userId = savedNote.createdBy;
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -137,17 +136,15 @@ server.post('/notes', authenticate, async (req, res) => {
 });
 
 // Get Note by ID
-server.get('/notes/:id', authenticate, (req, res) => {
-  const id = req.params.id;
-  Note.findById(id)
-    .populate('createdBy')
-    .then(note => {
-      if (note) return res.status(200).json(note);
-      else return res.status(400).json({ message: 'Cannot find note. Check the id.' }) 
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Cannot find note', error: err });
-    });
+server.get('/notes/:id', authenticate, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const note = await Note.findById(id).populate('createdBy');
+    if (note) return res.status(200).json(note);
+    else return res.status(400).json({ message: 'Cannot find note' });
+  } catch (err) {
+    return res.status(500).json({ message: 'Cannot find note', error: err });
+  }
 });
 
 // Update Note by ID
