@@ -1,6 +1,7 @@
 const axiosist = require('axiosist');
 const mongoose = require('mongoose');
 
+const Note = require('../models/NoteModel.js');
 const server = require('../server.js');
 
 describe('server', () => {
@@ -241,7 +242,7 @@ describe('server', () => {
     });
 
     it('should fail with an invalid token', async () => {
-      const token = testUser.token.slice(1)
+      const token = testUser.token.slice(1);
       const response = await axiosist(server).put(
         `/notes/${savedTestNote._id}`,
         {
@@ -253,9 +254,58 @@ describe('server', () => {
 
       expect(response.status).toBe(401);
     });
-
   });
 
-  // describe('/notes/:id [DELETE]', () => {
-  // })
+  describe('/notes/:id [DELETE]', () => {
+    let noteToDelete;
+    beforeAll(async () => {
+      const token = testUser.token;
+
+      const response = await axiosist(server).post(
+        '/notes',
+        {
+          title: 'Title',
+          content: 'Content',
+          description: 'Description',
+          language: 'javascript',
+          createdBy: testUser._id
+        },
+        {
+          headers: { Authorization: token }
+        }
+      );
+      noteToDelete = response.data;
+    });
+
+    it('should fail without a token', async () => {
+      expect(noteToDelete).toBeDefined();
+      const token = testUser.token;
+      const response = await axiosist(server).delete(
+        `/notes/${noteToDelete._id}`
+      );
+      expect(response.status).toBe(401);
+    });
+
+    it('should fail with an invalid token', async () => {
+      expect(noteToDelete).toBeDefined();
+      const token = testUser.token.slice(1);
+      const response = await axiosist(server).delete(
+        `/notes/${noteToDelete._id}`,
+        { headers: { Authorization: token } }
+      );
+      expect(response.status).toBe(401);
+    });
+
+    it('should delete a note correctly', async () => {
+      expect(noteToDelete).toBeDefined();
+      const token = testUser.token;
+      const response = await axiosist(server).delete(
+        `/notes/${noteToDelete._id}`,
+        { headers: { Authorization: token } }
+      );
+      expect(response.status).toBe(200);
+      expect(response.data.message).toEqual('Note deleted successfully!');
+      expect(response.data.deletedNote._id).toEqual(noteToDelete._id);
+    });
+  });
 });

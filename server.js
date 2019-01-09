@@ -169,6 +169,7 @@ server.put('/notes/:id', authenticate, async (req, res) => {
 server.delete('/notes/:id', authenticate, (req, res) => {
   const id = req.params.id;
   Note.findByIdAndRemove(id)
+    .lean()
     .then(note => {
       res.status(200).json({
         message: 'Note deleted successfully!',
