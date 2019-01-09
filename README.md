@@ -1,15 +1,15 @@
 <h1 align="center">{ codex }</h1>
 
 <p align="center">
- <img align="center" src="https://travis-ci.org/nikhilkamineni/codex.svg?branch=master" alt="Travis CI build status">
-</p>
-
-<p align="center">
- <h2 align="center" style="font-size: 15px">a rolodex for code snippets and notes</h2>
+ <h3 align="center" style="font-size: 15px">a rolodex for code snippets and notes</h3>
 </p>
 
 <p align="center">
     <a href="https://code-notes-nk.herokuapp.com">Visit the live deployment here</a>
+</p>
+
+<p align="center">
+ <img align="center" src="https://travis-ci.org/nikhilkamineni/codex.svg?branch=master" alt="Travis CI build status">
 </p>
 
 ## ABOUT
@@ -26,7 +26,8 @@
     - Auto-close brackets
     - Line numbers that can be toggled
 - Themes
-    - Current supports a light and dark theme
+    - Currently supports a light and dark theme
+    - Theme is saved upon login/logout
 - Search through and view your notes by title. Supports partial fuzzy searching
 
 #### Tech stack
