@@ -17,7 +17,8 @@ const SECRET = process.env.SECRET || 'DevelopmentSecret';
 const server = express();
 server.use(express.json());
 server.use(helmet());
-server.use(morgan('dev'));
+
+if (process.env.NODE_ENV !== 'test') server.use(morgan('dev'));
 
 const corsOptions = {
   origin: true,
@@ -175,11 +176,14 @@ server.delete('/notes/:id', authenticate, async (req, res) => {
         message: 'Note deleted successfully!',
         deletedNote: note
       });
-    else return res.status(200).json({
-        message: 'Note was not found!',
+    else
+      return res.status(200).json({
+        message: 'Note was not found!'
       });
   } catch (err) {
-    return res.status(500).json({ message: 'Error Deleting note!', error: err });
+    return res
+      .status(500)
+      .json({ message: 'Error Deleting note!', error: err });
   }
 });
 

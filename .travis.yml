@@ -1,4 +1,11 @@
 language: node_js
 node_js:
-  - "node"
-  - "10"
+- node
+- '10'
+deploy:
+  provider: heroku
+  api_key:
+    secure: Jqltwe+KuskWnFMXaI81zKY4xv3TgETiIQhB0VpQO0CC/YaL6UYdpmSUDD2w2MvDVR+42TbuYtL+Np7bWVdj3d73jBmL9XUaa9HE0mA4cZ+6W9NaEW2Msk2axtpjWXUQgu4J7LkgiGYJJHhU6xPuRc9eue3lOUlANo+A3jLQbFXbfVKxddOIFXziPkO3QFQsuXKvk0uP0/OmYAZ3Dul9XkDKHh5TZOsTtPFrTVR55KDUM0W9DxMlIbQzFqlLUtCHvPGRpjFY19NCUZ2nHgVJde0ZPmk5ipc7vJh7iapzeh0DSRu7/naEVZZLPT0qC7b27hi6vnAi7jSSg+gzyCZOY9eVnn/mnpRfGGnumn92DduoIC4aoAPEryU1mmROUZN/br5LMwoLHrrhSG8Z85oxUmqb4bJ2vDoe2JnHSWYjslGgL4wt2ZJDTKzk9g99QM2yNhcRZLWgDm6oNKajqfzd58jWi91sBiAwnBWLURIFwfJ8SHtf9H1m5Y8csmvX75O1q6VzvLo7s/PoT5KQ/5b54N/i7xEYEdUFp1IVoCAnBCcMlQKsqbir/7PSOnbjX2Txh85olB5WfPpH8EhKOlFOugkyg1r4fC3EX2SIgzeoRqoPjLn5aIUcYmKFGrqbCLkj+e09eEcxCZWPZOMb6JugDgoU8gQzw9GGlIlOuyE9PYY=
+  app: code-notes-nk
+  on:
+    repo: nikhilkamineni/codex
