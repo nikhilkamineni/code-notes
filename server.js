@@ -148,19 +148,21 @@ server.get('/notes/:id', authenticate, async (req, res) => {
 });
 
 // Update Note by ID
-server.put('/notes/:id', authenticate, (req, res) => {
-  const id = req.params.id;
-  const update = req.body;
-  Note.findByIdAndUpdate(id, update, { new: true })
-    .then(note => {
-      res.status(200).json({
+server.put('/notes/:id', authenticate, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const update = req.body;
+
+    const note = await Note.findByIdAndUpdate(id, update, { new: true });
+
+    if (note)
+      return res.status(200).json({
         message: 'Note updated successfully!',
         updatedNote: note
       });
-    })
-    .catch(err =>
-      res.status(500).json({ message: 'Error finding note', error: err })
-    );
+  } catch (err) {
+    return res.status(500).json({ message: 'Error finding note', error: err });
+  }
 });
 
 // Delete note

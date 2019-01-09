@@ -108,7 +108,7 @@ describe('server', () => {
   /* TESTS FOR `/notes` ENDPOINT */
   let savedTestNote;
   describe('/notes [POST]', () => {
-    it('should succeed with a token', async () => {
+    it('should save a note correctly', async () => {
       const testNote = {
         title: 'Test Note Title',
         description: 'Test Note Description',
@@ -211,4 +211,51 @@ describe('server', () => {
       expect(response.status).toBe(400);
     });
   });
+
+  describe('/notes/:id [PUT]', () => {
+    it('should update a note correctly', async () => {
+      const response = await axiosist(server).put(
+        `/notes/${savedTestNote._id}`,
+        {
+          content: 'Updated note content',
+          language: 'python'
+        },
+        { headers: { Authorization: testUser.token }, new: true }
+      );
+
+      expect(response.status).toBe(200);
+      expect(response.data.updatedNote.language).toEqual('python');
+      expect(response.data.updatedNote.content).toEqual('Updated note content');
+    });
+
+    it('should fail without a token', async () => {
+      const response = await axiosist(server).put(
+        `/notes/${savedTestNote._id}`,
+        {
+          content: 'Updated note content',
+          language: 'python'
+        }
+      );
+
+      expect(response.status).toBe(401);
+    });
+
+    it('should fail with an invalid token', async () => {
+      const token = testUser.token.slice(1)
+      const response = await axiosist(server).put(
+        `/notes/${savedTestNote._id}`,
+        {
+          content: 'Updated note content',
+          language: 'python'
+        },
+        { headers: { Authorization: token } }
+      );
+
+      expect(response.status).toBe(401);
+    });
+
+  });
+
+  // describe('/notes/:id [DELETE]', () => {
+  // })
 });
