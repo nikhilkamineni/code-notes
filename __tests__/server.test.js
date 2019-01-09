@@ -308,4 +308,21 @@ describe('server', () => {
       expect(response.data.deletedNote._id).toEqual(noteToDelete._id);
     });
   });
+
+  /*
+   * TEST FOR `/user` ENDPOINTS
+   * */
+  describe('/user [GET]', () => {
+    it('should retrieve a users data successfully', async () => {
+      const response = await axiosist(server).get('/user', {
+        headers: { Authorization: testUser.token }
+      });
+
+      expect(response.status).toBe(200);
+      expect(response.data.username).toEqual(testUser.username);
+      expect(response.data._id).toEqual(testUser._id);
+      expect(response.data.notes).toBeDefined();
+      expect(response.data.notes.length).toBe(1);
+    });
+  });
 });
