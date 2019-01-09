@@ -161,24 +161,26 @@ server.put('/notes/:id', authenticate, async (req, res) => {
         updatedNote: note
       });
   } catch (err) {
-    return res.status(500).json({ message: 'Error finding note', error: err });
+    return res.status(500).json({ message: 'Error finding note!', error: err });
   }
 });
 
 // Delete note
-server.delete('/notes/:id', authenticate, (req, res) => {
-  const id = req.params.id;
-  Note.findByIdAndRemove(id)
-    .lean()
-    .then(note => {
-      res.status(200).json({
+server.delete('/notes/:id', authenticate, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const note = await Note.findByIdAndRemove(id).lean();
+    if (note)
+      return res.status(200).json({
         message: 'Note deleted successfully!',
         deletedNote: note
       });
-    })
-    .catch(err =>
-      res.status(500).json({ message: 'Error Deleting note', error: err })
-    );
+    else return res.status(200).json({
+        message: 'Note was not found!',
+      });
+  } catch (err) {
+    return res.status(500).json({ message: 'Error Deleting note!', error: err });
+  }
 });
 
 /* USER ENDPOINTS */
