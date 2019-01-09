@@ -45,6 +45,11 @@ const LoginStyled = styled.div`
     .SubmitButton {
       margin: 10px 0 20px;
     }
+
+    #loginError {
+      color: ${colors.highlight2[defaultTheme]}
+      height: 20px;
+    }
   }
 
   button {

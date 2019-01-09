@@ -84,7 +84,7 @@ server.post('/login', async (req, res) => {
           theme: user.theme
         };
         const token = jwt.sign(payload, SECRET);
-        return res.json({ token, user: { ...payload } });
+        return res.status(200).json({ token, user: { ...payload } });
       }
     });
   } catch (err) {

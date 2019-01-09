@@ -72,12 +72,15 @@ class App extends Component {
   loginUser = async userInfo => {
     try {
       const response = await axios.post(`${API_URL}/login`, userInfo);
-      localStorage.setItem("token", response.data.token);
-      await this.getNotes();
-      this.showNotesList();
-      this.setState({ authenticated: true, ...response.data.user });
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        await this.getNotes();
+        this.showNotesList();
+        this.setState({ authenticated: true, ...response.data.user });
+      }
     } catch (err) {
       console.error(err); // eslint-disable-line
+      return err.response.data.error;
     }
   };
 

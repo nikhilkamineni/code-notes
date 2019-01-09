@@ -6,7 +6,8 @@ import LoginStyled from "./Login.styled.js";
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loginError: null
   };
 
   handleUsernameInput = event => {
@@ -17,14 +18,18 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  handleLogin = e => {
+  handleLogin = async e => {
     e.preventDefault();
     let userInfo = {
       username: this.state.username,
       password: this.state.password
     };
-    this.props.loginUser(userInfo);
-    this.setState({ username: "", password: "" });
+    const loginError = await this.props.loginUser(userInfo);
+    if (loginError) {
+      this.setState({ loginError });
+    } else {
+      this.setState({ username: "", password: "" });
+    }
   };
 
   render() {
@@ -49,6 +54,9 @@ class Login extends Component {
           <button type="submit" className="SubmitButton">
             Login
           </button>
+          <p id="loginError">
+            {this.state.loginError ? this.state.loginError : null}
+          </p>
         </form>
         <div id="Login__SignupContainer">
           {"Don't have an account?"}{" "}
