@@ -1,6 +1,6 @@
 <h1 align="center">
 { codex }
- <p align="center" style="font-size: 0.5em">a rolodex for code snippets and notes</p>
+ <p align="center" style="font-size: 15px">a rolodex for code snippets and notes</p>
 </h1>
 
 <p align="center">
@@ -25,19 +25,19 @@
     - Current supports a light and dark theme
 - Search through and view your notes by title. Supports partial fuzzy searching
 
+#### Tech stack
+- Built with the MERN stack.
+- Unit and integration tests with Jest
+- Continuous Integration with Travis CI
+- Code editor powered by CodeMirror
+- Passwords are hashed using `bcrypt`
+- Authentication using JWT's
+
 #### Roadmap
 - Tags field for notes
 - Color field for notes
 - Login/signup through github
 - Synchronize notes with github gists
-
-#### Tech stack
-- Built with the MERN stack.
-- Code editor powered by CodeMirror
-- Unit and integration tests with Jest
-- Continuous Integration with Travis CI
-- Passwords are hashed using `bcrypt`
-- Authentication using JWT's
 
 ## DEVELOPMENT
 ### API Usage
