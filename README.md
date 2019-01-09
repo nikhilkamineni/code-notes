@@ -1,14 +1,18 @@
-<h1 align="center">
-{ codex }
- <p align="center" style="font-size: 15px">a rolodex for code snippets and notes</p>
-</h1>
+<h1 align="center">{ codex }</h1>
 
 <p align="center">
- <img src="https://travis-ci.org/nikhilkamineni/codex.svg?branch=master" alt="Travis CI build status">
+ <img align="center" src="https://travis-ci.org/nikhilkamineni/codex.svg?branch=master" alt="Travis CI build status">
+</p>
+
+<p align="center">
+ <h2 align="center" style="font-size: 15px">a rolodex for code snippets and notes</h2>
+</p>
+
+<p align="center">
+    <a href="https://code-notes-nk.herokuapp.com">Visit the live deployment here</a>
 </p>
 
 ## ABOUT
-<a href="https://code-notes-nk.herokuapp.com">Visit the live deployment here</a>
 
 #### Features
 - Free account creation
