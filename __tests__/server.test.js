@@ -7,6 +7,7 @@ const server = require('../server.js');
 describe('server', () => {
   const options = {
     useNewUrlParser: true, // fixes deprecation warnings
+    useFindAndModify: false, // fixes deprecation warnings
     dbName: global.__MONGO_DB_NAME__
   };
 
