@@ -257,6 +257,7 @@ describe('server', () => {
   });
 
   describe('/notes/:id [DELETE]', () => {
+    // Save a note before the test suite runs that each test will attempt to delete
     let noteToDelete;
     beforeAll(async () => {
       const token = testUser.token;
@@ -279,7 +280,6 @@ describe('server', () => {
 
     it('should fail without a token', async () => {
       expect(noteToDelete).toBeDefined();
-      const token = testUser.token;
       const response = await axiosist(server).delete(
         `/notes/${noteToDelete._id}`
       );
