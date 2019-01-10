@@ -27,15 +27,18 @@ const LoginStyled = styled.div`
       margin-bottom: 15px;
       color: ${colors.font1[defaultTheme]};
 
-      #Logo__TopLine {
-        margin-bottom: 0px;
-      }
+      // #Logo__TopLine {
+      // }
 
-      #Logo__BottomLine {
-        margin-top: 0px;
-        padding-top: 0px;
-        padding-left: 40px;
-      }
+      // #Logo__BottomLine {
+      // }
+    }
+
+    #Login__Tagline {
+      color: ${colors.font1[defaultTheme]};
+      margin-top: 5px;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
     input {
@@ -85,6 +88,7 @@ const LoginStyled = styled.div`
       background: none;
       border: none
       font: inherit;
+      font-weight: bold;
 
       &:hover {
         color: ${colors.highlight2[defaultTheme]};

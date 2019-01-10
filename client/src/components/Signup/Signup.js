@@ -67,14 +67,14 @@ class Signup extends Component {
         username,
         password
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
         await this.setState({
           username: "",
           password: "",
           confirmPassword: "",
           passwordMatch: true
         });
-        this.props.loginUser({ username, password });
+        await this.props.loginUser({ username, password });
       }
     } catch (err) {
       this.setState({ signupError: true });
@@ -89,24 +89,32 @@ class Signup extends Component {
           <div id="SignupForm__Logo">
             <h1 id="Logo__TopLine">{"{ codex }"}</h1>
           </div>
+
+          <div id="Signup__Tagline">
+            a place to stash code snippets
+          </div>
+
           <input
             type="text"
             placeholder="Username"
             value={this.state.username}
             onChange={this.handleUsernameInput}
           />
+
           <input
             type="password"
             placeholder="Password"
             value={this.state.password}
             onChange={this.handlePasswordInput}
           />
+
           <input
             type="password"
             placeholder="Confirm password"
             value={this.state.confirmPassword}
             onChange={this.handleConfirmPasswordInput}
           />
+
           <button
             className="SignupForm__SubmitButton"
             type="submit"
@@ -114,6 +122,7 @@ class Signup extends Component {
           >
             Sign Up
           </button>
+
           <div className="SignupForm__Error">
             {!this.state.passwordMatch && <p>Passwords do not match</p>}
             {this.state.signupError && <p>There was an error signing up!</p>}

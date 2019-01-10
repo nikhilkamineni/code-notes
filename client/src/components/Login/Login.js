@@ -39,25 +39,33 @@ class Login extends Component {
           <div id="Login__Logo">
             <h1 id="Logo__TopLine">{"{ codex }"}</h1>
           </div>
+          <div id="Login__Tagline">
+            a place to stash code snippets
+          </div>
+
           <input
             type="text"
             placeholder="Username"
             value={this.state.username}
             onChange={this.handleUsernameInput}
           />
+
           <input
             type="password"
             placeholder="Password"
             value={this.state.password}
             onChange={this.handlePasswordInput}
           />
+
           <button type="submit" className="SubmitButton">
             Login
           </button>
+
           <p id="loginError">
             {this.state.loginError ? this.state.loginError : null}
           </p>
         </form>
+
         <div id="Login__SignupContainer">
           {"Don't have an account?"}{" "}
           <button

@@ -12,20 +12,20 @@ const Sidebar = props => {
       </div>
 
       {props.authenticated && (
-        <div className="Sidebar__Menu">
-          <button className="Sidebar__ViewNotes" onClick={props.showNotesList}>
+        <div id="Sidebar__Menu">
+          <button id="Sidebar__ViewNotes" onClick={props.showNotesList}>
             View Notes
           </button>
           <button
-            className="Sidebar__CreateNotes"
+            id="Sidebar__CreateNotes"
             onClick={props.showNoteCreateForm}
           >
             + Create Note
           </button>
-          <button className="Sidebar__Settings" onClick={props.showSettings}>
+          <button id="Sidebar__Settings" onClick={props.showSettings}>
             Settings
           </button>
-          <button className="Sidebar__Logout" onClick={props.logoutUser}>
+          <button id="Sidebar__Logout" onClick={props.logoutUser}>
             Logout
           </button>
         </div>

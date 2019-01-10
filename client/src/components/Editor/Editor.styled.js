@@ -9,8 +9,6 @@ const EditorStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    // border: 1px solid ${props => colors.border1[props.theme]};
-    // background-color: ${props => colors.background2[props.theme]};
     color: ${props => colors.font1[props.theme]};
     margin-top: 5px;
     font-size: 11px;
@@ -59,6 +57,7 @@ const EditorStyled = styled.div`
     margin-top: 5px;
     border: 1px solid ${props => colors.border2[props.theme]};
     background: ${props => colors.background1[props.theme]};
+    font-size: 14px;
   }
 
   .CodeMirror-scroll,
