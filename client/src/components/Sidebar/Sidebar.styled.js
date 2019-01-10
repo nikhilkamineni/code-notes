@@ -31,7 +31,7 @@ const SidebarStyled = styled.div`
     left: 10px;
   }
 
-  .Sidebar__Menu {
+  #Sidebar__Menu {
     position: fixed;
     display: flex;
     top: 100px;
@@ -39,6 +39,10 @@ const SidebarStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    #Sidebar__Logout {
+      margin-top: 40px;
+    }
   }
 
   button {

@@ -67,14 +67,14 @@ class Signup extends Component {
         username,
         password
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
         await this.setState({
           username: "",
           password: "",
           confirmPassword: "",
           passwordMatch: true
         });
-        this.props.loginUser({ username, password });
+        await this.props.loginUser({ username, password });
       }
     } catch (err) {
       this.setState({ signupError: true });

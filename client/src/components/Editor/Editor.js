@@ -81,7 +81,7 @@ class Editor extends Component {
 
 Editor.propTypes = {
   value: PropTypes.string,
-  options: PropTypes.obj,
+  options: PropTypes.any.isRequired,
   language: PropTypes.string,
   lineNumbers: PropTypes.bool,
   handleContentInput: PropTypes.func,
