@@ -42,6 +42,8 @@ describe('server', () => {
       expect(response.data.message).toEqual('Successfully created!');
       expect(response.data.user.username).toEqual('testuser');
       expect(response.data.user._id).toBeDefined();
+      expect(response.data.user.theme).toBeDefined();
+      expect(response.data.user.notes).toBeDefined();
 
       expect(response.data.user.username).toEqual(testUser.username);
       expect(response.data.user._id).toEqual(testUser._id);
@@ -324,6 +326,50 @@ describe('server', () => {
       expect(response.data._id).toEqual(testUser._id);
       expect(response.data.notes).toBeDefined();
       expect(response.data.notes.length).toBe(1);
+    });
+  });
+
+  describe('/user/change-theme [PUT]', () => {
+    it('should change a users theme successfully', async () => {
+      const response = await axiosist(server).put(
+        '/user/change-theme',
+        { theme: 'light' },
+        {
+          headers: { Authorization: testUser.token }
+        }
+      );
+      expect(response.status).toBe(200);
+      expect(response.data.theme).toEqual('light');
+    });
+
+    it('should fail without a new theme', async () => {
+      const response = await axiosist(server).put(
+        '/user/change-theme',
+        {},
+        {
+          headers: { Authorization: testUser.token }
+        }
+      );
+      expect(response.status).toBe(400);
+    });
+
+    it('should fail without a token', async () => {
+      const response = await axiosist(server).put(
+        '/user/change-theme',
+        { theme: 'light' }
+      );
+      expect(response.status).toBe(401);
+    });
+
+    it('should fail with an invalid token', async () => {
+      const response = await axiosist(server).put(
+        '/user/change-theme',
+        { theme: 'light' },
+        {
+          headers: { Authorization: testUser.token.slice(1) }
+        }
+      );
+      expect(response.status).toBe(401);
     });
   });
 });
