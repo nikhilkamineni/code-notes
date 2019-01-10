@@ -51,10 +51,22 @@ const SettingsStyled = styled.div`
       }
     }
 
-    .ChangePasswordForm__Submit {
+    #ChangePasswordForm__message {
       margin-top: 10px;
-      width: 100px;
+      color: ${props => colors.highlight1[props.theme]};
+      text-align: center;
+    }
+
+    #ChangePasswordForm__error {
+      margin-top: 10px;
+      color: ${props => colors.highlight2[props.theme]};
+      text-align: center;
+    }
+
+    .ChangePasswordForm__Submit {
+      margin: 10px 0;
       padding: 10px;
+      width: 100px;
       background-color: ${props => colors.highlight1[props.theme]};
       border: 1px solid ${props => colors.background4[props.theme]};
       color: ${props => colors.font2[props.theme]};
