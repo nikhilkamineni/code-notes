@@ -42,11 +42,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    try {
+    if (localStorage.getItem('token'))
       this.getNotes();
-    } catch (err) {
-      console.error(err); // eslint-disable-line
-    }
+    // try {
+    // } catch (err) {
+    //   console.error(err); // eslint-disable-line
+    // }
   }
 
   getNotes = async () => {

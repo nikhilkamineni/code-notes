@@ -80,7 +80,6 @@ class Signup extends Component {
       }
     } catch (err) {
       return this.setState({ signupError: "There was an error signing up!" });
-      console.error(err);
     }
   };
 
