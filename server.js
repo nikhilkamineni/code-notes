@@ -218,11 +218,11 @@ server.put('/user/change-password', authenticate, async (req, res) => {
           { password: hash },
           { new: true }
         );
-        res.status(200).json(updatedUser);
+        return res.status(200).json({...updatedUser, message: 'Password was changed successfully!'});
       }
     });
   } catch (err) {
-    res.status(500).json({ message: 'Internal Server Error!', err });
+    return res.status(500).json({ message: 'Internal Server Error!', err });
   }
 });
 

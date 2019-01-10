@@ -329,6 +329,26 @@ describe('server', () => {
     });
   });
 
+  describe('/user/change-password [PUT]', () => {
+    it('should change a users password succesfully', async () => {
+      // Attempt to change the users password
+      let response = await axiosist(server).put(
+        '/user/change-password',
+        { password: 'def456' },
+        {
+          headers: { Authorization: testUser.token }
+        }
+      );
+      expect(response.status).toBe(200);
+      expect(response.data.message).toEqual('Password was changed successfully!');
+
+      // Attempt to login with the new password to confirm it was changed
+      response = await axiosist(server).post('/login', { username: 'testUser', password: 'def456' })
+      expect(response.status).toBe(200)
+      expect(response.data.token).toBeDefined();
+    });
+  });
+
   describe('/user/change-theme [PUT]', () => {
     it('should change a users theme successfully', async () => {
       const response = await axiosist(server).put(
@@ -354,10 +374,9 @@ describe('server', () => {
     });
 
     it('should fail without a token', async () => {
-      const response = await axiosist(server).put(
-        '/user/change-theme',
-        { theme: 'light' }
-      );
+      const response = await axiosist(server).put('/user/change-theme', {
+        theme: 'light'
+      });
       expect(response.status).toBe(401);
     });
 
