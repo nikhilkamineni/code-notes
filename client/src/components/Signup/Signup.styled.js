@@ -38,6 +38,13 @@ const SignupStyled = styled.div`
       }
     }
 
+    #Signup__Tagline {
+      color: ${colors.font1[defaultTheme]};
+      margin-top: 5px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
     input {
       background-color: ${colors.background2[defaultTheme]};
     }
