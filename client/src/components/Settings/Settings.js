@@ -11,33 +11,44 @@ class Settings extends Component {
     theme: this.props.theme
   };
 
-  updatePassword = async password => {
+  // updatePassword = async password => {
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const header = { headers: { Authorization: token } };
+
+  //     const response = await axios.put(
+  //       `${API_URL}/user/change-password`,
+  //       { password },
+  //       header
+  //     );
+  //     if (response.status === 200)
+  //       console.log('Password was change successfully!'); //eslint-disable-line
+  //   } catch (err) {
+  //     console.error('Failed to change password!'); //eslint-disable-line
+  //   }
+  // };
+
+  handleChangePassword = async e => {
+    e.preventDefault();
+    const newPassword = e.target.newPassword.value;
+    const confirmNewPassword = e.target.newPassword.value;
+
+    if (newPassword !== confirmNewPassword)
+      return console.error("Passwords do not match!");
+
     try {
       const token = localStorage.getItem("token");
       const header = { headers: { Authorization: token } };
 
       const response = await axios.put(
         `${API_URL}/user/change-password`,
-        { password },
+        { password: newPassword },
         header
       );
       if (response.status === 200)
         console.log('Password was change successfully!'); //eslint-disable-line
     } catch (err) {
       console.error('Failed to change password!'); //eslint-disable-line
-    }
-  };
-
-  handleChangePassword = async e => {
-    e.preventDefault();
-    const newPassword = e.target.newPassword.value;
-    const confirmNewPassword = e.target.newPassword.value;
-    if (newPassword === confirmNewPassword) {
-      // TODO: Show feedback after hitting submit button
-      await this.updatePassword(newPassword);
-    } else {
-      // TODO: Improve error handling
-      console.error('Paswords do not match!'); //eslint-disable-line
     }
   };
 
