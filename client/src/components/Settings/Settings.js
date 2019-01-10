@@ -8,36 +8,43 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
 class Settings extends Component {
   state = {
-    theme: this.props.theme
+    theme: this.props.theme,
+    changePasswordMessage: null,
+    changePasswordError: null
   };
 
-  updatePassword = async password => {
+  handleChangePassword = async e => {
+    e.preventDefault();
+    const newPassword = e.target.newPassword.value;
+    const confirmNewPassword = e.target.confirmNewPassword.value;
+
+    // Error handling
+    if (newPassword !== confirmNewPassword)
+      return this.setState({ changePasswordError: "Passwords do not match!" });
+
+    if (newPassword.length < 3)
+      return this.setState({ changePasswordError: "Password is too short!" });
+
+    // Make request to API to change password
     try {
       const token = localStorage.getItem("token");
       const header = { headers: { Authorization: token } };
 
       const response = await axios.put(
         `${API_URL}/user/change-password`,
-        { password },
+        { password: newPassword },
         header
       );
-      if (response.status === 200)
-        console.log('Password was change successfully!'); //eslint-disable-line
+      if (response.status === 200) {
+        this.setState({
+          changePasswordMessage: "Password was changed successfully!",
+          changePasswordError: null
+        });
+        // Clear input fields after succesful password change
+        document.getElementById("Settings__ChangePasswordForm").reset();
+      }
     } catch (err) {
-      console.error('Failed to change password!'); //eslint-disable-line
-    }
-  };
-
-  handleChangePassword = async e => {
-    e.preventDefault();
-    const newPassword = e.target.newPassword.value;
-    const confirmNewPassword = e.target.newPassword.value;
-    if (newPassword === confirmNewPassword) {
-      // TODO: Show feedback after hitting submit button
-      await this.updatePassword(newPassword);
-    } else {
-      // TODO: Improve error handling
-      console.error('Paswords do not match!'); //eslint-disable-line
+      this.setState({ changePasswordError: "Error changing your password!" });
     }
   };
 
@@ -52,21 +59,21 @@ class Settings extends Component {
           <h2>Settings</h2>
         </header>
 
-        <div className="Settings__Content">
+        <div id="Settings__Content">
           <form
-            className="Settings__ChangePasswordForm"
+            id="Settings__ChangePasswordForm"
             onSubmit={this.handleChangePassword}
           >
             <h3 className="ChangePasswordForm__Label">Change Password</h3>
             <input
               className="ChangePasswordForm__Input"
-              type="text"
+              type="password"
               name="newPassword"
               placeholder="New password"
             />
             <input
               className="ChangePasswordForm__Input"
-              type="text"
+              type="password"
               name="confirmNewPassword"
               placeholder="Confirm new password"
             />
@@ -74,6 +81,12 @@ class Settings extends Component {
               type="submit"
               className="ChangePasswordForm__Submit SubmitButton"
             />
+            <p id="ChangePasswordForm__message">
+              {this.state.changePasswordMessage}
+            </p>
+            <p id="ChangePasswordForm__error">
+              {this.state.changePasswordError}
+            </p>
           </form>
 
           <form className="Settings__Theme" onChange={this.handleChangeTheme}>

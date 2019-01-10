@@ -13,7 +13,7 @@ class Signup extends Component {
     password: "",
     confirmPassword: "",
     passwordMatch: true,
-    signupError: false
+    signupError: null
   };
 
   handleUsernameInput = event => {
@@ -25,13 +25,13 @@ class Signup extends Component {
       this.setState({
         passwordMatch: true,
         password: event.target.value,
-        signupError: false
+        signupError: null
       });
     } else {
       this.setState({
         passwordMatch: false,
         password: event.target.value,
-        signupError: false
+        signupError: null
       });
     }
   };
@@ -55,12 +55,13 @@ class Signup extends Component {
     const { username, password } = this.state;
 
     if (!username || !password)
-      //eslint-disable-next-line
-      return console.error('Username and Password are required!');
+      return this.setState({ signupError: "Username and Password are required!" });
 
     if (!this.state.passwordMatch)
-      //eslint-disable-next-line
       return console.error('Passwords do not match!');
+
+    if (this.state.password.length < 3)
+      return this.setState({ signupError: 'Password is too short!' });
 
     try {
       const response = await axios.post(`${API_URL}/signup`, {
@@ -72,13 +73,13 @@ class Signup extends Component {
           username: "",
           password: "",
           confirmPassword: "",
-          passwordMatch: true
+          passwordMatch: true,
+          signupError: null
         });
         await this.props.loginUser({ username, password });
       }
     } catch (err) {
-      this.setState({ signupError: true });
-      console.error(err); // eslint-disable-line
+      return this.setState({ signupError: "There was an error signing up!" });
     }
   };
 
@@ -90,9 +91,7 @@ class Signup extends Component {
             <h1 id="Logo__TopLine">{"{ codex }"}</h1>
           </div>
 
-          <div id="Signup__Tagline">
-            a place to stash code snippets
-          </div>
+          <div id="Signup__Tagline">a place to stash code snippets</div>
 
           <input
             type="text"
@@ -123,9 +122,9 @@ class Signup extends Component {
             Sign Up
           </button>
 
-          <div className="SignupForm__Error">
-            {!this.state.passwordMatch && <p>Passwords do not match</p>}
-            {this.state.signupError && <p>There was an error signing up!</p>}
+          <div id="SignupForm__Error">
+            {!this.state.passwordMatch && <p>Passwords do not match!</p>}
+            {this.state.signupError && <p>{this.state.signupError}</p>}
           </div>
         </form>
 

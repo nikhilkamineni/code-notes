@@ -26,10 +26,9 @@ class Login extends Component {
     };
     const loginError = await this.props.loginUser(userInfo);
     if (loginError) {
+      console.log(loginError)
       this.setState({ loginError });
-    } else {
-      this.setState({ username: "", password: "" });
-    }
+    } 
   };
 
   render() {
