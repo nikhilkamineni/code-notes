@@ -53,9 +53,11 @@ const SignupStyled = styled.div`
       margin: 10px 0 20px;
     }
 
-    .SignupForm__Error {
+    #SignupForm__Error {
       height: 15px;
       color: ${colors.highlight2[defaultTheme]};
+      text-align: center;
+      margin-bottom: 10px;
     }
   }
 
