@@ -8,25 +8,9 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
 
 class Settings extends Component {
   state = {
-    theme: this.props.theme
+    theme: this.props.theme,
+    changePasswordMessage: null
   };
-
-  // updatePassword = async password => {
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const header = { headers: { Authorization: token } };
-
-  //     const response = await axios.put(
-  //       `${API_URL}/user/change-password`,
-  //       { password },
-  //       header
-  //     );
-  //     if (response.status === 200)
-  //       console.log('Password was change successfully!'); //eslint-disable-line
-  //   } catch (err) {
-  //     console.error('Failed to change password!'); //eslint-disable-line
-  //   }
-  // };
 
   handleChangePassword = async e => {
     e.preventDefault();
@@ -63,9 +47,9 @@ class Settings extends Component {
           <h2>Settings</h2>
         </header>
 
-        <div className="Settings__Content">
+        <div id="Settings__Content">
           <form
-            className="Settings__ChangePasswordForm"
+            id="Settings__ChangePasswordForm"
             onSubmit={this.handleChangePassword}
           >
             <h3 className="ChangePasswordForm__Label">Change Password</h3>

@@ -9,13 +9,13 @@ const SettingsStyled = styled.div`
   padding: 20px 30px;
   margin-top: 10px;
 
-  .Settings__Content {
+  #Settings__Content {
     display: flex;
     flex-flow: row wrap;
     display: flex;
   }
 
-  .Settings__ChangePasswordForm {
+  #Settings__ChangePasswordForm {
     width: 220px;
     height: 240px;
     display: flex;
@@ -38,6 +38,7 @@ const SettingsStyled = styled.div`
       margin: 10px 0;
       min-width: 150px;
       font-size: 14px;
+      color: ${props => colors.font2[props.theme]};
 
       &:hover {
         outline: 1px solid rgba(0 0 0 0);
