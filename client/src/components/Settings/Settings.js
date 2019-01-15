@@ -6,10 +6,6 @@ import ChangePassword from "./ChangePassword";
 import ChangeTheme from "./ChangeTheme";
 
 class Settings extends Component {
-  handleChangeTheme = e => {
-    this.props.updateTheme(e.target.value);
-  };
-
   render() {
     return (
       <SettingsStyled className="Settings" theme={this.props.theme}>
@@ -21,7 +17,7 @@ class Settings extends Component {
           <ChangePassword />
 
           <ChangeTheme
-            handleChangeTheme={this.handleChangeTheme}
+            updateTheme={this.props.updateTheme}
             theme={this.props.theme}
           />
         </div>
