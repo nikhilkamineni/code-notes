@@ -1,6 +1,15 @@
 const express = require('express')
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
+
+const User = require('../models/UserModel.js');
+
+const SECRET = process.env.SECRET || 'DevelopmentSecret';
+
+router.get('/test', (req, res) => {
+  res.status(200).json({ message: 'API is up and running!' });
+});
 
 /* AUTH ENDPOINTS */
 // Signup a new user
@@ -55,8 +64,8 @@ router.post('/login', async (req, res) => {
       }
     });
   } catch (err) {
-    return res.status(500).json({ error: 'Internal server error!' });
+    return res.status(500).json({ error: 'Internal server error!', err });
   }
 });
 
-
+module.exports = router;
