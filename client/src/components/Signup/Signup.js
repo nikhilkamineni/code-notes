@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import SignupStyled from "./Signup.styled.js";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";
 
 // Signup Component
 class Signup extends Component {
@@ -55,13 +55,15 @@ class Signup extends Component {
     const { username, password } = this.state;
 
     if (!username || !password)
-      return this.setState({ signupError: "Username and Password are required!" });
+      return this.setState({
+        signupError: "Username and Password are required!"
+      });
 
     if (!this.state.passwordMatch)
-      return console.error('Passwords do not match!');
+      return console.error("Passwords do not match!"); // eslint-disable-line
 
     if (this.state.password.length < 3)
-      return this.setState({ signupError: 'Password is too short!' });
+      return this.setState({ signupError: "Password is too short!" });
 
     try {
       const response = await axios.post(`${API_URL}/signup`, {

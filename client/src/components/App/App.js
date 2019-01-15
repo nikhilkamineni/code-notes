@@ -15,7 +15,7 @@ import Signup from "../Signup/Signup.js";
 // App styles
 import AppStyled from "./App.styled.js";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";
 
 axios.defaults.withCredentials = true;
 

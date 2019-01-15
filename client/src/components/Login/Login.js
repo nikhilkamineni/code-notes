@@ -24,11 +24,11 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     };
+
     const loginError = await this.props.loginUser(userInfo);
     if (loginError) {
-      console.log(loginError)
       this.setState({ loginError });
-    } 
+    }
   };
 
   render() {
@@ -38,9 +38,7 @@ class Login extends Component {
           <div id="Login__Logo">
             <h1 id="Logo__TopLine">{"{ codex }"}</h1>
           </div>
-          <div id="Login__Tagline">
-            a place to stash code snippets
-          </div>
+          <div id="Login__Tagline">a place to stash code snippets</div>
 
           <input
             type="text"
