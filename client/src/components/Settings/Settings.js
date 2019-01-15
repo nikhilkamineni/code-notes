@@ -8,7 +8,6 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";
 
 class Settings extends Component {
   state = {
-    theme: this.props.theme,
     changePasswordMessage: null,
     changePasswordError: null
   };
@@ -61,77 +60,105 @@ class Settings extends Component {
         </header>
 
         <div id="Settings__Content">
-          <form
-            id="Settings__ChangePasswordForm"
-            onSubmit={this.handleChangePassword}
-          >
-            <h3 className="ChangePasswordForm__Label">Change Password</h3>
-            <input
-              className="ChangePasswordForm__Input"
-              type="password"
-              name="newPassword"
-              placeholder="New password"
-            />
-            <input
-              className="ChangePasswordForm__Input"
-              type="password"
-              name="confirmNewPassword"
-              placeholder="Confirm new password"
-            />
-            <input
-              type="submit"
-              value="submit"
-              className="ChangePasswordForm__Submit SubmitButton"
-            />
-            <p id="ChangePasswordForm__message">
-              {this.state.changePasswordMessage}
-            </p>
-            <p id="ChangePasswordForm__error">
-              {this.state.changePasswordError}
-            </p>
-          </form>
+          <ChangePasswordForm
+            handleChangePassword={this.handleChangePassword}
+            changePasswordMessage={this.state.changePasswordMessage}
+            changePasswordError={this.state.changePasswordError}
+          />
 
-          <form className="Settings__Theme" onChange={this.handleChangeTheme}>
-            <h3>Theme</h3>
-            <div id="Theme__Content">
-              <div className="Theme__option">
-                <input
-                  id="light"
-                  type="radio"
-                  name="theme"
-                  value="light"
-                  defaultChecked={this.state.theme === "light"}
-                />{" "}
-                <label
-                  htmlFor="light"
-                  id={this.props.theme === "light" ? "currentTheme" : null}
-                >
-                  Light
-                </label>
-              </div>
-
-              <div className={"Theme__option"}>
-                <input
-                  id="dark"
-                  type="radio"
-                  name="theme"
-                  value="dark"
-                  defaultChecked={this.state.theme === "dark"}
-                />{" "}
-                <label
-                  htmlFor="dark"
-                  id={this.props.theme === "dark" ? "currentTheme" : null}
-                >
-                  Dark
-                </label>
-              </div>
-            </div>
-          </form>
+          <ChangeThemeForm
+            handleChangeTheme={this.handleChangeTheme}
+            theme={this.props.theme}
+          />
         </div>
       </SettingsStyled>
     );
   }
 }
+
+const ChangePasswordForm = props => {
+  return (
+    <form
+      id="Settings__ChangePasswordForm"
+      onSubmit={props.handleChangePassword}
+    >
+      <h3 className="ChangePasswordForm__Label">Change Password</h3>
+      <input
+        className="ChangePasswordForm__Input"
+        type="password"
+        name="newPassword"
+        placeholder="New password"
+      />
+      <input
+        className="ChangePasswordForm__Input"
+        type="password"
+        name="confirmNewPassword"
+        placeholder="Confirm new password"
+      />
+      <input
+        type="submit"
+        value="submit"
+        className="ChangePasswordForm__Submit SubmitButton"
+      />
+      <p id="ChangePasswordForm__message">{props.changePasswordMessage}</p>
+      <p id="ChangePasswordForm__error">{props.changePasswordError}</p>
+    </form>
+  );
+};
+
+const ChangeThemeForm = props => {
+  return (
+    <form className="Settings__Theme" onChange={props.handleChangeTheme}>
+      <h3>Theme</h3>
+      <div id="Theme__Content">
+        <div className="Theme__option">
+          <input
+            id="light"
+            type="radio"
+            name="theme"
+            value="light"
+            defaultChecked={props.theme === "light"}
+            checked={props.theme === "light"}
+          />{" "}
+          <label
+            htmlFor="light"
+            id={props.theme === "light" ? "currentTheme" : null}
+          >
+            Light
+          </label>
+        </div>
+
+        <div className={"Theme__option"}>
+          <input
+            id="dark"
+            type="radio"
+            name="theme"
+            value="dark"
+            defaultChecked={props.theme === "dark"}
+            checked={props.theme === "dark"}
+          />{" "}
+          <label
+            htmlFor="dark"
+            id={props.theme === "dark" ? "currentTheme" : null}
+          >
+            Dark
+          </label>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+ChangePasswordForm.propTypes = {
+  handleChangePassword: PropTypes.func,
+  changePasswordMessage: PropTypes.string,
+  changePasswordError: PropTypes.string
+};
+
+ChangeThemeForm.propTypes = {
+  handleChangeTheme: PropTypes.func,
+  theme: PropTypes.string
+};
 
 Settings.propTypes = {
   updateTheme: PropTypes.func,
