@@ -29,13 +29,13 @@ server.use(cors(corsOptions));
 // Serves up the static react build at the root endpoint
 server.use(express.static(path.join(__dirname, 'client/build')));
 
-server.get('/api', (req, res) => {
+server.get('/api/test', (req, res) => {
   res.status(200).json({ message: 'API is up and running!' });
 });
 
 // Main routes
-server.use('/', authRouter);
-server.use('/user', authenticate, userRouter);
-server.use('/notes', authenticate, notesRouter);
+server.use('/api', authRouter);
+server.use('/api/user', authenticate, userRouter);
+server.use('/api/notes', authenticate, notesRouter);
 
 module.exports = server;

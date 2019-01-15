@@ -23,7 +23,7 @@ describe('server', () => {
   });
 
   it('should pass with flying colors', async () => {
-    const response = await axiosist(server).get('/api');
+    const response = await axiosist(server).get('/api/test');
     expect(response.status).toBe(200);
     expect(response.data.message).toEqual('API is up and running!');
   });
@@ -31,7 +31,7 @@ describe('server', () => {
   let testUser; // user data for subsequent tests
   describe('/signup [POST]', () => {
     it('should signup a new user successfully', async () => {
-      const response = await axiosist(server).post('/signup', {
+      const response = await axiosist(server).post('/api/signup', {
         username: 'testUser',
         password: 'abc123'
       });
@@ -50,7 +50,7 @@ describe('server', () => {
     });
 
     it('should fail with missing username', async () => {
-      const response = await axiosist(server).post('/signup', {
+      const response = await axiosist(server).post('/api/signup', {
         password: 'abc123'
       });
       expect(response.status).toBe(422);
@@ -60,7 +60,7 @@ describe('server', () => {
     });
 
     it('should fail with missing password', async () => {
-      const response = await axiosist(server).post('/signup', {
+      const response = await axiosist(server).post('/api/signup', {
         username: 'testUser'
       });
       expect(response.status).toBe(422);
@@ -72,7 +72,7 @@ describe('server', () => {
 
   describe('/login [POST]', () => {
     it('should login a user Successfully', async () => {
-      const response = await axiosist(server).post('/login', {
+      const response = await axiosist(server).post('/api/login', {
         username: 'testUser',
         password: 'abc123'
       });
@@ -82,7 +82,7 @@ describe('server', () => {
     });
 
     it('should handle uppercase usernames', async () => {
-      const response = await axiosist(server).post('/login', {
+      const response = await axiosist(server).post('/api/login', {
         username: 'Testuser',
         password: 'abc123'
       });
@@ -91,7 +91,7 @@ describe('server', () => {
     });
 
     it('should fail with an incorrect password', async () => {
-      const response = await axiosist(server).post('/login', {
+      const response = await axiosist(server).post('/api/login', {
         username: 'testUser',
         password: 'abc12'
       });
@@ -100,7 +100,7 @@ describe('server', () => {
     });
 
     it('should fail with an incorrect username', async () => {
-      const response = await axiosist(server).post('/login', {
+      const response = await axiosist(server).post('/api/login', {
         username: 'test',
         password: 'abc123'
       });
@@ -123,7 +123,7 @@ describe('server', () => {
 
       const token = testUser.token;
 
-      const response = await axiosist(server).post('/notes', testNote, {
+      const response = await axiosist(server).post('/api/notes', testNote, {
         headers: { Authorization: token }
       });
 
@@ -144,7 +144,7 @@ describe('server', () => {
         content: 'Test Note Content',
         createdBy: testUser._id
       };
-      const response = await axiosist(server).post('/notes', testNote);
+      const response = await axiosist(server).post('/api/notes', testNote);
 
       expect(response.status).toBe(401);
     });
@@ -163,7 +163,7 @@ describe('server', () => {
         .reverse()
         .join('');
 
-      const response = await axiosist(server).post('/notes', testNote, {
+      const response = await axiosist(server).post('/api/notes', testNote, {
         headers: { Authorization: token }
       });
 
@@ -174,7 +174,7 @@ describe('server', () => {
   describe('/notes/:id [GET]', () => {
     it('should retrieve the correct note successfully', async () => {
       const response = await axiosist(server).get(
-        `/notes/${savedTestNote._id}`,
+        `/api/notes/${savedTestNote._id}`,
         { headers: { Authorization: testUser.token } }
       );
       expect(response.status).toBe(200);
@@ -188,7 +188,7 @@ describe('server', () => {
 
     it('fails with missing token', async () => {
       const response = await axiosist(server).get(
-        `/notes/${savedTestNote._id}`
+        `/api/notes/${savedTestNote._id}`
       );
       expect(response.status).toBe(401);
     });
@@ -200,7 +200,7 @@ describe('server', () => {
         .join('');
 
       const response = await axiosist(server).get(
-        `/notes/${savedTestNote._id}`,
+        `/api/notes/${savedTestNote._id}`,
         { headers: { Authorization: token } }
       );
 
@@ -208,7 +208,7 @@ describe('server', () => {
     });
 
     it('fails with incorrect id', async () => {
-      const response = await axiosist(server).get(`/notes/${testUser._id}`, {
+      const response = await axiosist(server).get(`/api/notes/${testUser._id}`, {
         headers: { Authorization: testUser.token }
       });
 
@@ -219,7 +219,7 @@ describe('server', () => {
   describe('/notes/:id [PUT]', () => {
     it('should update a note correctly', async () => {
       const response = await axiosist(server).put(
-        `/notes/${savedTestNote._id}`,
+        `/api/notes/${savedTestNote._id}`,
         {
           content: 'Updated note content',
           language: 'python'
@@ -234,7 +234,7 @@ describe('server', () => {
 
     it('should fail without a token', async () => {
       const response = await axiosist(server).put(
-        `/notes/${savedTestNote._id}`,
+        `/api/notes/${savedTestNote._id}`,
         {
           content: 'Updated note content',
           language: 'python'
@@ -247,7 +247,7 @@ describe('server', () => {
     it('should fail with an invalid token', async () => {
       const token = testUser.token.slice(1);
       const response = await axiosist(server).put(
-        `/notes/${savedTestNote._id}`,
+        `/api/notes/${savedTestNote._id}`,
         {
           content: 'Updated note content',
           language: 'python'
@@ -266,7 +266,7 @@ describe('server', () => {
       const token = testUser.token;
 
       const response = await axiosist(server).post(
-        '/notes',
+        '/api/notes',
         {
           title: 'Title',
           content: 'Content',
@@ -284,7 +284,7 @@ describe('server', () => {
     it('should fail without a token', async () => {
       expect(noteToDelete).toBeDefined();
       const response = await axiosist(server).delete(
-        `/notes/${noteToDelete._id}`
+        `/api/notes/${noteToDelete._id}`
       );
       expect(response.status).toBe(401);
     });
@@ -293,7 +293,7 @@ describe('server', () => {
       expect(noteToDelete).toBeDefined();
       const token = testUser.token.slice(1);
       const response = await axiosist(server).delete(
-        `/notes/${noteToDelete._id}`,
+        `/api/notes/${noteToDelete._id}`,
         { headers: { Authorization: token } }
       );
       expect(response.status).toBe(401);
@@ -303,7 +303,7 @@ describe('server', () => {
       expect(noteToDelete).toBeDefined();
       const token = testUser.token;
       const response = await axiosist(server).delete(
-        `/notes/${noteToDelete._id}`,
+        `/api/notes/${noteToDelete._id}`,
         { headers: { Authorization: token } }
       );
       expect(response.status).toBe(200);
@@ -317,7 +317,7 @@ describe('server', () => {
    * */
   describe('/user [GET]', () => {
     it('should retrieve a users data successfully', async () => {
-      const response = await axiosist(server).get('/user', {
+      const response = await axiosist(server).get('/api/user', {
         headers: { Authorization: testUser.token }
       });
 
@@ -333,7 +333,7 @@ describe('server', () => {
     it('should change a users password succesfully', async () => {
       // Attempt to change the users password
       let response = await axiosist(server).put(
-        '/user/change-password',
+        '/api/user/change-password',
         { password: 'def456' },
         {
           headers: { Authorization: testUser.token }
@@ -343,7 +343,7 @@ describe('server', () => {
       expect(response.data.message).toEqual('Password was changed successfully!');
 
       // Attempt to login with the new password to confirm it was changed
-      response = await axiosist(server).post('/login', { username: 'testUser', password: 'def456' })
+      response = await axiosist(server).post('/api/login', { username: 'testUser', password: 'def456' })
       expect(response.status).toBe(200)
       expect(response.data.token).toBeDefined();
     });
@@ -352,7 +352,7 @@ describe('server', () => {
   describe('/user/change-theme [PUT]', () => {
     it('should change a users theme successfully', async () => {
       const response = await axiosist(server).put(
-        '/user/change-theme',
+        '/api/user/change-theme',
         { theme: 'light' },
         {
           headers: { Authorization: testUser.token }
@@ -364,7 +364,7 @@ describe('server', () => {
 
     it('should fail without a new theme', async () => {
       const response = await axiosist(server).put(
-        '/user/change-theme',
+        '/api/user/change-theme',
         {},
         {
           headers: { Authorization: testUser.token }
@@ -374,7 +374,7 @@ describe('server', () => {
     });
 
     it('should fail without a token', async () => {
-      const response = await axiosist(server).put('/user/change-theme', {
+      const response = await axiosist(server).put('/api/user/change-theme', {
         theme: 'light'
       });
       expect(response.status).toBe(401);
@@ -382,7 +382,7 @@ describe('server', () => {
 
     it('should fail with an invalid token', async () => {
       const response = await axiosist(server).put(
-        '/user/change-theme',
+        '/api/user/change-theme',
         { theme: 'light' },
         {
           headers: { Authorization: testUser.token.slice(1) }
