@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import SettingsStyled from "./Settings.styled.js";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";
 
 class Settings extends Component {
   state = {
@@ -15,6 +15,7 @@ class Settings extends Component {
 
   handleChangePassword = async e => {
     e.preventDefault();
+    this.setState({ changePasswordMessage: null, changePasswordError: null });
     const newPassword = e.target.newPassword.value;
     const confirmNewPassword = e.target.confirmNewPassword.value;
 
@@ -79,6 +80,7 @@ class Settings extends Component {
             />
             <input
               type="submit"
+              value="submit"
               className="ChangePasswordForm__Submit SubmitButton"
             />
             <p id="ChangePasswordForm__message">
@@ -107,6 +109,7 @@ class Settings extends Component {
                   Light
                 </label>
               </div>
+
               <div className={"Theme__option"}>
                 <input
                   id="dark"
