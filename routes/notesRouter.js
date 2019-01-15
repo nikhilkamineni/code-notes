@@ -7,7 +7,7 @@ const User = require('../models/UserModel.js');
 
 /* NOTES ENDPOINTS */
 // Get all notes from all users
-router.get('/', authenticate, (req, res) => {
+router.get('/', (req, res) => {
   Note.find({}, (err, notes) => {
     if (err) return res.status(500).json('Failed to get notes: ', err);
     return res.status(200).json(notes);
@@ -15,7 +15,7 @@ router.get('/', authenticate, (req, res) => {
 });
 
 // Save new note
-router.post('/', authenticate, async (req, res) => {
+router.post('/', async (req, res) => {
   const { title, description, language, content, createdBy } = req.body;
 
   if (!title || !content) {
@@ -50,7 +50,7 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 // Get Note by ID
-router.get('/:id', authenticate, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const note = await Note.findById(id).populate('createdBy');
@@ -62,7 +62,7 @@ router.get('/:id', authenticate, async (req, res) => {
 });
 
 // Update Note by ID
-router.put('/:id', authenticate, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const update = req.body;
@@ -80,7 +80,7 @@ router.put('/:id', authenticate, async (req, res) => {
 });
 
 // Delete note
-router.delete('/:id', authenticate, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const note = await Note.findByIdAndRemove(id).lean();

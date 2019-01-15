@@ -2,14 +2,13 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const router = require('express').Router();
 
-const authenticate = require('../middleware/authenticate');
 const User = require('../models/UserModel.js');
 
 const BCRYPT_COST = process.env.BCRYPT_COST || 11;
 
 /* USER ENDPOINTS */
 // Get user data from JWT token
-router.get('/', authenticate, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const username = req.decoded.username;
     const user = await User.findOne({ username })
@@ -22,7 +21,7 @@ router.get('/', authenticate, async (req, res) => {
 });
 
 // Update a users password
-router.put('/change-password', authenticate, async (req, res) => {
+router.put('/change-password', async (req, res) => {
   try {
     const _id = req.decoded._id;
     let password = req.body.password;
@@ -51,7 +50,7 @@ router.put('/change-password', authenticate, async (req, res) => {
   }
 });
 
-router.put('/change-theme', authenticate, async (req, res) => {
+router.put('/change-theme', async (req, res) => {
   try {
     const _id = req.decoded._id;
     const theme = req.body.theme;

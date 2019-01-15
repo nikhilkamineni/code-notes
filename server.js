@@ -33,8 +33,9 @@ server.get('/api', (req, res) => {
   res.status(200).json({ message: 'API is up and running!' });
 });
 
+// Main routes
 server.use('/', authRouter);
-server.use('/user', userRouter);
-server.use('/notes', notesRouter);
+server.use('/user', authenticate, userRouter);
+server.use('/notes', authenticate, notesRouter);
 
 module.exports = server;
