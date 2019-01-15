@@ -38,7 +38,12 @@ router.put('/change-password', authenticate, async (req, res) => {
           { password: hash },
           { new: true }
         );
-        return res.status(200).json({...updatedUser, message: 'Password was changed successfully!'});
+        return res
+          .status(200)
+          .json({
+            ...updatedUser,
+            message: 'Password was changed successfully!'
+          });
       }
     });
   } catch (err) {
