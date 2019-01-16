@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 
 import LoginStyled from "./Login.styled.js";
 
@@ -65,12 +66,9 @@ class Login extends Component {
 
         <div id="Login__SignupContainer">
           {"Don't have an account?"}{" "}
-          <button
-            id="SignupContainer__SignupLink"
-            onClick={this.props.showSignup}
-          >
+          <Link to="/signup" id="SignupContainer__SignupLink">
             Sign Up
-          </button>
+          </Link>
         </div>
       </LoginStyled>
     );

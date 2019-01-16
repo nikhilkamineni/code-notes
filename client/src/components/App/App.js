@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Router, navigate } from "@reach/router";
 
 // Components
 import NoteCreate from "../NoteCreate/NoteCreate.js";
@@ -23,13 +24,6 @@ axios.defaults.withCredentials = true;
 class App extends Component {
   state = {
     authenticated: false,
-    showingLogin: true,
-    showingNoteCreate: false,
-    showingNoteDetails: false,
-    showingNoteEdit: false,
-    showingNotesList: false,
-    showingSettings: false,
-    showingSignup: false,
     username: "",
     notes: [],
     noteDetails: {
@@ -42,12 +36,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem('token'))
-      this.getNotes();
-    // try {
-    // } catch (err) {
-    //   console.error(err); // eslint-disable-line
-    // }
+    if (localStorage.getItem("token")) this.getNotes();
   }
 
   getNotes = async () => {
@@ -58,7 +47,6 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({
           authenticated: true,
-          showingNotesList: true,
           notes: response.data.notes,
           username: response.data.username,
           _id: response.data._id,
@@ -76,8 +64,8 @@ class App extends Component {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         await this.getNotes();
-        this.showNotesList();
-        this.setState({ authenticated: true, ...response.data.user });
+        await this.setState({ authenticated: true, ...response.data.user });
+        navigate("/notes-list");
       }
     } catch (err) {
       console.error(err); // eslint-disable-line
@@ -88,17 +76,12 @@ class App extends Component {
   logoutUser = () => {
     localStorage.removeItem("token");
     this.setState({
-      showingLogin: true,
-      showingSignup: false,
-      showingNotesList: false,
-      showingNoteCreate: false,
-      showingNoteEdit: false,
-      showingNoteDetails: false,
       authenticated: false,
       username: "",
       notes: [],
       noteDetails: {}
     });
+    navigate("/");
   };
 
   showLogin = () => {
@@ -107,29 +90,6 @@ class App extends Component {
 
   showSignup = () => {
     this.setState({ showingSignup: true, showingLogin: false });
-  };
-
-  showNotesList = async () => {
-    await this.getNotes();
-    this.setState({
-      showingNotesList: true,
-      showingNoteCreate: false,
-      showingNoteDetails: false,
-      showingNoteEdit: false,
-      showingSettings: false,
-      deletingNote: false
-    });
-  };
-
-  showNoteCreateForm = () => {
-    this.setState({
-      showingNoteCreate: true,
-      showingNotesList: false,
-      showingNoteDetails: false,
-      showingNoteEdit: false,
-      showingSettings: false,
-      deletingNote: false
-    });
   };
 
   showNoteDetails = id => {
@@ -141,28 +101,6 @@ class App extends Component {
       showingNoteCreate: false,
       showingNoteEdit: false,
       showingSettings: false,
-      deletingNote: false
-    });
-  };
-
-  showNoteEditForm = () => {
-    this.setState({
-      showingNoteEdit: true,
-      showingNotesList: false,
-      showingNoteCreate: false,
-      showingNoteDetails: false,
-      showingSettings: false,
-      deletingNote: false
-    });
-  };
-
-  showSettings = () => {
-    this.setState({
-      showingSettings: true,
-      showingNotesList: false,
-      showingNoteCreate: false,
-      showingNoteDetails: false,
-      showingNoteEdit: false,
       deletingNote: false
     });
   };
@@ -246,23 +184,7 @@ class App extends Component {
   render() {
     return (
       <AppStyled className="App" theme={this.state.theme}>
-        {!this.state.authenticated && this.state.showingLogin && (
-          <Login
-            loginUser={this.loginUser}
-            theme={this.state.theme}
-            showSignup={this.showSignup}
-          />
-        )}
-
-        {!this.state.authenticated && this.state.showingSignup && (
-          <Signup
-            loginUser={this.loginUser}
-            theme={this.state.theme}
-            showLogin={this.showLogin}
-          />
-        )}
-
-        {this.state.authenticated && (
+        {this.state.authenticated ? (
           <>
             <Sidebar
               authenticated={this.state.authenticated}
@@ -272,53 +194,65 @@ class App extends Component {
               showSettings={this.showSettings}
               theme={this.state.theme}
             />
-
             <div className="Content">
-              {this.state.showingNotesList && (
+              <Router>
                 <NotesList
+                  path="notes-list"
                   notes={this.state.notes}
                   showNoteDetails={this.showNoteDetails}
                   theme={this.state.theme}
                 />
-              )}
 
-              {this.state.showingNoteCreate && (
                 <NoteCreate
+                  path="note-create"
                   getNextId={this.getNextId}
                   saveNewNote={this.saveNewNote}
                   theme={this.state.theme}
                 />
-              )}
 
-              {this.state.showingNoteDetails && (
                 <NoteDetails
+                  path="note-details/:id"
                   showDeleteModal={this.showDeleteModal}
                   noteDetails={this.state.noteDetails}
                   showNoteEditForm={this.showNoteEditForm}
                   style={{ padding: "0" }}
                   theme={this.state.theme}
                 />
-              )}
 
-              {this.state.showingNoteEdit && (
                 <NoteEdit
+                  path="note-edit/:id"
                   noteDetails={this.state.noteDetails}
                   updateNote={this.updateNote}
                   showNoteEditForm={this.showNoteEditForm}
                   showNoteDetails={this.showNoteDetails}
                   theme={this.state.theme}
                 />
-              )}
 
-              {this.state.showingSettings && (
                 <Settings
+                  path="settings"
                   showSettings={this.showSettings}
                   updateTheme={this.updateTheme}
                   theme={this.state.theme}
                 />
-              )}
+              </Router>
             </div>
           </>
+        ) : (
+          <Router>
+            <Login
+              path="/"
+              loginUser={this.loginUser}
+              theme={this.state.theme}
+              showSignup={this.showSignup}
+            />
+
+            <Signup
+              path="signup"
+              loginUser={this.loginUser}
+              theme={this.state.theme}
+              showLogin={this.showLogin}
+            />
+          </Router>
         )}
 
         {this.state.authenticated && this.state.deletingNote && (

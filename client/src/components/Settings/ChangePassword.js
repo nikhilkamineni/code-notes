@@ -1,5 +1,4 @@
 import axios from "axios";
-import PropTypes from "prop-types";
 import React, { Component } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";

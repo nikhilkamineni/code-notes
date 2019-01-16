@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "@reach/router";
 
 import SidebarStyled from "./Sidebar.styled.js";
 
@@ -13,18 +14,18 @@ const Sidebar = props => {
 
       {props.authenticated && (
         <div id="Sidebar__Menu">
-          <button id="Sidebar__ViewNotes" onClick={props.showNotesList}>
+          <Link id="Sidebar__ViewNotes" to="/notes-list">
             View Notes
-          </button>
-          <button
-            id="Sidebar__CreateNotes"
-            onClick={props.showNoteCreateForm}
-          >
+          </Link>
+
+          <Link id="Sidebar__CreateNotes" to="/note-create">
             + Create Note
-          </button>
-          <button id="Sidebar__Settings" onClick={props.showSettings}>
+          </Link>
+
+          <Link id="Sidebar__Settings" to="/settings">
             Settings
-          </button>
+          </Link>
+
           <button id="Sidebar__Logout" onClick={props.logoutUser}>
             Logout
           </button>

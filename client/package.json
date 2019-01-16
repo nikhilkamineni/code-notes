@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "",
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
     "codemirror": "^5.42.2",
     "express": "^4.16.3",
