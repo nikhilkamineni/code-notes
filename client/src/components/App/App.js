@@ -96,13 +96,9 @@ class App extends Component {
     const noteToView = this.state.notes.find(note => note._id === id);
     this.setState({
       noteDetails: { ...noteToView },
-      showingNoteDetails: true,
-      showingNotesList: false,
-      showingNoteCreate: false,
-      showingNoteEdit: false,
-      showingSettings: false,
       deletingNote: false
     });
+    navigate(`/note/${id}`);
   };
 
   showDeleteModal = () => {
@@ -204,14 +200,14 @@ class App extends Component {
                 />
 
                 <NoteCreate
-                  path="note-create"
+                  path="note/create"
                   getNextId={this.getNextId}
                   saveNewNote={this.saveNewNote}
                   theme={this.state.theme}
                 />
 
                 <NoteDetails
-                  path="note-details/:id"
+                  path="note/:id"
                   showDeleteModal={this.showDeleteModal}
                   noteDetails={this.state.noteDetails}
                   showNoteEditForm={this.showNoteEditForm}
@@ -220,7 +216,7 @@ class App extends Component {
                 />
 
                 <NoteEdit
-                  path="note-edit/:id"
+                  path="note/edit/:id"
                   noteDetails={this.state.noteDetails}
                   updateNote={this.updateNote}
                   showNoteEditForm={this.showNoteEditForm}

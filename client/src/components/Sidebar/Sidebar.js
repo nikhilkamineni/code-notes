@@ -18,7 +18,7 @@ const Sidebar = props => {
             View Notes
           </Link>
 
-          <Link id="Sidebar__CreateNotes" to="/note-create">
+          <Link id="Sidebar__CreateNotes" to="/note/create">
             + Create Note
           </Link>
 
