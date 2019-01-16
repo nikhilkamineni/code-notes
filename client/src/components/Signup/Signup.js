@@ -133,7 +133,7 @@ class Signup extends Component {
 
         <div id="Signup__LoginContainer">
           Already have an account?
-          <Link id="LoginContainer__LoginLink" to="/">
+          <Link id="LoginContainer__LoginLink" to="/login">
             Log in
           </Link>
         </div>

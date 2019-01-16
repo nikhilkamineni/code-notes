@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 import LoginStyled from "./Login.styled.js";
 
@@ -10,6 +10,10 @@ class Login extends Component {
     password: "",
     loginError: null
   };
+
+  componentDidMount() {
+    if (this.props.authenticated) navigate("/");
+  }
 
   handleUsernameInput = event => {
     this.setState({ username: event.target.value });
@@ -76,6 +80,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+  authenticated: PropTypes.bool,
   loginUser: PropTypes.func,
   showSignup: PropTypes.func
 };

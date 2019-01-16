@@ -14,7 +14,7 @@ const Sidebar = props => {
 
       {props.authenticated && (
         <div id="Sidebar__Menu">
-          <Link id="Sidebar__ViewNotes" to="/notes-list">
+          <Link id="Sidebar__ViewNotes" to="/">
             View Notes
           </Link>
 

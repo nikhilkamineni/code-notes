@@ -24,6 +24,7 @@ axios.defaults.withCredentials = true;
 class App extends Component {
   state = {
     authenticated: false,
+    deletingNote: false,
     username: "",
     notes: [],
     noteDetails: {
@@ -35,8 +36,9 @@ class App extends Component {
     }
   };
 
-  componentDidMount() {
-    if (localStorage.getItem("token")) this.getNotes();
+  async componentDidMount() {
+    if (localStorage.getItem("token")) await this.getNotes();
+    if (!this.state.authenticated) navigate("/login");
   }
 
   getNotes = async () => {
@@ -65,7 +67,7 @@ class App extends Component {
         localStorage.setItem("token", response.data.token);
         await this.getNotes();
         await this.setState({ authenticated: true, ...response.data.user });
-        navigate("/notes-list");
+        navigate("/");
       }
     } catch (err) {
       console.error(err); // eslint-disable-line
@@ -81,7 +83,7 @@ class App extends Component {
       notes: [],
       noteDetails: {}
     });
-    navigate("/");
+    navigate("/login");
   };
 
   showLogin = () => {
@@ -92,9 +94,9 @@ class App extends Component {
     this.setState({ showingSignup: true, showingLogin: false });
   };
 
-  showNoteDetails = id => {
-    const noteToView = this.state.notes.find(note => note._id === id);
-    this.setState({
+  showNoteDetails = async id => {
+    const noteToView = await this.state.notes.find(note => note._id === id);
+    await this.setState({
       noteDetails: { ...noteToView },
       deletingNote: false
     });
@@ -115,8 +117,8 @@ class App extends Component {
       const options = { headers: { Authorization: token } };
       note.createdBy = this.state._id;
       const response = await axios.post(`${API_URL}/notes`, note, options);
-      this.setState({ notes: [...this.state.notes, response.data] });
-      this.showNotesList();
+      await this.setState({ notes: [...this.state.notes, response.data] });
+      navigate("/");
     } catch (err) {
       console.error(err); // eslint-disable-line
     }
@@ -161,20 +163,16 @@ class App extends Component {
     }
   };
 
-  deleteNote = () => {
+  deleteNote = async () => {
     const token = localStorage.getItem("token");
     const header = { headers: { Authorization: token } };
     let id = this.state.noteDetails._id;
-    axios
-      .delete(`${API_URL}/notes/${id}`, header)
-      .then(() => {
-        let updatedNotes = this.state.notes.filter(
-          note => note._id !== this.state.noteDetails._id
-        );
-        this.setState({ notes: updatedNotes });
-        this.showNotesList();
-      })
-      .catch(err => console.error(err)); // eslint-disable-line
+    await axios.delete(`${API_URL}/notes/${id}`, header);
+    let updatedNotes = this.state.notes.filter(
+      note => note._id !== this.state.noteDetails._id
+    );
+    this.setState({ notes: updatedNotes, deletingNote: false });
+    navigate("/");
   };
 
   render() {
@@ -190,24 +188,26 @@ class App extends Component {
               showSettings={this.showSettings}
               theme={this.state.theme}
             />
+
             <div className="Content">
               <Router>
                 <NotesList
-                  path="notes-list"
+                  path="/"
                   notes={this.state.notes}
                   showNoteDetails={this.showNoteDetails}
                   theme={this.state.theme}
                 />
 
                 <NoteCreate
-                  path="note/create"
+                  path="/note/create"
                   getNextId={this.getNextId}
                   saveNewNote={this.saveNewNote}
                   theme={this.state.theme}
                 />
 
                 <NoteDetails
-                  path="note/:id"
+                  path="/note/:id"
+                  showNoteDetails={this.showNoteDetails}
                   showDeleteModal={this.showDeleteModal}
                   noteDetails={this.state.noteDetails}
                   showNoteEditForm={this.showNoteEditForm}
@@ -216,7 +216,7 @@ class App extends Component {
                 />
 
                 <NoteEdit
-                  path="note/edit/:id"
+                  path="/note/edit/:id"
                   noteDetails={this.state.noteDetails}
                   updateNote={this.updateNote}
                   showNoteEditForm={this.showNoteEditForm}
@@ -225,7 +225,7 @@ class App extends Component {
                 />
 
                 <Settings
-                  path="settings"
+                  path="/settings"
                   showSettings={this.showSettings}
                   updateTheme={this.updateTheme}
                   theme={this.state.theme}
@@ -236,14 +236,15 @@ class App extends Component {
         ) : (
           <Router>
             <Login
-              path="/"
+              path="/login"
+              authenticated={this.state.authenticated}
               loginUser={this.loginUser}
               theme={this.state.theme}
               showSignup={this.showSignup}
             />
 
             <Signup
-              path="signup"
+              path="/signup"
               loginUser={this.loginUser}
               theme={this.state.theme}
               showLogin={this.showLogin}

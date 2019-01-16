@@ -16,8 +16,12 @@ class NoteDetails extends Component {
     lineNumbers: true
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     window.scrollTo(0, 0);
+    if (!this.state._id) {
+      const id = this.props.uri.slice(6);
+      await this.props.showNoteDetails(id);
+    }
   }
 
   handleLineNumbers = e => {
