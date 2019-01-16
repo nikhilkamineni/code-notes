@@ -12,11 +12,6 @@ const SidebarStyled = styled.div`
   height: 100%;
   padding: 10px;
 
-  .Sidebar__spacer {
-    width: 100vh;
-    height: 100vh;
-  }
-
   h1 {
     margin-bottom: 31px;
     padding-top: 10px;
@@ -24,18 +19,15 @@ const SidebarStyled = styled.div`
   }
 
   .Sidebar__Logo {
-    margin-left: 38px;
+    margin-left: 35px;
     color: ${props => colors.font1[props.theme]};
-    position: fixed;
-    top: 20px;
-    left: 10px;
   }
 
   #Sidebar__Menu {
-    position: fixed;
+    // position: fixed;
     display: flex;
-    top: 100px;
-    left: 33px;
+    // top: 100px;
+    // left: 33px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
