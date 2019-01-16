@@ -8,9 +8,9 @@ const mongod = new MongodbMemoryServer.default({
     dbName: 'code-notes-test-db'
   },
   binary: {
-    version: "4.0.3"
-  }
-  autoStart: false,
+    version: "4.0.5"
+  },
+  autoStart: false
 });
 
 module.exports = async () => {
