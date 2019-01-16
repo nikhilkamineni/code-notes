@@ -45,11 +45,11 @@ const SidebarStyled = styled.div`
     }
   }
 
-  button {
+  .Sidebar__Link {
     margin-bottom: 20px;
     font-family: Roboto;
-    height: 50px;
-    width: 150px;
+    padding: 20px 0;
+    width: 140px;
     background-color: ${props => colors.highlight1[props.theme]};
     color: ${props => colors.font2[props.theme]};
     outline: none;
@@ -58,6 +58,8 @@ const SidebarStyled = styled.div`
     border: none;
     cursor: pointer;
     border: 1px solid ${props => colors.background1[props.theme]};
+    text-align: center;
+    text-decoration: none;
 
     &:hover {
       border: 1px solid ${props => colors.border4[props.theme]};

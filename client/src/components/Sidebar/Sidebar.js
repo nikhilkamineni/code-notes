@@ -14,19 +14,27 @@ const Sidebar = props => {
 
       {props.authenticated && (
         <div id="Sidebar__Menu">
-          <Link id="Sidebar__ViewNotes" to="/">
+          <Link id="Sidebar__ViewNotes" className="Sidebar__Link" to="/">
             View Notes
           </Link>
 
-          <Link id="Sidebar__CreateNotes" to="/note/create">
+          <Link
+            id="Sidebar__CreateNotes"
+            className="Sidebar__Link"
+            to="/note/create"
+          >
             + Create Note
           </Link>
 
-          <Link id="Sidebar__Settings" to="/settings">
+          <Link id="Sidebar__Settings" className="Sidebar__Link" to="/settings">
             Settings
           </Link>
 
-          <button id="Sidebar__Logout" onClick={props.logoutUser}>
+          <button
+            id="Sidebar__Logout"
+            className="Sidebar__Link"
+            onClick={props.logoutUser}
+          >
             Logout
           </button>
         </div>
