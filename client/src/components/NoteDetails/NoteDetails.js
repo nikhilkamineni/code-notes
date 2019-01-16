@@ -1,3 +1,4 @@
+import axios from "axios";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { Link } from "@reach/router";
@@ -5,22 +6,31 @@ import { Link } from "@reach/router";
 import Editor from "../Editor/Editor.js";
 import NoteDetailsStyled from "./NoteDetails.styled.js";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";
+
 class NoteDetails extends Component {
   state = {
-    title: this.props.noteDetails.title,
-    description: this.props.noteDetails.description,
-    language: this.props.noteDetails.language,
-    content: this.props.noteDetails.content,
-    _id: this.props.noteDetails._id,
-    createdOn: this.props.noteDetails.createdOn,
+    title: this.props.title,
+    description: this.props.description,
+    language: this.props.language,
+    content: this.props.content,
+    _id: this.props._id,
+    createdOn: this.props.createdOn,
     lineNumbers: true
   };
 
   async componentDidMount() {
     window.scrollTo(0, 0);
+
+    // If the component was navigated directly using a url path with
+    // note id in parameter, fetch the individual note's info from backend
     if (!this.state._id) {
-      const id = this.props.uri.slice(6);
-      await this.props.showNoteDetails(id);
+      const id = this.props.uri.slice(6); // get the note id from the url param
+      const token = localStorage.getItem("token");
+      const options = { headers: { Authorization: token } };
+
+      const response = await axios.get(`${API_URL}/notes/${id}`, options);
+      this.setState({ ...response.data });
     }
   }
 
@@ -29,8 +39,9 @@ class NoteDetails extends Component {
   };
 
   render() {
-    let date = new Date(this.state.createdOn).toLocaleString();
+    const date = new Date(this.state.createdOn).toLocaleString();
     const cmTheme = this.props.theme === "dark" ? "darcula" : "xq-light";
+
     return (
       <NoteDetailsStyled className="NoteDetails" theme={this.props.theme}>
         <header className="NoteDetails__Header">
@@ -71,17 +82,16 @@ class NoteDetails extends Component {
 } // NoteDetails Component
 
 NoteDetails.propTypes = {
-  noteDetails: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    language: PropTypes.string,
-    content: PropTypes.string,
-    _id: PropTypes.string,
-    createdOn: PropTypes.string
-  }),
   showDeleteModal: PropTypes.func,
   showNoteEditForm: PropTypes.func,
-  theme: PropTypes.string
+  title: PropTypes.string,
+  description: PropTypes.string,
+  language: PropTypes.string,
+  content: PropTypes.string,
+  _id: PropTypes.string,
+  createdOn: PropTypes.string,
+  theme: PropTypes.string,
+  uri: PropTypes.string
 };
 
 export default NoteDetails;

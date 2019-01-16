@@ -44,8 +44,8 @@ class App extends Component {
   getNotes = async () => {
     try {
       const token = localStorage.getItem("token");
-      const header = { headers: { Authorization: token } };
-      const response = await axios.get(`${API_URL}/user`, header);
+      const options = { headers: { Authorization: token } };
+      const response = await axios.get(`${API_URL}/user`, options);
       if (response.status === 200) {
         this.setState({
           authenticated: true,
@@ -206,6 +206,7 @@ class App extends Component {
                 />
 
                 <NoteDetails
+                  {...this.state.noteDetails}
                   path="/note/:id"
                   showNoteDetails={this.showNoteDetails}
                   showDeleteModal={this.showDeleteModal}
@@ -236,6 +237,7 @@ class App extends Component {
         ) : (
           <Router>
             <Login
+              className="Auth"
               path="/login"
               authenticated={this.state.authenticated}
               loginUser={this.loginUser}
@@ -244,6 +246,7 @@ class App extends Component {
             />
 
             <Signup
+              className="Auth"
               path="/signup"
               loginUser={this.loginUser}
               theme={this.state.theme}
