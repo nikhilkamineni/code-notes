@@ -217,8 +217,8 @@ class App extends Component {
                 />
 
                 <NoteEdit
+                  {...this.state.noteDetails}
                   path="/note/edit/:id"
-                  noteDetails={this.state.noteDetails}
                   updateNote={this.updateNote}
                   showNoteEditForm={this.showNoteEditForm}
                   showNoteDetails={this.showNoteDetails}
