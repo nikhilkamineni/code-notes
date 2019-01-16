@@ -235,9 +235,8 @@ class App extends Component {
             </div>
           </>
         ) : (
-          <Router>
+          <Router className="Auth">
             <Login
-              className="Auth"
               path="/login"
               authenticated={this.state.authenticated}
               loginUser={this.loginUser}
@@ -246,7 +245,6 @@ class App extends Component {
             />
 
             <Signup
-              className="Auth"
               path="/signup"
               loginUser={this.loginUser}
               theme={this.state.theme}

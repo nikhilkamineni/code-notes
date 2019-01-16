@@ -26,12 +26,6 @@ const LoginStyled = styled.div`
     #Login__Logo {
       margin-bottom: 15px;
       color: ${colors.font1[defaultTheme]};
-
-      // #Logo__TopLine {
-      // }
-
-      // #Logo__BottomLine {
-      // }
     }
 
     #Login__Tagline {
