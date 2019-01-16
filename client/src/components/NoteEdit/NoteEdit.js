@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { navigate } from "@reach/router";
 
 import Editor from "../Editor/Editor.js";
 import NoteEditStyled from "./NoteEdit.styled.js";
@@ -30,9 +31,10 @@ class NoteEdit extends Component {
     this.setState({ lineNumbers: e.target.checked });
   };
 
-  handleUpdate = () => {
+  handleUpdate = async () => {
     const { title, description, language, content, _id } = this.state;
-    this.props.updateNote({ title, description, language, content, _id });
+    await this.props.updateNote({ title, description, language, content, _id });
+    navigate(`/note/${this.state._id}`);
   };
 
   render() {

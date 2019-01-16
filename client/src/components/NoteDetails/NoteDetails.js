@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 
 import Editor from "../Editor/Editor.js";
 import NoteDetailsStyled from "./NoteDetails.styled.js";
@@ -35,9 +36,9 @@ class NoteDetails extends Component {
         <h3 className="NoteDetails__Description">{this.state.description}</h3>
 
         <div className="NoteDetails__Options">
-          <button id="edit" onClick={this.props.showNoteEditForm}>
+          <Link id="edit" to={`/note/edit/${this.state._id}`}>
             Edit
-          </button>
+          </Link>
           <button id="delete" onClick={this.props.showDeleteModal}>
             Delete
           </button>
