@@ -22,13 +22,14 @@ const NoteDetailsStyled = styled.div`
     display: flex;
     justify-content: flex-start;
     margin-top: 5px;
-    button {
-      border: none;
-      background: none;
+
+    #edit {
+      text-decoration: none;
       color: inherit;
-      font: inherit;
-      cursor: pointer;
-      outline: inherit;
+
+      &:visited {
+        color: inherit;
+      }
 
       &:hover {
         font-weight: bolder;
@@ -38,6 +39,16 @@ const NoteDetailsStyled = styled.div`
 
     #delete {
       color: ${props => colors.highlight2[props.theme]};
+      border: none;
+      background: none;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+
+      &:hover {
+        font-weight: bolder;
+        text-decoration: underline;
+      }
     }
   }
 

@@ -37,7 +37,7 @@ class NotesList extends Component {
       <NotesListStyled className="NotesList" theme={this.props.theme}>
         <header className="NotesList__header">
           <h2>Your Notes:</h2>
-          <div className="searchContainer">
+          <div id="NotesList__searchContainer">
             <input
               onChange={this.handleSearch}
               value={this.state.searchInput}
@@ -45,10 +45,7 @@ class NotesList extends Component {
             />
           </div>
         </header>
-        <div
-          style={{ display: "flex", flexFlow: "row wrap" }}
-          className="NotesList__body"
-        >
+        <div id="NotesList__body">
           {this.state.notesFiltered && this.state.notesFiltered.length > 0 ? (
             this.state.notesFiltered.map(note => {
               return (

@@ -67,7 +67,7 @@ const colors = {
   // blue used on buttons
   highlight1: {
     light: "#5ebec3",
-    dark: "#18447a"
+    dark: "#20508a"
   },
 
   // red used on buttons (e.g. DeleteModal)

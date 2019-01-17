@@ -1,21 +1,31 @@
+import axios from "axios";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { navigate } from "@reach/router";
 
 import Editor from "../Editor/Editor.js";
 import NoteEditStyled from "./NoteEdit.styled.js";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:9000/api";
+
 class NoteEdit extends Component {
   state = {
-    title: this.props.noteDetails,
-    description: this.props.noteDetails.description,
-    language: this.props.noteDetails.language,
-    content: this.props.noteDetails.content,
-    _id: this.props.noteDetails._id,
+    title: this.props.title,
+    description: this.props.description,
+    language: this.props.language,
+    content: this.props.content,
+    _id: this.props._id,
     lineNumbers: true
   };
 
-  componentDidMount() {
-    this.setState({ ...this.props.noteDetails });
+  async componentDidMount() {
+    if (!this.state._id) {
+      const id = this.props.uri.slice(11); // get the note id from the url param
+      const token = localStorage.getItem("token");
+      const options = { headers: { Authorization: token } };
+      const response = await axios.get(`${API_URL}/notes/${id}`, options);
+      this.setState({ ...response.data });
+    }
   }
 
   handleInput = e => {
@@ -30,9 +40,10 @@ class NoteEdit extends Component {
     this.setState({ lineNumbers: e.target.checked });
   };
 
-  handleUpdate = () => {
+  handleUpdate = async () => {
     const { title, description, language, content, _id } = this.state;
-    this.props.updateNote({ title, description, language, content, _id });
+    await this.props.updateNote({ title, description, language, content, _id });
+    navigate(`/note/${this.state._id}`);
   };
 
   render() {
@@ -77,26 +88,28 @@ class NoteEdit extends Component {
             matchBrackets: true,
             autoCloseBrackets: true,
             matchTags: true,
-            autoCloseTags: true
+            autoCloseTags: true,
+            viewportMargin: Infinity
           }}
         />
 
-        <button onClick={this.handleUpdate}>Update</button>
+        <button onClick={this.handleUpdate} id="NoteEdit__updateButton">
+          Update
+        </button>
       </NoteEditStyled>
     );
   }
 } // Edit Note Component
 
 NoteEdit.propTypes = {
-  noteDetails: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    language: PropTypes.string,
-    content: PropTypes.string,
-    _id: PropTypes.string
-  }),
   updateNote: PropTypes.func,
-  theme: PropTypes.string
+  title: PropTypes.string,
+  description: PropTypes.string,
+  language: PropTypes.string,
+  content: PropTypes.string,
+  _id: PropTypes.string,
+  theme: PropTypes.string,
+  uri: PropTypes.string
 };
 
 export default NoteEdit;

@@ -11,6 +11,7 @@ const NoteCardStyled = styled.div`
   padding: 10px;
   margin: 10px;
   background-color: ${props => colors.background1[props.theme]};
+  transition: border 0.3s;
 
   &:hover {
     border: 1px solid ${props => colors.border3[props.theme]};

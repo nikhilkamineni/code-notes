@@ -8,7 +8,7 @@ class NoteCreate extends Component {
   state = {
     title: "",
     description: "",
-    content: "",
+    content: "\n\n\n\n\n\n\n\n\n",
     language: "markdown",
     lineNumbers: true
   };
@@ -70,7 +70,8 @@ class NoteCreate extends Component {
             matchBrackets: true,
             autoCloseBrackets: true,
             matchTags: true,
-            autoCloseTags: true
+            autoCloseTags: true,
+            viewportMargin: Infinity
           }}
         />
 

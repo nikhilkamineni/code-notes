@@ -17,7 +17,6 @@ const ChangeTheme = props => {
             name="theme"
             value="light"
             defaultChecked={props.theme === "light"}
-            checked={props.theme === "light"}
           />{" "}
           <label
             htmlFor="light"
@@ -34,7 +33,6 @@ const ChangeTheme = props => {
             name="theme"
             value="dark"
             defaultChecked={props.theme === "dark"}
-            checked={props.theme === "dark"}
           />{" "}
           <label
             htmlFor="dark"

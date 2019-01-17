@@ -12,11 +12,6 @@ const SidebarStyled = styled.div`
   height: 100%;
   padding: 10px;
 
-  .Sidebar__spacer {
-    width: 100vh;
-    height: 100vh;
-  }
-
   h1 {
     margin-bottom: 31px;
     padding-top: 10px;
@@ -24,18 +19,12 @@ const SidebarStyled = styled.div`
   }
 
   .Sidebar__Logo {
-    margin-left: 38px;
+    margin-left: 35px;
     color: ${props => colors.font1[props.theme]};
-    position: fixed;
-    top: 20px;
-    left: 10px;
   }
 
   #Sidebar__Menu {
-    position: fixed;
     display: flex;
-    top: 100px;
-    left: 33px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -45,11 +34,11 @@ const SidebarStyled = styled.div`
     }
   }
 
-  button {
+  .Sidebar__Link {
     margin-bottom: 20px;
     font-family: Roboto;
-    height: 50px;
-    width: 150px;
+    padding: 20px 0;
+    width: 140px;
     background-color: ${props => colors.highlight1[props.theme]};
     color: ${props => colors.font2[props.theme]};
     outline: none;
@@ -57,10 +46,13 @@ const SidebarStyled = styled.div`
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border: 1px solid ${props => colors.background1[props.theme]};
+    border: 2px solid ${props => colors.background1[props.theme]};
+    text-align: center;
+    text-decoration: none;
+    transition: border 0.3s;
 
     &:hover {
-      border: 1px solid ${props => colors.border4[props.theme]};
+      border: 2px solid ${props => colors.border4[props.theme]};
     }
   }
 `;

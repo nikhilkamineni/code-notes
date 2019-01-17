@@ -1,6 +1,7 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 
 import SignupStyled from "./Signup.styled.js";
 
@@ -117,7 +118,7 @@ class Signup extends Component {
           />
 
           <button
-            className="SignupForm__SubmitButton"
+            id="SignupForm__SubmitButton"
             type="submit"
             onClick={this.handleSignup}
           >
@@ -132,9 +133,9 @@ class Signup extends Component {
 
         <div id="Signup__LoginContainer">
           Already have an account?
-          <button id="LoginContainer__LoginLink" onClick={this.props.showLogin}>
+          <Link id="LoginContainer__LoginLink" to="/login">
             Log in
-          </button>
+          </Link>
         </div>
       </SignupStyled>
     );

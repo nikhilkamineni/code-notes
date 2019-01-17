@@ -22,6 +22,10 @@ const AppStyled = styled.div`
     width: 85%;
   }
 
+  .Auth {
+    margin: auto;
+  }
+
   button {
     outline: none;
     border: none;

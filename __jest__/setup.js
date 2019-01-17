@@ -7,7 +7,7 @@ const mongod = new MongodbMemoryServer.default({
   instance: {
     dbName: 'code-notes-test-db'
   },
-  autoStart: false,
+  autoStart: false
 });
 
 module.exports = async () => {

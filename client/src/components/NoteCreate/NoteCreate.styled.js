@@ -26,11 +26,12 @@ const NoteCreateStyled = styled.div`
 
   input {
     outline: 1px solid rgba(0 0 0 0);
-    border: 1px solid ${props => colors.border2[props.theme]};
+    border: 1px solid ${props => colors.border1[props.theme]};
     background: ${props => colors.background1[props.theme]};
     color: ${props => colors.font1[props.theme]};
     padding: 15px;
     margin-bottom: 5px;
+    transition: border 0.2s;
 
     &:hover {
       outline: 1px solid rgba(0 0 0 0);
@@ -63,6 +64,20 @@ const NoteCreateStyled = styled.div`
     width: 80%;
     margin-bottom: 20px;
     font-size: 1rem;
+  }
+
+  .CodeMirror {
+    &:hover {
+      border: 1.5px solid ${props => colors.border3[props.theme]};
+    }
+  }
+
+  .CodeMirror-focused {
+    border: 1.5px solid ${props => colors.highlight1[props.theme]};
+
+    &:hover {
+      border: 1.5px solid ${props => colors.highlight1[props.theme]};
+    }
   }
 `;
 

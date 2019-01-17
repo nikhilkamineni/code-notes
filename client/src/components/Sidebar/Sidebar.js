@@ -1,31 +1,39 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "@reach/router";
 
 import SidebarStyled from "./Sidebar.styled.js";
 
 const Sidebar = props => {
   return (
     <SidebarStyled className="Sidebar" theme={props.theme}>
-      <div className="Sidebar__spacer" />
       <div className={"Sidebar__Logo"}>
         <h1>{"{ codex }"}</h1>
       </div>
 
       {props.authenticated && (
         <div id="Sidebar__Menu">
-          <button id="Sidebar__ViewNotes" onClick={props.showNotesList}>
+          <Link id="Sidebar__ViewNotes" className="Sidebar__Link" to="/">
             View Notes
-          </button>
-          <button
+          </Link>
+
+          <Link
             id="Sidebar__CreateNotes"
-            onClick={props.showNoteCreateForm}
+            className="Sidebar__Link"
+            to="/note/create"
           >
             + Create Note
-          </button>
-          <button id="Sidebar__Settings" onClick={props.showSettings}>
+          </Link>
+
+          <Link id="Sidebar__Settings" className="Sidebar__Link" to="/settings">
             Settings
-          </button>
-          <button id="Sidebar__Logout" onClick={props.logoutUser}>
+          </Link>
+
+          <button
+            id="Sidebar__Logout"
+            className="Sidebar__Link"
+            onClick={props.logoutUser}
+          >
             Logout
           </button>
         </div>

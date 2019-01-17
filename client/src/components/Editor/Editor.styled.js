@@ -39,6 +39,17 @@ const EditorStyled = styled.div`
         padding-bottom: 2px;
         text-overflow: ellipsis;
         white-space: nowrap;
+        transition: border 0.2s;
+
+        &:hover {
+          border: 1px solid ${props => colors.border3[props.theme]};
+          cursor: pointer;
+        }
+
+        &:focus {
+          outline: 1px solid ${props => colors.highlight1[props.theme]};
+          border: 1px solid ${props => colors.highlight1[props.theme]};
+        }
       }
     }
 
@@ -53,11 +64,12 @@ const EditorStyled = styled.div`
     width: auto;
     height: auto;
     max-height: 100%;
-    min-height: 300px;
+    // min-height: 100px;
     margin-top: 5px;
-    border: 1px solid ${props => colors.border2[props.theme]};
+    border: 1.5px solid ${props => colors.border1[props.theme]};
     background: ${props => colors.background1[props.theme]};
     font-size: 14px;
+    transition: border 0.2s;
   }
 
   .CodeMirror-scroll,

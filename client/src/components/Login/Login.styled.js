@@ -26,12 +26,6 @@ const LoginStyled = styled.div`
     #Login__Logo {
       margin-bottom: 15px;
       color: ${colors.font1[defaultTheme]};
-
-      // #Logo__TopLine {
-      // }
-
-      // #Logo__BottomLine {
-      // }
     }
 
     #Login__Tagline {
@@ -42,30 +36,48 @@ const LoginStyled = styled.div`
     }
 
     input {
-      background-color: ${colors.background2[defaultTheme]};
+      outline: 1px solid rgba(0 0 0 0);
+        background-color: ${colors.background2[defaultTheme]};
+      border: 1px solid ${colors.border1[defaultTheme]};
+      color: ${colors.font1[defaultTheme]};
+      padding: 15px;
+      margin: 10px;
+      width: 20%;
+      min-width: 150px;
+      max-width: 300px;
+      font-size: 16px;
+      transition: border 0.3s;
+
+      &:hover {
+        outline: 1px solid rgba(0 0 0 0);
+        border: 1px solid ${colors.border2[defaultTheme]};
+      }
+
+      &:focus {
+        outline: 1px solid ${colors.highlight1[defaultTheme]};
+        border: 1px solid ${colors.highlight1[defaultTheme]};
+      }
     }
 
-    .SubmitButton {
+    #SubmitButton {
       margin: 10px 0 20px;
+      width: 80px;
+      height: 40px;
+      background-color: ${colors.highlight1[defaultTheme]};
+      border: 1px solid ${colors.highlight1[defaultTheme]};
+      color: ${colors.font1[defaultTheme]};
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: border 0.2s;
+
+      &:hover {
+        border: 2px solid ${colors.border2[defaultTheme]};
+      }
     }
 
     #loginError {
       color: ${colors.highlight2[defaultTheme]}
       height: 20px;
-    }
-  }
-
-  button {
-    width: 80px;
-    height: 40px;
-    background-color: ${colors.highlight1[defaultTheme]};
-    border: 1px solid ${colors.highlight1[defaultTheme]};
-    color: ${colors.font1[defaultTheme]};
-    font-size: 0.9rem;
-    font-weight: bold;
-
-    &:hover {
-      border: 1px solid ${colors.border2[defaultTheme]};
     }
   }
 
@@ -89,33 +101,12 @@ const LoginStyled = styled.div`
       border: none
       font: inherit;
       font-weight: bold;
+      text-decoration: none;
 
       &:hover {
         color: ${colors.highlight2[defaultTheme]};
         border: none;
       }
-    }
-  }
-
-  input {
-    outline: 1px solid rgba(0 0 0 0);
-    border: 1px solid ${colors.border1[defaultTheme]};
-    color: ${colors.font1[defaultTheme]};
-    padding: 15px;
-    margin: 10px;
-    width: 20%;
-    min-width: 150px;
-    max-width: 300px;
-    font-size: 16px;
-
-    &:hover {
-      outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid ${colors.border2[defaultTheme]};
-    }
-
-    &:focus {
-      outline: 1px solid ${colors.highlight1[defaultTheme]};
-      border: 1px solid ${colors.highlight1[defaultTheme]};
     }
   }
 `;
