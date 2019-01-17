@@ -69,7 +69,8 @@ class NoteDetails extends Component {
             mode: this.state.language,
             theme: cmTheme,
             lineNumbers: this.state.lineNumbers,
-            readOnly: "nocursor"
+            readOnly: "nocursor",
+            viewportMargin: Infinity
           }}
         />
 

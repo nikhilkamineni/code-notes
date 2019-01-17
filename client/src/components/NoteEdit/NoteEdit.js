@@ -88,7 +88,8 @@ class NoteEdit extends Component {
             matchBrackets: true,
             autoCloseBrackets: true,
             matchTags: true,
-            autoCloseTags: true
+            autoCloseTags: true,
+            viewportMargin: Infinity
           }}
         />
 

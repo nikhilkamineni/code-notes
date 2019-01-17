@@ -45,6 +45,11 @@ const EditorStyled = styled.div`
           border: 1px solid ${props => colors.border3[props.theme]};
           cursor: pointer;
         }
+
+        &:focus {
+          outline: 1px solid ${props => colors.highlight1[props.theme]};
+          border: 1px solid ${props => colors.highlight1[props.theme]};
+        }
       }
     }
 
@@ -59,7 +64,7 @@ const EditorStyled = styled.div`
     width: auto;
     height: auto;
     max-height: 100%;
-    min-height: 300px;
+    // min-height: 100px;
     margin-top: 5px;
     border: 1.5px solid ${props => colors.border1[props.theme]};
     background: ${props => colors.background1[props.theme]};
