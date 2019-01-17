@@ -45,9 +45,7 @@ class NotesList extends Component {
             />
           </div>
         </header>
-        <div
-          id="NotesList__body"
-        >
+        <div id="NotesList__body">
           {this.state.notesFiltered && this.state.notesFiltered.length > 0 ? (
             this.state.notesFiltered.map(note => {
               return (

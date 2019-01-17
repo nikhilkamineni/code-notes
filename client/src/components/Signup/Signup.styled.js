@@ -23,6 +23,45 @@ const SignupStyled = styled.div`
     border: 1px solid ${colors.border1[defaultTheme]};
     background-color: ${colors.background4[defaultTheme]};
 
+    input {
+      outline: 1px solid rgba(0 0 0 0);
+      border: 1px solid ${colors.border1[defaultTheme]};
+      color: ${colors.font1[defaultTheme]};
+      padding: 15px;
+      margin: 10px;
+      width: 20%;
+      min-width: 150px;
+      max-width: 300px;
+      font-size: 16px;
+      transition: border 0.2s;
+
+      &:hover {
+        outline: 1px solid rgba(0 0 0 0);
+        border: 1px solid ${colors.border2[defaultTheme]};
+      }
+
+      &:focus {
+        outline: 1px solid ${colors.highlight1[defaultTheme]};
+        border: 1px solid ${colors.highlight1[defaultTheme]};
+      }
+    }
+
+    #SignupForm__SubmitButton {
+      margin: 10px 0 20px;
+      width: 80px;
+      height: 40px;
+      background-color: ${colors.highlight1[defaultTheme]};
+      border: 1px solid ${colors.highlight1[defaultTheme]};
+      color: ${colors.font1[defaultTheme]};
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: border 0.2s;
+
+      &:hover {
+        border: 2px solid ${colors.border2[defaultTheme]};
+      }
+    }
+
     #SignupForm__Logo {
       margin-bottom: 15px;
       color: ${colors.font1[defaultTheme]};
@@ -80,46 +119,13 @@ const SignupStyled = styled.div`
       background: none;
       border: none
       font: inherit;
+      font-weight: bold;
+      text-decoration: none;
 
       &:hover {
         color: ${colors.highlight2[defaultTheme]};
         border: none;
       }
-    }
-  }
-
-  button {
-    width: 80px;
-    height: 40px;
-    background-color: ${colors.highlight1[defaultTheme]};
-    color: ${colors.font2[defaultTheme]};
-    font-size: 0.9rem;
-    font-weight: bold;
-
-    &:hover {
-      border: 1px solid ${colors.border2[defaultTheme]};
-    }
-  }
-
-  input {
-    outline: 1px solid rgba(0 0 0 0);
-    border: 1px solid ${colors.border1[defaultTheme]};
-    color: ${colors.font1[defaultTheme]};
-    padding: 15px;
-    margin: 10px;
-    width: 20%;
-    min-width: 150px;
-    max-width: 300px;
-    font-size: 16px;
-
-    &:hover {
-      outline: 1px solid rgba(0 0 0 0);
-      border: 1px solid ${colors.border2[defaultTheme]};
-    }
-
-    &:focus {
-      outline: 1px solid ${colors.highlight1[defaultTheme]};
-      border: 1px solid ${colors.highlight1[defaultTheme]};
     }
   }
 `;

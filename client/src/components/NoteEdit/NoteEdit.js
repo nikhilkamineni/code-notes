@@ -92,7 +92,9 @@ class NoteEdit extends Component {
           }}
         />
 
-        <button onClick={this.handleUpdate}>Update</button>
+        <button onClick={this.handleUpdate} id="NoteEdit__updateButton">
+          Update
+        </button>
       </NoteEditStyled>
     );
   }

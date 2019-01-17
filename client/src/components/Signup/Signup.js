@@ -118,7 +118,7 @@ class Signup extends Component {
           />
 
           <button
-            className="SignupForm__SubmitButton"
+            id="SignupForm__SubmitButton"
             type="submit"
             onClick={this.handleSignup}
           >

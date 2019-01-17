@@ -59,7 +59,7 @@ class Login extends Component {
             onChange={this.handlePasswordInput}
           />
 
-          <button type="submit" className="SubmitButton">
+          <button type="submit" id="SubmitButton">
             Login
           </button>
 
