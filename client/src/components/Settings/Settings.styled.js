@@ -38,7 +38,7 @@ const SettingsStyled = styled.div`
       margin: 10px 0;
       min-width: 150px;
       font-size: 14px;
-      color: ${props => colors.font2[props.theme]};
+      color: ${props => colors.font1[props.theme]};
 
       &:hover {
         outline: 1px solid rgba(0 0 0 0);
@@ -52,19 +52,19 @@ const SettingsStyled = styled.div`
     }
 
     #ChangePasswordForm__message {
-      margin-top: 10px;
+      margin-top: 5px;
       color: ${props => colors.highlight1[props.theme]};
       text-align: center;
     }
 
     #ChangePasswordForm__error {
-      margin-top: 10px;
+      margin-top: 5px;
       color: ${props => colors.highlight2[props.theme]};
       text-align: center;
     }
 
     .ChangePasswordForm__Submit {
-      margin: 10px 0;
+      margin: 5px 0 10px 0;
       padding: 10px;
       width: 100px;
       background-color: ${props => colors.highlight1[props.theme]};

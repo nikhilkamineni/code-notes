@@ -24,10 +24,7 @@ const SidebarStyled = styled.div`
   }
 
   #Sidebar__Menu {
-    // position: fixed;
     display: flex;
-    // top: 100px;
-    // left: 33px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

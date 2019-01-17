@@ -34,7 +34,7 @@ class ChangePassword extends Component {
       );
       if (response.status === 200) {
         this.setState({
-          changePasswordMessage: "Password was changed successfully!",
+          changePasswordMessage: "Password was updated!",
           changePasswordError: null
         });
         // Clear input fields after succesful password change
