@@ -16,7 +16,6 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
       "jsx": true
     },
     "sourceType": "module"
@@ -29,7 +28,5 @@
     "semi": ["error", "always"],
     "react/jsx-uses-vars": "error",
     "prettier/prettier": "error",
-    "no-unused-vars": ["error", { "varsIgnorePattern": "Styled" }],
-    "react/jsx-indent": ["warn", 2]
   }
 }
