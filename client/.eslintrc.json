@@ -5,6 +5,7 @@
     "es6": true,
     "jest": true
   },
+  "plugins": ["react", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -17,16 +18,14 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    },
-    "sourceType": "module"
+    }
   },
-  "plugins": ["react", "prettier"],
   "rules": {
     "strict": 0,
     "indent": ["off"],
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "always"],
     "react/jsx-uses-vars": "error",
-    "prettier/prettier": "error",
+    "prettier/prettier": "error"
   }
 }
