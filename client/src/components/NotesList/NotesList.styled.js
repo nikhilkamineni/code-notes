@@ -19,7 +19,7 @@ const NotesListStyled = styled.div`
     align-items: flex-start;
     margin-bottom: 10px;
 
-    .searchContainer {
+    #NotesList__searchContainer {
       margin-top: 20px;
 
       input {
@@ -30,6 +30,7 @@ const NotesListStyled = styled.div`
         padding: 5px 10px;
         font-size: 1rem;
         width: 160px;
+        transition: border 0.3s;
 
         &:hover {
           border: 1px solid ${props => colors.border3[props.theme]};
@@ -41,6 +42,11 @@ const NotesListStyled = styled.div`
         }
       }
     }
+  }
+
+  #NotesList__body {
+    display: flex;
+    flex-flow: row wrap;
   }
 `;
 

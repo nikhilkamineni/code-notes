@@ -46,12 +46,13 @@ const SidebarStyled = styled.div`
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border: 1px solid ${props => colors.background1[props.theme]};
+    border: 2px solid ${props => colors.background1[props.theme]};
     text-align: center;
     text-decoration: none;
+    transition: border 0.3s;
 
     &:hover {
-      border: 1px solid ${props => colors.border4[props.theme]};
+      border: 2px solid ${props => colors.border4[props.theme]};
     }
   }
 `;
