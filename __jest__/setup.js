@@ -7,9 +7,6 @@ const mongod = new MongodbMemoryServer.default({
   instance: {
     dbName: 'code-notes-test-db'
   },
-  binary: {
-    version: "4.0.5"
-  },
   autoStart: false
 });
 
