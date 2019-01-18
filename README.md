@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <a href="https://code-notes-nk.herokuapp.com">Visit the live deployment here</a>
+    <a href="https://codex-notes.herokuapp.com">Visit the live deployment here</a>
 </p>
 
 <p align="center">
