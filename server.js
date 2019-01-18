@@ -27,7 +27,26 @@ server.use(cors(corsOptions));
 
 /* CLIENT */
 // Serves up the static react build at the root endpoint
-server.use(express.static(path.join(__dirname, 'client/build')));
+server.use(express.static(path.join(__dirname, 'client', 'build')));
+server.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+}); 
+
+server.get("/note/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+}); 
+
+server.get("/login", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+}); 
+
+server.get("/signup", (req, res) => {
+  res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+}); 
+
+server.get("/settings", (req, res) => {
+  res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+}); 
 
 server.get('/api/test', (req, res) => {
   res.status(200).json({ message: 'API is up and running!' });
