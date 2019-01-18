@@ -5,12 +5,14 @@
 </p>
 
 <p align="center">
-    <a href="https://code-notes-nk.herokuapp.com">Visit the live deployment here</a>
+    <a href="https://codex-notes.herokuapp.com">Visit the live deployment here</a>
 </p>
 
 <p align="center">
  <img align="center" src="https://travis-ci.org/nikhilkamineni/codex.svg?branch=master" alt="Travis CI build status">
 </p>
+
+![Screenshot](./screenshot1.png)
 
 ## ABOUT
 
@@ -28,27 +30,44 @@
 - Themes
     - Currently supports a light and dark theme
     - Theme is saved upon login/logout
-- Search through and view your notes by title. Supports partial fuzzy searching
+- Search
+    - Filter notes by title 
+    - Matches multiple partial words searches
 
 #### Tech stack
 - Built with the MERN stack.
 - Unit and integration tests with Jest
-- Continuous Integration with Travis CI
+- Continuous Integration/Deployment with Travis CI and Heroku
 - Code editor powered by CodeMirror
 - Passwords are hashed using `bcrypt`
 - Authentication using JWT's
 
 #### Roadmap
+- Vim keymap option
 - Tags field for notes
 - Color field for notes
+- Improved search features
 - Login/signup through github
 - Synchronize notes with github gists
 
 ## DEVELOPMENT
-### API Usage
+PR's welcome!
+
+### Setup
+
+1. Fork/clone repo to a location of your choice
+
+1. Run `npm install` in root folder
+
+1. `cd` into the `client` folder and run `npm install`
+
+
+### API Reference
+
+API root url: `https://codex-notes.herokuapp.com/api`
 
 #### `/login`
-- Login user
+- [POST] Login user
     - `username` and `password` required
 
 #### `/signup`
