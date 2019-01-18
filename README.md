@@ -30,12 +30,14 @@
 - Themes
     - Currently supports a light and dark theme
     - Theme is saved upon login/logout
-- Search through and view your notes by title; supports partial word searches
+- Search
+    - Filter notes by title 
+    - Matches multiple partial words searches
 
 #### Tech stack
 - Built with the MERN stack.
 - Unit and integration tests with Jest
-- Continuous Integration/Deployment with Travis CI
+- Continuous Integration/Deployment with Travis CI and Heroku
 - Code editor powered by CodeMirror
 - Passwords are hashed using `bcrypt`
 - Authentication using JWT's
@@ -44,6 +46,7 @@
 - Vim keymap option
 - Tags field for notes
 - Color field for notes
+- Improved search features
 - Login/signup through github
 - Synchronize notes with github gists
 
